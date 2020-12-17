@@ -4,9 +4,9 @@ from Telnet import *
 
 
 class TelnetClient:
-    def __init__(self, ):
+    def __init__(self, if_print=True):
         self.tn = telnetlib.Telnet()
-        self.if_print = True
+        self.if_print = if_print
 
     # 此函数实现telnet登录主机
     def loginHost(self, host_ip, username, password, host_type):
@@ -50,7 +50,7 @@ class TelnetClient:
     def executeOneCommand(self, command):
         self.tn.write((command + '\n').encode())
         time.sleep(0.2)
-        result=self.tn.read_very_eager().decode()
+        result = self.tn.read_very_eager().decode()
         if self.if_print:
             print(result)
         return result
@@ -60,8 +60,6 @@ class TelnetClient:
         result_list = list()
         for com in commands:
             result_list.append(self.executeOneCommand(com))
-        if self.if_print:
-            print(result_list)
         return result_list
 
     # 退出telnet
