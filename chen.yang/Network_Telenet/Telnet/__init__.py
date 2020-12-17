@@ -1,2 +1,2 @@
-from MessageHandle import *
-from TelnetConnection import *
+from Telnet.MessageHandle import *
+from Telnet.TelnetConnection import *
