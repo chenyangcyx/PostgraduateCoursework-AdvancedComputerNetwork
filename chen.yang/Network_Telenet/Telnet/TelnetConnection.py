@@ -4,9 +4,14 @@ from Telnet import *
 
 
 class TelnetClient:
-    def __init__(self, if_print=True):
+    def __init__(self, if_print=True, if_print_to_file=True, print_file_path="out.txt"):
         self.tn = telnetlib.Telnet()
+        # 获取到输出后是否打印
         self.if_print = if_print
+        # 结果是否输出到文件
+        self.if_print_to_file = if_print_to_file
+        if if_print_to_file:
+            self.outfile = open(print_file_path, "w", encoding="utf-8")
 
     # 此函数实现telnet登录主机
     def loginHost(self, host_ip, username, password, host_type):
@@ -51,8 +56,11 @@ class TelnetClient:
         self.tn.write((command + '\n').encode())
         time.sleep(0.2)
         result = self.tn.read_very_eager().decode()
+        result=result.replace("\r\n", "\n")
         if self.if_print:
             print(result)
+        if self.if_print_to_file:
+            self.outfile.write(result+"\n")
         return result
 
     # 执行传输过来的命令集合，返回所有原始输出结果
@@ -60,6 +68,7 @@ class TelnetClient:
         result_list = list()
         for com in commands:
             result_list.append(self.executeOneCommand(com))
+        print(result_list)
         return result_list
 
     # 退出telnet

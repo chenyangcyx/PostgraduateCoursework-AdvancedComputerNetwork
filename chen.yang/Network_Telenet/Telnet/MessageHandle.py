@@ -62,8 +62,7 @@ def handleMsgFromRouter(msg):
 def handleAllMsg(msgs):
     all_commands = list()
     for msg in msgs:
-        new_msg = msg.replace("\r\n", "\n")
-        for one_cmd in new_msg.split("\n"):
+        for one_cmd in msg.split("\n"):
             all_commands.append(one_cmd)
     handle_commands = list()
     for com in all_commands:

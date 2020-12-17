@@ -1,5 +1,6 @@
 # Telnet的使用示例
 from Telnet import *
+import time
 
 if __name__ == '__main__':
     host_ip = '10.201.2.10'
@@ -19,13 +20,23 @@ if __name__ == '__main__':
                 "echo `ll` > 5.txt",
                 "ll",
                 "cat 1.txt",
+                "rm -f 1.txt",
+                "ll",
                 "cat 2.txt",
+                "rm -f 2.txt",
+                "ll",
                 "cat 3.txt",
+                "rm -f 3.txt",
+                "ll",
                 "cat 4.txt",
-                "cat 5.txt"
+                "rm -f 4.txt",
+                "ll",
+                "cat 5.txt",
+                "rm -f 5.txt",
+                "ll",
                 ]
     # 测试Telenet连接Linux主机
-    telnet_client = TelnetClient(True)
+    telnet_client = TelnetClient(True,True,"%s.txt"%time.time())
     print("原始输出：")
     if telnet_client.loginHost(host_ip, username, password, "Linux"):
         result_out = telnet_client.executeSomeCommand(commands)
