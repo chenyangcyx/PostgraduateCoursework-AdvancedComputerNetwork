@@ -40,7 +40,7 @@ class TelnetClient:
             if 'Login incorrect' not in command_result:
                 print('%s登录成功' % host_ip)
                 # 开始发送心跳包，防止telnet连接断开
-                print("开始发送心跳包……\n")
+                # print("开始发送心跳包……\n")
                 _thread.start_new_thread(self.sendHeartbeat, (10,))
                 return True
             else:
@@ -50,7 +50,7 @@ class TelnetClient:
             if 'Login invalid' not in command_result:
                 print('%s登录成功' % host_ip)
                 # 开始发送心跳包，防止telnet连接断开
-                print("开始发送心跳包……\n")
+                # print("开始发送心跳包……\n")
                 _thread.start_new_thread(self.sendHeartbeat, (10,))
                 return True
             else:
@@ -61,22 +61,22 @@ class TelnetClient:
     def sendHeartbeat(self, delay_time):
         while 1:
             self.tn.write('\n'.encode())
-            show_content="%s: 发送了一个心跳包\n" % time.time()
-            print(show_content)
-            if self.if_print_to_file:
-                self.outfile.write(show_content)
-                self.outfile.flush()
+            # show_content="%s: 发送了一个心跳包\n" % time.time()
+            # print(show_content)
+            # if self.if_print_to_file:
+            #     self.outfile.write(show_content)
+            #     self.outfile.flush()
             time.sleep(delay_time)
 
     # 执行传输过来的一条指令，返回所有原始输出结果
-    def executeOneCommand(self, command):
+    def executeOneCommand(self, command, if_print, if_print_to_file):
         self.tn.write((command + '\n').encode())
         time.sleep(0.2)
         result = self.tn.read_very_eager().decode()
         result = result.replace("\r\n", "\n")
-        if self.if_print:
+        if if_print:
             print(result)
-        if self.if_print_to_file:
+        if if_print_to_file:
             self.outfile.write(result + "\n")
             self.outfile.flush()
         return result
@@ -85,9 +85,25 @@ class TelnetClient:
     def executeSomeCommand(self, commands):
         result_list = list()
         for com in commands:
-            result_list.append(self.executeOneCommand(com))
+            result_list.append(self.executeOneCommand(com, self.if_print, self.if_print_to_file))
         print(result_list)
         return result_list
+
+    # 实时交互的Telnet命令
+    def interactiveExecuteCMD(self):
+        while 1:
+            input_cmd = input("Command# ")
+            if input_cmd == "endend":
+                break
+            if self.if_print_to_file:
+                self.outfile.write("Command# %s\n" % input_cmd)
+                self.outfile.flush()
+            execute_result = self.executeOneCommand(input_cmd, False, False)
+            #execute_result=handleMsgFromLinux(execute_result)
+            print("Result# %s" % execute_result)
+            if self.if_print_to_file:
+                self.outfile.write("Result# %s\n" % execute_result)
+                self.outfile.flush()
 
     # 退出telnet
     def logoutHost(self):
