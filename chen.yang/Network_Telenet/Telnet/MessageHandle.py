@@ -20,7 +20,10 @@ def handleMsgFromLinux(msg):
         if ifEmptyLinuxCMD(msg):
             return ""
         else:
-            return msg[msg.find("#") + 2:]
+            if not(ifEmptyLinuxCMD(msg[msg.find("#") + 2:])):
+                return msg[msg.find("#") + 2:]
+            else:
+                return ""
     else:
         return msg
 
@@ -53,9 +56,15 @@ def handleMsgFromRouter(msg):
             return ""
         else:
             if cmd_type == 1:
-                return msg[msg.find(">") + 1:]
+                if not(ifEmptyRouterCMD(msg[msg.find(">") + 1:])):
+                    return msg[msg.find(">") + 1:]
+                else:
+                    return ""
             if cmd_type == 2:
-                return msg[msg.find("#") + 1:]
+                if not (ifEmptyRouterCMD(msg[msg.find("#") + 1:])):
+                    return msg[msg.find("#") + 1:]
+                else:
+                    return ""
 
 
 # 处理从linux返回的字符串，msgs是一个list

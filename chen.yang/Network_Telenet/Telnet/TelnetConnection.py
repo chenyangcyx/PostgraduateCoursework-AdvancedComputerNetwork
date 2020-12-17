@@ -61,7 +61,7 @@ class TelnetClient:
     def sendHeartbeat(self, delay_time):
         while 1:
             self.tn.write('\n'.encode())
-            show_content="\n%s: 发送了一个心跳包\n" % time.time()
+            show_content="%s: 发送了一个心跳包\n" % time.time()
             print(show_content)
             if self.if_print_to_file:
                 self.outfile.write(show_content)
