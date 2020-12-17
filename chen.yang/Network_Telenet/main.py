@@ -40,12 +40,16 @@ if __name__ == '__main__':
     print("原始输出：")
     if telnet_client.loginHost(host_ip, username, password, "Linux"):
         result_out = telnet_client.executeSomeCommand(commands)
-        telnet_client.logoutHost()
+        #telnet_client.logoutHost()
 
     print("清理后的输出：")
     result_out2 = MessageHandle.handleAllMsg(result_out)
     for out in result_out2:
         print(out)
+
+    while 1:
+        time.sleep(1)
+        pass
 
 # JsonParse的使用示例
 # from JsonParse import *

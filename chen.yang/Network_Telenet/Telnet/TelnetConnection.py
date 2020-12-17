@@ -1,5 +1,6 @@
 import telnetlib
 import time
+import _thread
 from Telnet import *
 
 
@@ -34,11 +35,13 @@ class TelnetClient:
         # 延时两秒再收取返回结果，给服务端足够响应时间
         time.sleep(2)
         # 获取登录结果
-        # read_very_eager()获取到的是的是上次获取之后本次获取之前的所有输出
         command_result = self.tn.read_very_eager().decode()
         if host_type == "Linux":
             if 'Login incorrect' not in command_result:
                 print('%s登录成功' % host_ip)
+                # 开始发送心跳包，防止telnet连接断开
+                print("开始发送心跳包……\n")
+                _thread.start_new_thread(self.sendHeartbeat, (10,))
                 return True
             else:
                 print('%s登录失败，用户名或密码错误' % host_ip)
@@ -46,21 +49,36 @@ class TelnetClient:
         elif host_type == "Router":
             if 'Login invalid' not in command_result:
                 print('%s登录成功' % host_ip)
+                # 开始发送心跳包，防止telnet连接断开
+                print("开始发送心跳包……\n")
+                _thread.start_new_thread(self.sendHeartbeat, (10,))
                 return True
             else:
                 print('%s登录失败，用户名或密码错误' % host_ip)
                 return False
+
+    # 发送心跳包，以保持telnet的连接
+    def sendHeartbeat(self, delay_time):
+        while 1:
+            self.tn.write('\n'.encode())
+            show_content="\n%s: 发送了一个心跳包\n" % time.time()
+            print(show_content)
+            if self.if_print_to_file:
+                self.outfile.write(show_content)
+                self.outfile.flush()
+            time.sleep(delay_time)
 
     # 执行传输过来的一条指令，返回所有原始输出结果
     def executeOneCommand(self, command):
         self.tn.write((command + '\n').encode())
         time.sleep(0.2)
         result = self.tn.read_very_eager().decode()
-        result=result.replace("\r\n", "\n")
+        result = result.replace("\r\n", "\n")
         if self.if_print:
             print(result)
         if self.if_print_to_file:
-            self.outfile.write(result+"\n")
+            self.outfile.write(result + "\n")
+            self.outfile.flush()
         return result
 
     # 执行传输过来的命令集合，返回所有原始输出结果
