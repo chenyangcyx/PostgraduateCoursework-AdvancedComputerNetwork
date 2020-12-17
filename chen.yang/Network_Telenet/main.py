@@ -37,11 +37,11 @@ if __name__ == '__main__':
                 ]
     # 测试Telenet连接Linux主机
     telnet_client = TelnetClient(True,True,"%s.txt"%time.time())
-    print("原始输出：")
+    # print("原始输出：")
     if telnet_client.loginHost(host_ip, username, password, "Linux"):
         telnet_client.interactiveExecuteCMD()
-    #     result_out = telnet_client.executeSomeCommand(commands)
-    #     telnet_client.logoutHost()
+        # result_out = telnet_client.executeSomeCommand(commands)
+        # telnet_client.logoutHost()
     #
     # print("清理后的输出：")
     # result_out2 = MessageHandle.handleAllMsg(result_out)

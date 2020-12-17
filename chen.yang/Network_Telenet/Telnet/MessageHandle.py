@@ -16,14 +16,14 @@ def ifEmptyLinuxCMD(msg):
 
 # 清理从linux终端返回的字符串
 def handleMsgFromLinux(msg):
-    if ifHasLinuxCMD(msg):
-        if ifEmptyLinuxCMD(msg):
+    content = msg
+    if ifHasLinuxCMD(content):
+        while ifHasLinuxCMD(content):
+            content = content[content.find("#") + 2:]
+        if ifEmptyLinuxCMD(content):
             return ""
         else:
-            if not(ifEmptyLinuxCMD(msg[msg.find("#") + 2:])):
-                return msg[msg.find("#") + 2:]
-            else:
-                return ""
+            return content
     else:
         return msg
 
@@ -50,21 +50,21 @@ def ifEmptyRouterCMD(msg):
 
 # 清理从Router返回的字符串
 def handleMsgFromRouter(msg):
-    cmd_type = ifHasRouterCMD(msg)
-    if cmd_type != -1:
-        if ifEmptyRouterCMD(msg):
+    content = msg
+    if ifHasRouterCMD(content) != -1:
+        cmd_type = ifHasRouterCMD(content)
+        while cmd_type != -1:
+            if cmd_type == 1:
+                content = content[content.find(">") + 1:]
+            elif cmd_type == 2:
+                content = content[content.find("#") + 1:]
+            cmd_type = ifHasRouterCMD(content)
+        if ifEmptyRouterCMD(content):
             return ""
         else:
-            if cmd_type == 1:
-                if not(ifEmptyRouterCMD(msg[msg.find(">") + 1:])):
-                    return msg[msg.find(">") + 1:]
-                else:
-                    return ""
-            if cmd_type == 2:
-                if not (ifEmptyRouterCMD(msg[msg.find("#") + 1:])):
-                    return msg[msg.find("#") + 1:]
-                else:
-                    return ""
+            return content
+    else:
+        return msg
 
 
 # 处理从linux返回的字符串，msgs是一个list

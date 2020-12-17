@@ -99,7 +99,7 @@ class TelnetClient:
                 self.outfile.write("Command# %s\n" % input_cmd)
                 self.outfile.flush()
             execute_result = self.executeOneCommand(input_cmd, False, False)
-            #execute_result=handleMsgFromLinux(execute_result)
+            #execute_result = handleMsgFromLinux(execute_result)
             print("Result# %s" % execute_result)
             if self.if_print_to_file:
                 self.outfile.write("Result# %s\n" % execute_result)
