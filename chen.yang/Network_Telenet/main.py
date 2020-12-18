@@ -34,28 +34,30 @@ if __name__ == '__main__':
         "ll",
         "cat 5.txt",
         "rm -f 5.txt",
-        "ll"
-    #             "enable",
-    #             "CISCO",
-    #             "configure terminal",
-    #             "router rip",
-    #             "version 1",
-    #             "network 192.168.12.0",
-    #             "network 192.168.23.0",
-    #             "exit",
-    #             "exit",
-    #             "show ip route",
-    #
-    #             "ping 192.168.12.0",
-    #             "ping 192.168.23.0"
+        "ll",
+        "ping baidu.com -c 5",
+        "ping google.com -c 5"
+        #             "enable",
+        #             "CISCO",
+        #             "configure terminal",
+        #             "router rip",
+        #             "version 1",
+        #             "network 192.168.12.0",
+        #             "network 192.168.23.0",
+        #             "exit",
+        #             "exit",
+        #             "show ip route",
+        #
+        #             "ping 192.168.12.0",
+        #             "ping 192.168.23.0"
     ]
     # 测试Telenet连接Linux主机
-    telnet_client_Linux = TelnetClient(True, True, "%s.txt" % time.time())
+    telnet_client_Linux = TelnetClient(True, True, "./log/%s.txt" % time.time())
     print("原始输出：")
-    result_out=list()
+    result_out = list()
     if telnet_client_Linux.loginHostLinux(host_ip, username, password):
         # telnet_client.interactiveExecuteCMD()
-        result_out = telnet_client_Linux.executeSomeCommand(commands)
+        result_out = telnet_client_Linux.executeSomeCommand(commands, "Linux")
 
     # # 测试Telnet连接Router主机
     # telnet_client_Router=TelnetClient(True,True,"%s.txt"%time.time())
@@ -69,9 +71,9 @@ if __name__ == '__main__':
     for out in result_out2:
         print(out)
 
-    while 1:
-        time.sleep(1)
-        pass
+    # while 1:
+    #     time.sleep(1)
+    #     pass
 
 # JsonParse的使用示例
 # from JsonParse import *
