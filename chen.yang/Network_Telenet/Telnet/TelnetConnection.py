@@ -14,20 +14,15 @@ class TelnetClient:
         if if_print_to_file:
             self.outfile = open(print_file_path, "w", encoding="utf-8")
 
-    # 此函数实现telnet登录主机
-    def loginHost(self, host_ip, username, password, host_type):
+    # telnet登录主机，Linux
+    def loginHostLinux(self, host_ip, username, password):
         try:
             self.tn.open(host_ip, port=23)
         except:
             print('%s网络连接失败' % host_ip)
             return False
-        username_info = ""
-        if host_type == "Linux":
-            username_info = b'login'
-        elif host_type == "Router":
-            username_info = b'Username:'
         # 等待login出现后输入用户名，最多等待10秒
-        self.tn.read_until(username_info, timeout=10)
+        self.tn.read_until(b'login', timeout=10)
         self.tn.write((username + '\n').encode())
         # 等待Password出现后输入用户名，最多等待10秒
         self.tn.read_until(b'Password', timeout=10)
@@ -36,36 +31,48 @@ class TelnetClient:
         time.sleep(2)
         # 获取登录结果
         command_result = self.tn.read_very_eager().decode()
-        if host_type == "Linux":
-            if 'Login incorrect' not in command_result:
-                print('%s登录成功' % host_ip)
-                # 开始发送心跳包，防止telnet连接断开
-                # print("开始发送心跳包……\n")
-                _thread.start_new_thread(self.sendHeartbeat, (10,))
-                return True
-            else:
-                print('%s登录失败，用户名或密码错误' % host_ip)
-                return False
-        elif host_type == "Router":
-            if 'Login invalid' not in command_result:
-                print('%s登录成功' % host_ip)
-                # 开始发送心跳包，防止telnet连接断开
-                # print("开始发送心跳包……\n")
-                _thread.start_new_thread(self.sendHeartbeat, (10,))
-                return True
-            else:
-                print('%s登录失败，用户名或密码错误' % host_ip)
-                return False
+        if 'Login incorrect' not in command_result:
+            print('%s登录成功' % host_ip)
+            # 开始发送心跳包，防止telnet连接断开
+            _thread.start_new_thread(self.sendHeartbeat, (10,))
+            return True
+        else:
+            print('%s登录失败，用户名或密码错误' % host_ip)
+            return False
+
+    # telnet登录主机，Router
+    def loginHostRouter(self, host_ip, password):
+        try:
+            self.tn.open(host_ip, port=23)
+        except:
+            print('%s网络连接失败' % host_ip)
+            return False
+        # 等待Password出现后输入用户名，最多等待10秒
+        self.tn.read_until(b'Password', timeout=10)
+        self.tn.write((password + '\n').encode())
+        time.sleep(0.2)
+        # 进入enable模式，需要再次输入密码
+        self.tn.read_until(b'Router>', timeout=10)
+        self.tn.write('enable\n'.encode())
+        time.sleep(0.2)
+        self.tn.read_until(b'Password', timeout=10)
+        self.tn.write((password + '\n').encode())
+        time.sleep(0.2)
+        # 获取登录结果
+        command_result = self.tn.read_very_eager().decode()
+        if 'Router#' not in command_result:
+            print('%s登录成功' % host_ip)
+            # 开始发送心跳包，防止telnet连接断开
+            _thread.start_new_thread(self.sendHeartbeat, (10,))
+            return True
+        else:
+            print('%s登录失败，用户名或密码错误' % host_ip)
+            return False
 
     # 发送心跳包，以保持telnet的连接
     def sendHeartbeat(self, delay_time):
         while 1:
             self.tn.write('\n'.encode())
-            # show_content="%s: 发送了一个心跳包\n" % time.time()
-            # print(show_content)
-            # if self.if_print_to_file:
-            #     self.outfile.write(show_content)
-            #     self.outfile.flush()
             time.sleep(delay_time)
 
     # 执行传输过来的一条指令，返回所有原始输出结果
