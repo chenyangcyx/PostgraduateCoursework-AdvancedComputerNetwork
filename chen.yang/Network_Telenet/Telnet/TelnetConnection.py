@@ -92,7 +92,6 @@ class TelnetClient:
         result_list = list()
         for com in commands:
             result_list.append(self.executeOneCommand(com, self.if_print, self.if_print_to_file))
-        print(result_list)
         return result_list
 
     # 实时交互的Telnet命令

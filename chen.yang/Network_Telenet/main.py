@@ -3,9 +3,9 @@ from Telnet import *
 import time
 
 if __name__ == '__main__':
-    host_ip = '192.168.1.2'
+    host_ip = '10.201.2.10'
     username = 'root'
-    password = 'CISCO'
+    password = 'njuchenyang'
     commands = [
         "cd /home",
         "rm -f *.txt",
@@ -52,6 +52,7 @@ if __name__ == '__main__':
     # 测试Telenet连接Linux主机
     telnet_client_Linux = TelnetClient(True, True, "%s.txt" % time.time())
     print("原始输出：")
+    result_out=list()
     if telnet_client_Linux.loginHostLinux(host_ip, username, password):
         # telnet_client.interactiveExecuteCMD()
         result_out = telnet_client_Linux.executeSomeCommand(commands)
@@ -64,7 +65,7 @@ if __name__ == '__main__':
     #     result_out = telnet_client_Router.executeSomeCommand(commands)
 
     print("清理后的输出：")
-    result_out2 = MessageHandle.handleAllMsg(result_out)
+    result_out2 = MessageHandle.handleAllMsgFromLinux(result_out)
     for out in result_out2:
         print(out)
 
