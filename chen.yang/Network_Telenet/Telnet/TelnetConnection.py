@@ -1,7 +1,6 @@
 import telnetlib
 import time
 import _thread
-from Telnet import *
 
 
 class TelnetClient:

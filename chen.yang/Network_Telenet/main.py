@@ -50,11 +50,18 @@ if __name__ == '__main__':
     #             "ping 192.168.23.0"
     ]
     # 测试Telenet连接Linux主机
-    telnet_client = TelnetClient(True,True,"%s.txt"%time.time())
-    # print("原始输出：")
-    if telnet_client.loginHostLinux(host_ip, username, password, "Router"):
+    telnet_client_Linux = TelnetClient(True, True, "%s.txt" % time.time())
+    print("原始输出：")
+    if telnet_client_Linux.loginHostLinux(host_ip, username, password):
         # telnet_client.interactiveExecuteCMD()
-        result_out = telnet_client.executeSomeCommand(commands)
+        result_out = telnet_client_Linux.executeSomeCommand(commands)
+
+    # # 测试Telnet连接Router主机
+    # telnet_client_Router=TelnetClient(True,True,"%s.txt"%time.time())
+    # print("原始输出：")
+    # if telnet_client_Router.loginHostRouter(host_ip, password):
+    #     # telnet_client.interactiveExecuteCMD()
+    #     result_out = telnet_client_Router.executeSomeCommand(commands)
 
     print("清理后的输出：")
     result_out2 = MessageHandle.handleAllMsg(result_out)
