@@ -1,5 +1,6 @@
 import re
 
+
 # 判断是否带有linux字符串标识
 def ifHasLinuxCMD(msg):
     if msg.find("]#") != -1 and msg.find("[") != -1:
@@ -28,7 +29,7 @@ def handleMsgFromLinux(msg):
     #         return content
     # else:
     #     return msg
-    return re.sub(r'\[.*?@.*?\]# ',"",msg)
+    return re.sub(r'\[.*?@.*?\]# ', r"$$delete$$", msg)
 
 
 # 判断是否带有Router字符串标识
@@ -52,23 +53,23 @@ def ifEmptyRouterCMD(msg):
 
 
 # 清理从Router返回的字符串
-#def handleMsgFromRouter(msg):
+# def handleMsgFromRouter(msg):
 
-    # content = msg
-    # if ifHasRouterCMD(content) != -1:
-    #     cmd_type = ifHasRouterCMD(content)
-    #     while cmd_type != -1:
-    #         if cmd_type == 1:
-    #             content = content[content.find(">") + 1:]
-    #         elif cmd_type == 2:
-    #             content = content[content.find("#") + 1:]
-    #         cmd_type = ifHasRouterCMD(content)
-    #     if ifEmptyRouterCMD(content):
-    #         return ""
-    #     else:
-    #         return content
-    # else:
-    #     return msg
+# content = msg
+# if ifHasRouterCMD(content) != -1:
+#     cmd_type = ifHasRouterCMD(content)
+#     while cmd_type != -1:
+#         if cmd_type == 1:
+#             content = content[content.find(">") + 1:]
+#         elif cmd_type == 2:
+#             content = content[content.find("#") + 1:]
+#         cmd_type = ifHasRouterCMD(content)
+#     if ifEmptyRouterCMD(content):
+#         return ""
+#     else:
+#         return content
+# else:
+#     return msg
 
 
 # 处理从linux返回的字符串，msgs是一个list
@@ -80,6 +81,6 @@ def handleAllMsgFromLinux(msgs):
     handle_commands = list()
     for com in all_commands:
         handle_com = handleMsgFromLinux(com)
-        if handle_com != "":
-            handle_commands.append(handle_com)
+        if handle_com != r"$$delete$$":
+            handle_commands.append(handle_com.replace(r"$$delete$$", ""))
     return handle_commands
