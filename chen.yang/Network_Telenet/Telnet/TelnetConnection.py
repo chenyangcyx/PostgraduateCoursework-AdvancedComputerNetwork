@@ -101,19 +101,7 @@ class TelnetClient:
 
     # 实时交互的Telnet命令
     def interactiveExecuteCMD(self):
-        while 1:
-            input_cmd = input("Command# ")
-            if input_cmd == "endend":
-                break
-            if self.if_print_to_file:
-                self.outfile.write("Command# %s\n" % input_cmd)
-                self.outfile.flush()
-            execute_result = self.executeOneCommand(input_cmd, False, False)
-            # execute_result = handleMsgFromLinux(execute_result)
-            print("Result# %s" % execute_result)
-            if self.if_print_to_file:
-                self.outfile.write("Result# %s\n" % execute_result)
-                self.outfile.flush()
+        self.tn.interact()
 
     # 退出telnet
     def logoutHost(self):

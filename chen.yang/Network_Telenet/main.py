@@ -1,6 +1,7 @@
 # Telnet的使用示例
 from Telnet import *
 import time
+import telnetlib
 
 if __name__ == '__main__':
     host_ip = '10.201.2.10'
@@ -35,8 +36,7 @@ if __name__ == '__main__':
         "cat 5.txt",
         "rm -f 5.txt",
         "ll",
-        "ping baidu.com -c 5",
-        "ping google.com -c 5"
+        "ping baidu.com -c 2"
         #             "enable",
         #             "CISCO",
         #             "configure terminal",
@@ -65,6 +65,11 @@ if __name__ == '__main__':
     # if telnet_client_Router.loginHostRouter(host_ip, password):
     #     # telnet_client.interactiveExecuteCMD()
     #     result_out = telnet_client_Router.executeSomeCommand(commands)
+
+    # 测试其他功能
+    # telnet_con=telnetlib.Telnet()
+    # telnet_con.open("10.201.2.10",port=23,timeout=10)
+    # telnet_con.interact()
 
     print("清理后的输出：")
     result_out2 = MessageHandle.handleAllMsgFromLinux(result_out)
