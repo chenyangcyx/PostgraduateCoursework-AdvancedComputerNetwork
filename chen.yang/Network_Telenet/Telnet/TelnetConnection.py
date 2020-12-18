@@ -59,7 +59,7 @@ class TelnetClient:
         time.sleep(0.2)
         # 获取登录结果
         command_result = self.tn.read_very_eager().decode()
-        if 'Router#' not in command_result:
+        if 'Router#' in command_result:
             print('%s登录成功' % host_ip)
             # 开始发送心跳包，防止telnet连接断开
             _thread.start_new_thread(self.sendHeartbeat, (10,))
