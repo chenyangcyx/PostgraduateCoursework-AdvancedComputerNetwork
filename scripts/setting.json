@@ -1,5 +1,5 @@
 {
-    "groupId":"24",
+    "groupId":24,
     "groupMembers":
     [
         {
@@ -29,40 +29,84 @@
     ],
     "subjectName":"动态路由",
     "creationDate":"2020/12/18 00:00",
-    "routerNum":3,
     "routerSettings":
     [
         {
-            "routerName":"RTA",
-            "host_ip":"192.168.1.1",
-            "loginUsername":"username",
-            "loginPassword":"password",
-            "commands":
+            "configName":"RIP",
+            "routerNum":3,
+            "configDetail":
             [
-                "1",
-                "2"
-            ]
-        },
-        {
-            "routerName":"RTB",
-            "host_ip":"192.168.1.2",
-            "loginUsername":"username",
-            "loginPassword":"password",
-            "commands":
-            [
-                "1",
-                "2"
-            ]
-        },
-        {
-            "routerName":"RTC",
-            "host_ip":"192.168.1.3",
-            "loginUsername":"username",
-            "loginPassword":"password",
-            "commands":
-            [
-                "1",
-                "2"
+                {
+                    "routerName":"RouterA",
+                    "host_ip":"192.168.1.1",
+                    "loginPassword":"CISCO",
+                    "configCommands":
+                    [
+                        "configure terminal",
+                        "interface s0/0/0",
+                        "ip address 192.168.2.1 255.255.255.0",
+                        "clock rate 64000",
+                        "no shutdown",
+                        "exit",
+                        "router rip",
+                        "network 192.168.2.0",
+                        "version 2",
+                        "no auto-summary"
+                    ],
+                    "testCommands":
+                    [
+                        "show ip route"
+                    ]
+                },
+                {
+                    "routerName":"RouterB",
+                    "host_ip":"192.168.1.2",
+                    "loginPassword":"CISCO",
+                    "configCommands":
+                    [
+                        "configure terminal",
+                        "int s0/0/0",
+                        "ip address 192.168.2.2 255.255.255.0",
+                        "clock rate 64000",
+                        "no shutdown",
+                        "int s0/0/1",
+                        "ip address 192.168.3.1 255.255.255.0",
+                        "clock rate 64000",
+                        "no shutdown",
+                        "exit",
+                        "router rip",
+                        "network 192.168.2.0",
+                        "network 192.168.3.0",
+                        "version 2",
+                        "no auto-summary"
+                    ],
+                    "testCommands":
+                    [
+                        "show ip route"
+                    ]
+                },
+                {
+                    "routerName":"RouterC",
+                    "host_ip":"192.168.1.3",
+                    "loginPassword":"CISCO",
+                    "configCommands":
+                    [
+                        "configure terminal",
+                        "int s0/0/1",
+                        "ip address 192.168.3.2 255.255.255.0",
+                        "clock rate 64000",
+                        "no shutdown",
+                        "exit",
+                        "router rip",
+                        "network 192.168.3.0",
+                        "version 2 ",
+                        "no auto-summary"
+                    ],
+                    "testCommands":
+                    [
+                        "show ip route"
+                    ]
+                }
             ]
         }
     ]

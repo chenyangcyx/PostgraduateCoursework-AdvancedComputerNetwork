@@ -1,0 +1,10 @@
+configure terminal
+int s0/0/1
+ip address 192.168.3.2 255.255.255.0
+clock rate 64000
+no shutdown
+exit
+router rip
+network 192.168.3.0
+version 2 
+no auto-summary
