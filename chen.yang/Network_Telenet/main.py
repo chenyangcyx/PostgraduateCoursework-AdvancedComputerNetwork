@@ -1,12 +1,12 @@
-# Telnet的使用示例
 from Telnet import *
 import time
 
 if __name__ == '__main__':
+    # 测试Telenet连接Linux主机
     host_ip = '10.201.2.10'
     username = 'root'
     password = 'njuchenyang'
-    commands = [
+    commands_linux = [
         "cd /home",
         "rm -f *.txt",
         "touch 1.txt",
@@ -36,64 +36,53 @@ if __name__ == '__main__':
         "rm -f 5.txt",
         "ll",
         "ping baidu.com -c 2"
-        #             "enable",
-        #             "CISCO",
-        #             "configure terminal",
-        #             "router rip",
-        #             "version 1",
-        #             "network 192.168.12.0",
-        #             "network 192.168.23.0",
-        #             "exit",
-        #             "exit",
-        #             "show ip route",
-        #
-        #             "ping 192.168.12.0",
-        #             "ping 192.168.23.0"
     ]
-    # 测试Telenet连接Linux主机
     telnet_client_Linux = TelnetClient(True, True, "./log/%s.txt" % time.time())
     print("原始输出：")
     result_out = list()
     if telnet_client_Linux.loginHostLinux(host_ip, username, password):
-        # 在CMD下的实时交互
-        # telnet_client_Linux.interactInCMD()
-        # 使用函数方法进行的交互
-        # print(telnet_client_Linux.interactSendMsgLinux(""),end="")
-        # while 1:
-        #     print(telnet_client_Linux.interactSendMsgLinux(input()),end="")
+        result_out = telnet_client_Linux.executeSomeCommand(commands_linux, "Linux")
+    print("清理后的输出：")
+    result_out2 = MessageHandle.handleAllMsg(result_out)
+    for out in result_out2:
+        print(out)
 
-        # 执行一串命令，获取输出
-        result_out = telnet_client_Linux.executeSomeCommand(commands, "Linux")
 
     # # 测试Telnet连接Router主机
-    # telnet_client_Router=TelnetClient(True,True,"%s.txt"%time.time())
+    # host_ip = '192.168.1.1'
+    # password = 'CISCO'
+    # commands_router = [
+    # ]
+    # telnet_client_Router = TelnetClient(True, True, "./log/%s.txt" % time.time())
     # print("原始输出：")
+    # result_out = list()
     # if telnet_client_Router.loginHostRouter(host_ip, password):
-    #     # telnet_client.interactiveExecuteCMD()
-    #     result_out = telnet_client_Router.executeSomeCommand(commands)
-
-    # 测试其他功能
-    # telnet_con=telnetlib.Telnet()
-    # telnet_con.open("10.201.2.10",port=23,timeout=10)
-    # telnet_con.interact()
-
+    #     result_out = telnet_client_Router.executeSomeCommand(commands_router, "Router")
     # print("清理后的输出：")
-    # result_out2 = MessageHandle.handleAllMsgFromLinux(result_out)
+    # result_out2 = MessageHandle.handleAllMsg(result_out)
     # for out in result_out2:
     #     print(out)
 
-    # while 1:
-    #     time.sleep(1)
-    #     pass
 
-# JsonParse的使用示例
-# from JsonParse import *
-#
-# if __name__ == '__main__':
-#     json_parse = JsonParser("setting.json")
-#     json_parse.getData_groupId()
-#     json_parse.getData_groupMembers()
-#     json_parse.getData_subjectName()
-#     json_parse.getData_creationDate()
-#     json_parse.getData_routerNum()
-#     json_parse.getData_routerSettings()
+    # # 测试其他功能
+    # telnet_client = TelnetClient(True, True, "./log/%s.txt" % time.time())
+    # # 使用telnetlib自带的interact()函数实现实时交互
+    # # 不建议使用！无法return值
+    # telnet_client.interactInCMD()
+    # # 使用自己写的interact方法实现交互
+    # # 先执行一次，获取最初的前缀字符串
+    # print(telnet_client_Linux.interactSendMsgLinux(""), end="")
+    # while 1:
+    #     print(telnet_client_Linux.interactSendMsgLinux(input()), end="")
+
+
+    # # JsonParse的使用示例
+    # from JsonParse import *
+    # if __name__ == '__main__':
+    #     json_parse = JsonParser("setting.json")
+    #     json_parse.getData_groupId()
+    #     json_parse.getData_groupMembers()
+    #     json_parse.getData_subjectName()
+    #     json_parse.getData_creationDate()
+    #     json_parse.getData_routerNum()
+    #     json_parse.getData_routerSettings()
