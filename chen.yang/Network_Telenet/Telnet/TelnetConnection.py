@@ -11,11 +11,11 @@ class TelnetClient:
         self.if_print_to_file = if_print_to_file
         if if_print_to_file:
             self.outfile = open(print_file_path, "w", encoding="utf-8")
-        # 是否是第一次interact交互
+        # 是否是第一次执行interact交互
         self.if_first_interact = True
 
     # 发送命令，原子指令
-    # 输入的命令必须是经过decode过的指令
+    # 输入的命令必须是经过encode过的指令
     def writeCMD(self, command):
         self.tn.write(command)
         time.sleep(0.1)
@@ -93,7 +93,15 @@ class TelnetClient:
                 self.outfile.flush()
             return result
         elif cmd_type == "Router":
-            return ""
+            self.writeCMD((command + '\n').encode())
+            result = self.tn.read_until(b'Router', timeout=30).decode()
+            result = result.replace("\r\n", "\n")
+            if if_print:
+                print(result)
+            if if_print_to_file:
+                self.outfile.write(result + "\n")
+                self.outfile.flush()
+            return result
         else:
             return ""
 
@@ -117,6 +125,16 @@ class TelnetClient:
         else:
             self.writeCMD((msg + '\n').encode())
             return self.tn.read_until(b']# ', timeout=30).decode()
+
+    # Telnet交互，发送命令，并获取返回值
+    def interactSendMsgRouter(self, msg):
+        if self.if_first_interact:
+            self.if_first_interact = False
+            self.writeCMD('\n'.encode())
+            return self.tn.read_very_eager().decode()
+        else:
+            self.writeCMD((msg + '\n').encode())
+            return self.tn.read_until(b'Router', timeout=30).decode()
 
     # 退出telnet
     def logoutHost(self):

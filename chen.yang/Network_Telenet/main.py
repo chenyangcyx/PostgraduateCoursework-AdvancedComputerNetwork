@@ -69,11 +69,16 @@ if __name__ == '__main__':
     # # 使用telnetlib自带的interact()函数实现实时交互
     # # 不建议使用！无法return值
     # telnet_client.interactInCMD()
-    # # 使用自己写的interact方法实现交互
+    # # 使用自己写的interact方法实现交互，Linux
     # # 先执行一次，获取最初的前缀字符串
-    # print(telnet_client_Linux.interactSendMsgLinux(""), end="")
+    # print(telnet_client.interactSendMsgLinux(""), end="")
     # while 1:
-    #     print(telnet_client_Linux.interactSendMsgLinux(input()), end="")
+    #     print(telnet_client.interactSendMsgLinux(input()), end="")
+    # # 使用自己写的interact方法实现交互，Router
+    # # 先执行一次，获取最初的前缀字符串
+    # print(telnet_client.interactSendMsgRouter(""), end="")
+    # while 1:
+    #     print(telnet_client.interactSendMsgRouter(input()), end="")
 
 
     # # JsonParse的使用示例
