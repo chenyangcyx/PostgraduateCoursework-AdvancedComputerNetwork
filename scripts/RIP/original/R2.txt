@@ -1,0 +1,19 @@
+no
+
+
+enable
+configure terminal
+interface f0/0
+ip address 192.168.1.3 255.255.255.0
+no shutdown
+exit
+line vty 0 4
+password CISCO
+login
+exit
+enable password CISCO
+exit
+
+
+
+
