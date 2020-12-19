@@ -1,7 +1,6 @@
 # Telnet的使用示例
 from Telnet import *
 import time
-import telnetlib
 
 if __name__ == '__main__':
     host_ip = '10.201.2.10'
@@ -56,7 +55,14 @@ if __name__ == '__main__':
     print("原始输出：")
     result_out = list()
     if telnet_client_Linux.loginHostLinux(host_ip, username, password):
-        # telnet_client.interactiveExecuteCMD()
+        # 在CMD下的实时交互
+        # telnet_client_Linux.interactInCMD()
+        # 使用函数方法进行的交互
+        # print(telnet_client_Linux.interactSendMsgLinux(""),end="")
+        # while 1:
+        #     print(telnet_client_Linux.interactSendMsgLinux(input()),end="")
+
+        # 执行一串命令，获取输出
         result_out = telnet_client_Linux.executeSomeCommand(commands, "Linux")
 
     # # 测试Telnet连接Router主机
@@ -71,10 +77,10 @@ if __name__ == '__main__':
     # telnet_con.open("10.201.2.10",port=23,timeout=10)
     # telnet_con.interact()
 
-    print("清理后的输出：")
-    result_out2 = MessageHandle.handleAllMsgFromLinux(result_out)
-    for out in result_out2:
-        print(out)
+    # print("清理后的输出：")
+    # result_out2 = MessageHandle.handleAllMsgFromLinux(result_out)
+    # for out in result_out2:
+    #     print(out)
 
     # while 1:
     #     time.sleep(1)

@@ -1,6 +1,5 @@
 import telnetlib
 import time
-import _thread
 
 
 class TelnetClient:
@@ -12,6 +11,14 @@ class TelnetClient:
         self.if_print_to_file = if_print_to_file
         if if_print_to_file:
             self.outfile = open(print_file_path, "w", encoding="utf-8")
+        # 是否是第一次interact交互
+        self.if_first_interact = True
+
+    # 发送命令，原子指令
+    # 输入的命令必须是经过decode过的指令
+    def writeCMD(self, command):
+        self.tn.write(command)
+        time.sleep(0.1)
 
     # telnet登录主机，Linux
     def loginHostLinux(self, host_ip, username, password):
@@ -20,14 +27,14 @@ class TelnetClient:
         except:
             print('%s网络连接失败' % host_ip)
             return False
-        # 等待login出现后输入用户名，最多等待10秒
+        # 等待login出现后输入用户名，最多等待20秒
         self.tn.read_until(b'login', timeout=20)
-        self.tn.write((username + '\n').encode())
-        # 等待Password出现后输入用户名，最多等待10秒
+        self.writeCMD((username + '\n').encode())
+        # 等待Password出现后输入用户名，最多等待20秒
         self.tn.read_until(b'Password', timeout=20)
-        self.tn.write((password + '\n').encode())
-        # 延时两秒再收取返回结果，给服务端足够响应时间
-        time.sleep(2)
+        self.writeCMD((password + '\n').encode())
+        # 延时1秒再收取返回结果，给服务端足够响应时间
+        time.sleep(1)
         # 获取登录结果
         command_result = self.tn.read_very_eager().decode()
         if 'Login incorrect' not in command_result:
@@ -46,17 +53,16 @@ class TelnetClient:
         except:
             print('%s网络连接失败' % host_ip)
             return False
-        # 等待Password出现后输入用户名，最多等待10秒
+        # 等待Password出现后输入用户名，最多等待20秒
         self.tn.read_until(b'Password', timeout=20)
-        self.tn.write((password + '\n').encode())
-        time.sleep(0.2)
+        self.writeCMD((password + '\n').encode())
         # 进入enable模式，需要再次输入密码
         self.tn.read_until(b'Router>', timeout=20)
-        self.tn.write('enable\n'.encode())
-        time.sleep(0.2)
+        self.writeCMD('enable\n'.encode())
         self.tn.read_until(b'Password', timeout=20)
-        self.tn.write((password + '\n').encode())
-        time.sleep(0.2)
+        self.writeCMD((password + '\n').encode())
+        # 延时1秒再收取返回结果，给服务端足够响应时间
+        time.sleep(1)
         # 获取登录结果
         command_result = self.tn.read_very_eager().decode()
         if 'Router#' in command_result:
@@ -72,13 +78,12 @@ class TelnetClient:
     def sendHeartbeat(self, delay_time):
         while 1:
             time.sleep(delay_time)
-            self.tn.write('\n'.encode())
+            self.writeCMD('\n'.encode())
 
     # 执行传输过来的一条指令，返回所有原始输出结果
     def executeOneCommand(self, command, if_print, if_print_to_file, cmd_type):
         if cmd_type == "Linux":
-            self.tn.write((command + '\n').encode())
-            time.sleep(0.2)
+            self.writeCMD((command + '\n').encode())
             result = self.tn.read_until(b']# ', timeout=30).decode()
             result = result.replace("\r\n", "\n")
             if if_print:
@@ -100,9 +105,19 @@ class TelnetClient:
         return result_list
 
     # 实时交互的Telnet命令
-    def interactiveExecuteCMD(self):
+    def interactInCMD(self):
         self.tn.interact()
+
+    # Telnet交互，发送命令，并获取返回值
+    def interactSendMsgLinux(self, msg):
+        if self.if_first_interact:
+            self.if_first_interact = False
+            self.writeCMD('\n'.encode())
+            return self.tn.read_very_eager().decode()
+        else:
+            self.writeCMD((msg + '\n').encode())
+            return self.tn.read_until(b']# ', timeout=30).decode()
 
     # 退出telnet
     def logoutHost(self):
-        self.tn.write("exit\n".encode())
+        self.writeCMD("exit\n".encode())
