@@ -38,13 +38,13 @@ if __name__ == '__main__':
         "ll",
         "ping baidu.com -c 2"
     ]
-    logger = OutputLogger(True, True, "./linux_log/%s.txt" % time.time())
+    logger = OutputLogger(True, True, "../linux_log/%s.txt" % time.strftime("%Y-%m-%d %H.%M.%S", time.localtime()))
     telnet_client_Linux = TelnetClient(logger)
-    logger.handleMsg("原始输出：")
+    logger.handleMsg("*****原始输出*****")
     result_out = list()
     if telnet_client_Linux.loginHostLinux(host_ip, username, password):
         result_out = telnet_client_Linux.executeSomeCommand(commands_linux, "Linux")
-    logger.handleMsg("清理后的输出：")
+    logger.handleMsg("\n\n*****清理后的输出*****")
     result_out2 = MessageHandle.handleAllMsg(result_out)
     for out in result_out2:
         logger.handleMsg(out)

@@ -9,13 +9,13 @@ if __name__ == '__main__':
     commands_router = [
         "show ip route"
     ]
-    logger = OutputLogger(True, True, "./telnet_log/%s.txt" % time.time())
+    logger = OutputLogger(True, True, "../telnet_log/%s.txt" % time.strftime("%Y-%m-%d %H.%M.%S", time.localtime()))
     telnet_client_Router = TelnetClient(logger)
-    logger.handleMsg("原始输出：")
+    logger.handleMsg("*****原始输出*****")
     result_out = list()
     if telnet_client_Router.loginHostRouter(host_ip, password_login, password_enable):
         result_out = telnet_client_Router.executeSomeCommand(commands_router, "Router")
-    logger.handleMsg("清理后的输出：")
+    logger.handleMsg("\n\n*****清理后的输出*****")
     result_out2 = MessageHandle.handleAllMsg(result_out)
     for out in result_out2:
         logger.handleMsg(out)
