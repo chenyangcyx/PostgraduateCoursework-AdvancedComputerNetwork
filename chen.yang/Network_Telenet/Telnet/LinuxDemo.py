@@ -38,7 +38,8 @@ if __name__ == '__main__':
         "ll",
         "ping baidu.com -c 2"
     ]
-    telnet_client_Linux = TelnetClient(True, True, "./linux_log/%s.txt" % time.time())
+    logger = OutputLogger(True, True, "./linux_log/%s.txt" % time.time())
+    telnet_client_Linux = TelnetClient(logger)
     print("原始输出：")
     result_out = list()
     if telnet_client_Linux.loginHostLinux(host_ip, username, password):
@@ -49,7 +50,7 @@ if __name__ == '__main__':
         print(out)
 
     # 测试其他功能
-    telnet_client = TelnetClient(True, True, "./linux_log/%s.txt" % time.time())
+    telnet_client = TelnetClient(logger)
     # 使用telnetlib自带的interact()函数实现实时交互
     # 不建议使用下面的函数！无法return值
     # telnet_client.interactInCMD()

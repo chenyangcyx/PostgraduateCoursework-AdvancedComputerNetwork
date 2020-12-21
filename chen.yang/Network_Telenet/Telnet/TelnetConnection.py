@@ -3,14 +3,10 @@ import time
 
 
 class TelnetClient:
-    def __init__(self, if_print=True, if_print_to_file=True, print_file_path="out.txt"):
+    def __init__(self, logger):
         self.tn = telnetlib.Telnet()
-        # 获取到输出后是否打印
-        self.if_print = if_print
-        # 结果是否输出到文件
-        self.if_print_to_file = if_print_to_file
-        if if_print_to_file:
-            self.outfile = open(print_file_path, "w", encoding="utf-8")
+        # 日志记录对象
+        self.logger=logger
         # 是否是第一次执行interact交互
         self.if_first_interact = True
 
@@ -25,7 +21,7 @@ class TelnetClient:
         try:
             self.tn.open(host_ip, port=23)
         except:
-            print('%s网络连接失败' % host_ip)
+            self.logger.handleMsg('%s网络连接失败' % host_ip)
             return False
         # 等待login出现后输入用户名，最多等待20秒
         self.tn.read_until(b'login', timeout=20)
@@ -38,12 +34,12 @@ class TelnetClient:
         # 获取登录结果
         command_result = self.tn.read_very_eager().decode()
         if 'Login incorrect' not in command_result:
-            print('%s登录成功' % host_ip)
+            self.logger.handleMsg('%s登录成功' % host_ip)
             # # 开始发送心跳包，防止telnet连接断开
             # _thread.start_new_thread(self.sendHeartbeat, (30,))
             return True
         else:
-            print('%s登录失败，用户名或密码错误' % host_ip)
+            self.logger.handleMsg('%s登录失败，用户名或密码错误' % host_ip)
             return False
 
     # telnet登录主机，Router
@@ -51,7 +47,7 @@ class TelnetClient:
         try:
             self.tn.open(host_ip, port=23)
         except:
-            print('%s网络连接失败' % host_ip)
+            self.logger.handleMsg('%s网络连接失败' % host_ip)
             return False
         # 等待Password出现后输入用户名，最多等待20秒
         self.tn.read_until(b'Password', timeout=20)
@@ -66,12 +62,12 @@ class TelnetClient:
         # 获取登录结果
         command_result = self.tn.read_very_eager().decode()
         if 'Router#' in command_result:
-            print('%s登录成功' % host_ip)
+            self.logger.handleMsg('%s登录成功' % host_ip)
             # # 开始发送心跳包，防止telnet连接断开
             # _thread.start_new_thread(self.sendHeartbeat, (30,))
             return True
         else:
-            print('%s登录失败，用户名或密码错误' % host_ip)
+            self.logger.handleMsg('%s登录失败，用户名或密码错误' % host_ip)
             return False
 
     # 发送心跳包，以保持telnet的连接
@@ -81,26 +77,18 @@ class TelnetClient:
             self.writeCMD('\n'.encode())
 
     # 执行传输过来的一条指令，返回所有原始输出结果
-    def executeOneCommand(self, command, if_print, if_print_to_file, cmd_type):
+    def executeOneCommand(self, command,cmd_type):
         if cmd_type == "Linux":
             self.writeCMD((command + '\n').encode())
             result = self.tn.read_until(b']# ', timeout=30).decode()
             result = result.replace("\r\n", "\n")
-            if if_print:
-                print(result)
-            if if_print_to_file:
-                self.outfile.write(result + "\n")
-                self.outfile.flush()
+            self.logger.handleMsg(result)
             return result
         elif cmd_type == "Router":
             self.writeCMD((command + '\n').encode())
             result = self.tn.read_until(b'Router', timeout=30).decode()
             result = result.replace("\r\n", "\n")
-            if if_print:
-                print(result)
-            if if_print_to_file:
-                self.outfile.write(result + "\n")
-                self.outfile.flush()
+            self.logger.handleMsg(result)
             return result
         else:
             return ""
@@ -109,7 +97,7 @@ class TelnetClient:
     def executeSomeCommand(self, commands, cmd_type):
         result_list = list()
         for com in commands:
-            result_list.append(self.executeOneCommand(com, self.if_print, self.if_print_to_file, cmd_type))
+            result_list.append(self.executeOneCommand(com, cmd_type))
         return result_list
 
     # 实时交互的Telnet命令
