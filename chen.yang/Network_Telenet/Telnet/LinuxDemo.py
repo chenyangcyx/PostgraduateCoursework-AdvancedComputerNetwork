@@ -38,24 +38,25 @@ if __name__ == '__main__':
         "ll",
         "ping baidu.com -c 2"
     ]
-    telnet_client_Linux = TelnetClient(True, True, "./linux_log/%s.txt" % time.time())
-    print("原始输出：")
+    logger = OutputLogger(True, True, "../linux_log/%s.txt" % time.strftime("%Y-%m-%d %H.%M.%S", time.localtime()))
+    telnet_client_Linux = TelnetClient(logger)
+    logger.handleMsg("*****原始输出*****")
     result_out = list()
     if telnet_client_Linux.loginHostLinux(host_ip, username, password):
         result_out = telnet_client_Linux.executeSomeCommand(commands_linux, "Linux")
-    print("清理后的输出：")
+    logger.handleMsg("\n\n*****清理后的输出*****")
     result_out2 = MessageHandle.handleAllMsg(result_out)
     for out in result_out2:
-        print(out)
+        logger.handleMsg(out)
 
-    # 测试其他功能
-    telnet_client = TelnetClient(True, True, "./linux_log/%s.txt" % time.time())
-    # 使用telnetlib自带的interact()函数实现实时交互
-    # 不建议使用下面的函数！无法return值
-    # telnet_client.interactInCMD()
-    # 使用自己写的interact方法实现交互，Linux
-    # 先执行一次，获取最初的前缀字符串
-    if telnet_client.loginHostLinux(host_ip, password):
-        print(telnet_client.interactSendMsgLinux(""), end="")
-        while 1:
-            print(telnet_client.interactSendMsgLinux(input()), end="")
+    # # 测试其他功能
+    # telnet_client = TelnetClient(logger)
+    # # 使用telnetlib自带的interact()函数实现实时交互
+    # # 不建议使用下面的函数！无法return值
+    # # telnet_client.interactInCMD()
+    # # 使用自己写的interact方法实现交互，Linux
+    # # 先执行一次，获取最初的前缀字符串
+    # if telnet_client.loginHostLinux(host_ip, password):
+    #     logger.handleMsg(telnet_client.interactSendMsgLinux(""), end="")
+    #     while 1:
+    #         logger.handleMsg(telnet_client.interactSendMsgLinux(input()), end="")
