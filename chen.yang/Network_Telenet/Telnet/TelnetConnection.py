@@ -47,7 +47,7 @@ class TelnetClient:
             return False
 
     # telnet登录主机，Router
-    def loginHostRouter(self, host_ip, password):
+    def loginHostRouter(self, host_ip, password_login,password_enable):
         try:
             self.tn.open(host_ip, port=23)
         except:
@@ -55,12 +55,12 @@ class TelnetClient:
             return False
         # 等待Password出现后输入用户名，最多等待20秒
         self.tn.read_until(b'Password', timeout=20)
-        self.writeCMD((password + '\n').encode())
+        self.writeCMD((password_login + '\n').encode())
         # 进入enable模式，需要再次输入密码
         self.tn.read_until(b'Router>', timeout=20)
         self.writeCMD('enable\n'.encode())
         self.tn.read_until(b'Password', timeout=20)
-        self.writeCMD((password + '\n').encode())
+        self.writeCMD((password_enable + '\n').encode())
         # 延时1秒再收取返回结果，给服务端足够响应时间
         time.sleep(1)
         # 获取登录结果

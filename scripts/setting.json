@@ -33,6 +33,7 @@
     [
         {
             "configName":"RIP",
+            "configDescription":"动态路由-RIP协议",
             "routerNum":3,
             "configDetail":
             [
@@ -40,6 +41,7 @@
                     "routerName":"RouterA",
                     "host_ip":"192.168.1.1",
                     "loginPassword":"CISCO",
+                    "enablePassword":"CISCO",
                     "configCommands":
                     [
                         "configure terminal",
@@ -48,10 +50,12 @@
                         "clock rate 64000",
                         "no shutdown",
                         "exit",
+                        "ip routing",
                         "router rip",
                         "network 192.168.2.0",
                         "version 2",
-                        "no auto-summary"
+                        "no auto-summary",
+                        "end"
                     ],
                     "testCommands":
                     [
@@ -62,6 +66,7 @@
                     "routerName":"RouterB",
                     "host_ip":"192.168.1.2",
                     "loginPassword":"CISCO",
+                    "enablePassword":"password",
                     "configCommands":
                     [
                         "configure terminal",
@@ -74,11 +79,13 @@
                         "clock rate 64000",
                         "no shutdown",
                         "exit",
+                        "ip routing",
                         "router rip",
                         "network 192.168.2.0",
                         "network 192.168.3.0",
                         "version 2",
-                        "no auto-summary"
+                        "no auto-summary",
+                        "end"
                     ],
                     "testCommands":
                     [
@@ -89,6 +96,7 @@
                     "routerName":"RouterC",
                     "host_ip":"192.168.1.3",
                     "loginPassword":"CISCO",
+                    "enablePassword":"CISCO",
                     "configCommands":
                     [
                         "configure terminal",
@@ -97,10 +105,12 @@
                         "clock rate 64000",
                         "no shutdown",
                         "exit",
+                        "ip routing",
                         "router rip",
                         "network 192.168.3.0",
                         "version 2 ",
-                        "no auto-summary"
+                        "no auto-summary",
+                        "end"
                     ],
                     "testCommands":
                     [
