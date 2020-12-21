@@ -8,7 +8,7 @@
                 ref="aa" title="高级计算机网络大作业"
                 prompt="NjuSofware@ctl:#"
                 :history.sync="history"
-                :commands="commands"
+                :commands.sync="commands"
                 :is-in-progress="true">
             </vue-command>
         </div>
@@ -46,6 +46,7 @@ export default {
             'echo2': _ => createStdout('JSON.stringify(_, null, 2)')
 
 
+
         },
         button: 'send two messages',
         remoteStr: '',
@@ -58,32 +59,53 @@ export default {
     methods: {
         aaa() {
 
-            // let flag = true;
-            // this.sleep(5).then(res=>{
-            //     lastStdin.local.stdin = new String("echo a");
-            //     lastStdin.handle();
-            //     return this.sleep(300)
-            // }).then(res=>{
-            //     lastStdin = stdins[stdins.length - 1];
-            //     lastStdin.local.stdin = new String("echo b");
-            //     lastStdin.handle();
-            //     return this.sleep(300)
-            // })
+            this.refresh1()
+            this.lastStdin.local.stdin = new String("12313213");
+            this.history.push(createStdout('你坏<br>哈哈'));
 
-            this.lastStdin.local.stdin = new String("echo a");
-            this.handle()
-            this.lastStdin.local.stdin = new String("echo b");
-            this.handle();
+            this.sleep(100).then(res=>{
+                this.refresh1()
+                this.lastStdin.local.stdin = new String("1321sadsadsa");
+                this.history.push(createStdout('你坏<br>哈哈'));
+            })
+
+
+            // this.sleep(5).then(res=>{
+            //     this.refresh1()
+            //     this.lastStdin.local.stdin = new String("echo a");
+            //     this.handle();
+            //     return this.sleep(10)
+            // }).then(res=>{
+            //     this.refresh1();
+            //     this.lastStdin.local.stdin = new String("echo b");
+            //     this.handle();
+            //     return this.sleep(10)
+            // })
+            // let aa = ()=>{
+            //     createStdout(JSON.stringify(_, null, 2))
+            // }
+            //
+            //
+            // this.commands.push(aa)
+
+            // this.lastStdin.local.stdin = new String("echo a");
+            // this.handle()
+            // this.lastStdin.local.stdin = new String("echo b");
+            // this.handle();
 
         },
+        refresh1(){
+            this.lastStdin = this.stdins[this.stdins.length - 1];
+        },
         handle(){
-            // while (this.stdinsLen != )
             this.lastStdin.handle()
         },
 
         bbb() {
+            this.refresh1()
+            this.lastStdin.local.stdin = new String("sadasdsadasdsadasdsa");
             this.history.push(createStdout('你坏<br>哈哈'));
-            this.history.push(createStdout('你好'));
+            // this.history.push(createStdout('你好'));
         },
         sleep(time) {
             return new Promise((resolve) => setTimeout(resolve, time));
