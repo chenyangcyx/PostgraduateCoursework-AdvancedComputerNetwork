@@ -1,12 +1,13 @@
 import telnetlib
 import time
+import MessageHandle as msg_handle
 
 
 class TelnetClient:
     def __init__(self, logger):
         self.tn = telnetlib.Telnet()
         # 日志记录对象
-        self.logger=logger
+        self.logger = logger
         # 是否是第一次执行interact交互
         self.if_first_interact = True
 
@@ -43,7 +44,7 @@ class TelnetClient:
             return False
 
     # telnet登录主机，Router
-    def loginHostRouter(self, host_ip, password_login,password_enable):
+    def loginHostRouter(self, host_ip, password_login, password_enable):
         try:
             self.tn.open(host_ip, port=23)
         except:
@@ -77,34 +78,48 @@ class TelnetClient:
             self.writeCMD('\n'.encode())
 
     # 执行传输过来的一条指令，返回所有原始输出结果
-    def executeOneCommand(self, command,cmd_type):
+    def executeOneCommand(self, command, cmd_type):
         if cmd_type == "Linux":
             self.writeCMD((command + '\n').encode())
-            result = self.tn.read_until(b']# ', timeout=30).decode()
-            result = result.replace("\r\n", "\n")
-            self.logger.handleMsg(result)
-            return result
+            original_result = self.tn.read_until(b']# ', timeout=30).decode()
+            original_result = original_result.replace("\r\n", "\n")
+            handle_result = ""
+            for str in original_result.split('\n'):
+                handle_result += msg_handle.handleMsgFromLinux(str) + '\n'
+            handle_result = handle_result[:-1]
+            self.logger.handleMsg(original_result)
+            return original_result, handle_result
         elif cmd_type == "Router":
             self.writeCMD((command + '\n').encode())
-            result = self.tn.read_until(b'Router', timeout=30).decode()
-            result = result.replace("\r\n", "\n")
-            self.logger.handleMsg(result)
-            return result
+            original_result = self.tn.read_until(b'Router', timeout=30).decode()
+            original_result = original_result.replace("\r\n", "\n")
+            handle_result = ""
+            for str in original_result.split('\n'):
+                if str == command:
+                    handle_result += r"$$delete$$\n"
+                    continue
+                handle_result += msg_handle.handleMsgFromRouter(str) + '\n'
+            handle_result = handle_result[:-1]
+            self.logger.handleMsg(original_result)
+            return original_result, handle_result
         else:
-            return ""
+            return "", ""
 
     # 执行传输过来的命令集合，返回所有原始输出结果
     def executeSomeCommand(self, commands, cmd_type):
-        result_list = list()
+        original_result_list = list()
+        handle_result_list = list()
         for com in commands:
-            result_list.append(self.executeOneCommand(com, cmd_type))
-        return result_list
+            original_result,handle_result=self.executeOneCommand(com, cmd_type)
+            original_result_list.append(original_result)
+            handle_result_list.append(handle_result)
+        return original_result_list,handle_result_list
 
     # 实时交互的Telnet命令
     def interactInCMD(self):
         self.tn.interact()
 
-    # Telnet交互，发送命令，并获取返回值
+    # Telnet-Linux交互，发送命令，并获取返回值
     def interactSendMsgLinux(self, msg):
         if self.if_first_interact:
             self.if_first_interact = False
@@ -114,7 +129,7 @@ class TelnetClient:
             self.writeCMD((msg + '\n').encode())
             return self.tn.read_until(b']# ', timeout=30).decode()
 
-    # Telnet交互，发送命令，并获取返回值
+    # Telnet-Router交互，发送命令，并获取返回值
     def interactSendMsgRouter(self, msg):
         if self.if_first_interact:
             self.if_first_interact = False
@@ -126,4 +141,4 @@ class TelnetClient:
 
     # 退出telnet
     def logoutHost(self):
-        self.writeCMD("exit\n".encode())
+        self.writeCMD("logout\n".encode())

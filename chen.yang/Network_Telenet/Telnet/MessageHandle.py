@@ -8,7 +8,7 @@ def handleMsgFromLinux(msg):
 
 # 清理从Router返回的字符串，一行
 def handleMsgFromRouter(msg):
-    return re.sub(r'Router.*?#', r"$$delete$$", msg)
+    return re.sub(r'(Router.*?#)|(\(.*?\)#)|(Router)', r"$$delete$$", msg)
 
 
 # 处理返回的字符串列表，msgs是一个list
@@ -19,7 +19,6 @@ def handleAllMsg(msgs):
             all_commands.append(one_cmd)
     handle_commands = list()
     for com in all_commands:
-        handle_com = handleMsgFromLinux(com)
-        if handle_com != r"$$delete$$":
-            handle_commands.append(handle_com.replace(r"$$delete$$", ""))
+        if com != r"$$delete$$":
+            handle_commands.append(com.replace(r"$$delete$$", ""))
     return handle_commands
