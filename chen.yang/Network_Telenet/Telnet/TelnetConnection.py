@@ -40,7 +40,7 @@ class TelnetClient:
         if 'Login incorrect' not in command_result:
             print('%s登录成功' % host_ip)
             # # 开始发送心跳包，防止telnet连接断开
-            # _thread.start_new_thread(self.sendHeartbeat, (10,))
+            # _thread.start_new_thread(self.sendHeartbeat, (30,))
             return True
         else:
             print('%s登录失败，用户名或密码错误' % host_ip)
@@ -68,7 +68,7 @@ class TelnetClient:
         if 'Router#' in command_result:
             print('%s登录成功' % host_ip)
             # # 开始发送心跳包，防止telnet连接断开
-            # _thread.start_new_thread(self.sendHeartbeat, (10,))
+            # _thread.start_new_thread(self.sendHeartbeat, (30,))
             return True
         else:
             print('%s登录失败，用户名或密码错误' % host_ip)
