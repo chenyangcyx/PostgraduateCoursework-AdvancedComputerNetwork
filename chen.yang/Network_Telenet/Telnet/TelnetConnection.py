@@ -95,10 +95,11 @@ class TelnetClient:
             original_result = original_result.replace("\r\n", "\n")
             handle_result = ""
             for str in original_result.split('\n'):
-                if str == command:
-                    handle_result += r"$$delete$$\n"
+                str2 = msg_handle.handleMsgFromRouter(str)
+                if str2.replace(r"$$delete$$", "") == command:
+                    handle_result += r"$$delete$$" + '\n'
                     continue
-                handle_result += msg_handle.handleMsgFromRouter(str) + '\n'
+                handle_result += str2 + '\n'
             handle_result = handle_result[:-1]
             self.logger.handleMsg(original_result)
             return original_result, handle_result
@@ -110,10 +111,10 @@ class TelnetClient:
         original_result_list = list()
         handle_result_list = list()
         for com in commands:
-            original_result,handle_result=self.executeOneCommand(com, cmd_type)
+            original_result, handle_result = self.executeOneCommand(com, cmd_type)
             original_result_list.append(original_result)
             handle_result_list.append(handle_result)
-        return original_result_list,handle_result_list
+        return original_result_list, handle_result_list
 
     # 实时交互的Telnet命令
     def interactInCMD(self):

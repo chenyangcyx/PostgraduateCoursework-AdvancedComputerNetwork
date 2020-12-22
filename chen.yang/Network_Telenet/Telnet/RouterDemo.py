@@ -13,7 +13,7 @@ if __name__ == '__main__':
     # ]
     # 读取json文件
     json_file = json.load(open("setting.json", 'r', encoding='utf-8'))
-    settingNUm = 0
+    settingNUm = 0      # 选择不同的路由器的配置
     host_ip = json_file['routerSettings'][0]['configDetail'][settingNUm]['hostIp']
     password_login = json_file['routerSettings'][0]['configDetail'][settingNUm]['loginPassword']
     password_enable = json_file['routerSettings'][0]['configDetail'][settingNUm]['enablePassword']
@@ -42,10 +42,11 @@ if __name__ == '__main__':
     # telnet_client = TelnetClient(logger)
     # # 使用telnetlib自带的interact()函数实现实时交互
     # # 不建议使用下面的函数！无法return值
-    # # telnet_client.interactInCMD()
+    # if telnet_client.loginHostRouter(host_ip, password_login, password_enable):
+    #     telnet_client.interactInCMD()
     # # 使用自己写的interact方法实现交互，Router
     # # 先执行一次，获取最初的前缀字符串
     # if telnet_client.loginHostRouter(host_ip, password_login, password_enable):
-    #     logger.handleMsg(telnet_client.interactSendMsgRouter(""), end="")
+    #     logger.handleMsg(telnet_client.interactSendMsgRouter(""))
     #     while 1:
-    #         logger.handleMsg(telnet_client.interactSendMsgRouter(input()), end="")
+    #         logger.handleMsg(telnet_client.interactSendMsgRouter(input()))

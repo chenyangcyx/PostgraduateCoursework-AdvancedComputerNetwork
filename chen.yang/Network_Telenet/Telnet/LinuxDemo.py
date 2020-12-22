@@ -58,6 +58,6 @@ if __name__ == '__main__':
     # # 使用自己写的interact方法实现交互，Linux
     # # 先执行一次，获取最初的前缀字符串
     # if telnet_client.loginHostLinux(host_ip, password):
-    #     logger.handleMsg(telnet_client.interactSendMsgLinux(""), end="")
+    #     logger.handleMsg(telnet_client.interactSendMsgLinux(""))
     #     while 1:
-    #         logger.handleMsg(telnet_client.interactSendMsgLinux(input()), end="")
+    #         logger.handleMsg(telnet_client.interactSendMsgLinux(input()))

@@ -66,7 +66,7 @@
                     "routerName":"RouterB",
                     "hostIp":"192.168.1.2",
                     "loginPassword":"CISCO",
-                    "enablePassword":"password",
+                    "enablePassword":"CISCO",
                     "configCommands":
                     [
                         "configure terminal",
