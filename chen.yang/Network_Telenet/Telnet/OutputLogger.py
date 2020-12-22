@@ -1,3 +1,6 @@
+import sys
+
+
 class OutputLogger:
     def __init__(self, if_print=True, if_print_to_file=True, print_file_path="out.txt"):
         # 获取到输出后是否打印
@@ -16,9 +19,8 @@ class OutputLogger:
 
     # 输出信息，带空行
     def printMessage(self, msg):
-        print(msg)
+        print(msg, file=sys.stdout, flush=True)
 
     # 写入到文件
     def writeToFile(self, msg):
-        self.outfile.write(msg + '\n')
-        self.outfile.flush()
+        print(msg, file=self.outfile, flush=True)
