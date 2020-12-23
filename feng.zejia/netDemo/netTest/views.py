@@ -48,7 +48,7 @@ def executeSomeCommandsInRouter(request):
             logger.handleMsg(out)
         logger.handleMsg('\n\n')
 
-        return HttpResponse(json.dumps({'original_result': result_out1, 'handle_result_out': result_out2}),
+        return HttpResponse(json.dumps({'original_result': result_out1, 'handle_result': result_out2}),
                             content_type='application/json;charset=utf-8')
 
 
@@ -99,7 +99,7 @@ def executeOneCommandsInRouter(request):
             logger.handleMsg(out)
         logger.handleMsg('\n\n')
 
-        return HttpResponse(json.dumps({'original_result': result_out1, 'handle_result_out': result_out2}),
+        return HttpResponse(json.dumps({'original_result': result_out1, 'handle_result': result_out2}),
                             content_type='application/json;charset=utf-8')
 
 
@@ -170,7 +170,7 @@ def executeSomeCommandsInLinux(request):
             logger_linux.handleMsg(out)
         logger_linux.handleMsg('\n\n')
 
-        return HttpResponse(json.dumps({'original_result': result_out1, 'handle_result_out': result_out2}),
+        return HttpResponse(json.dumps({'original_result': result_out1, 'handle_result': result_out2}),
                             content_type='application/json;charset=utf-8')
 
 
@@ -214,5 +214,5 @@ def executeOneCommandsInLinux(request):
             logger_linux.handleMsg(out)
         logger_linux.handleMsg('\n\n')
 
-        return HttpResponse(json.dumps({'original_result': result_out1, 'handle_result_out': result_out2}),
+        return HttpResponse(json.dumps({'original_result': result_out1, 'handle_result': result_out2}),
                             content_type='application/json;charset=utf-8')
