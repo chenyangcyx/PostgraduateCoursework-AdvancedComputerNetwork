@@ -3,14 +3,14 @@ import json
 from netTest import *
 
 
-def executeSomeCommandsInRouter(request):
+def executeSomeCommandInRouter(request):
     if request.method == 'GET':
         configName = request.GET.get('configName')
         settingNum = int(request.GET.get('settingNum'))
         json_file = json.load(open("./netTest/commands/setting.json", 'r', encoding='utf-8'))
 
         logger.handleMsg('[call api]\n调用时间：%s' % time.strftime("%Y-%m-%d %H.%M.%S", time.localtime()))
-        logger.handleMsg("调用接口：executeSomeCommandsInRouter")
+        logger.handleMsg("调用接口：executeSomeCommandInRouter")
         logger.handleMsg("configName:%s" % str(configName))
         logger.handleMsg("settingNum:%s" % str(settingNum))
 
@@ -52,7 +52,7 @@ def executeSomeCommandsInRouter(request):
                             content_type='application/json;charset=utf-8')
 
 
-def executeOneCommandsInRouter(request):
+def executeOneCommandInRouter(request):
     if request.method == 'GET':
         configName = request.GET.get('configName')
         settingNum = int(request.GET.get('settingNum'))
@@ -61,7 +61,7 @@ def executeOneCommandsInRouter(request):
         json_file = json.load(open("./netTest/commands/setting.json", 'r', encoding='utf-8'))
 
         logger.handleMsg('[call api]\n调用时间：%s' % time.strftime("%Y-%m-%d %H.%M.%S", time.localtime()))
-        logger.handleMsg("调用接口：executeOneCommandsInRouter")
+        logger.handleMsg("调用接口：executeOneCommandInRouter")
         logger.handleMsg("configName:%s" % str(configName))
         logger.handleMsg("settingNum:%s" % str(settingNum))
         logger.handleMsg("singleCommand:%s" % str(singleCommand))
@@ -103,14 +103,65 @@ def executeOneCommandsInRouter(request):
                             content_type='application/json;charset=utf-8')
 
 
+def executeOneCommand(request):
+    if request.method == 'GET':
+        host = base64.b64decode(request.GET.get('host')).decode("utf-8")
+        loginpassword = base64.b64decode(request.GET.get('loginpassword')).decode("utf-8")
+        enablepassword = base64.b64decode(request.GET.get('enablepassword')).decode("utf-8")
+        isSingleCommand = request.GET.get('isSingleCommand')
+        command_str = base64.b64decode(request.GET.get('command')).decode("utf-8")
+        command = None
+        if isSingleCommand == '0':
+            command = list()
+            for com in command_str.split('\n'):
+                command.append(com)
+        elif isSingleCommand == '1':
+            command = command_str
+        terminalType = request.GET.get('terminalType')
+
+        logger.handleMsg('[call api]\n调用时间：%s' % time.strftime("%Y-%m-%d %H.%M.%S", time.localtime()))
+        logger.handleMsg("调用接口：executeOneCommand")
+        logger.handleMsg("host:%s" % str(host))
+        logger.handleMsg("loginpassword:%s" % str(loginpassword))
+        logger.handleMsg("enablepassword:%s" % str(enablepassword))
+        logger.handleMsg("isSingleCommand:%s" % str(isSingleCommand))
+        logger.handleMsg("command:%s" % str(command))
+        logger.handleMsg("terminalType:%s" % str(terminalType))
+
+        logger.handleMsg("**原始输出**")
+        local_telnet = None
+        dict_no = str(host) + str(loginpassword) + str(enablepassword)
+        if telnet_inst[dict_no] is None:
+            telnet_inst[dict_no] = TelnetClient(logger)
+            local_telnet = telnet_inst[dict_no]
+            while not local_telnet.loginHostRouter(host, loginpassword, enablepassword):
+                logger.handleMsg("连接失败，重试……")
+                pass
+        else:
+            local_telnet = telnet_inst[dict_no]
+        original_result_out, handle_result_out = local_telnet.executeSomeCommand(command, terminalType)
+        result_out1 = list()
+        for msg in original_result_out:
+            for one_cmd in msg.split("\n"):
+                result_out1.append(one_cmd)
+        logger.handleMsg("\n**清理后的输出**")
+        result_out2 = MessageHandle.handleAllMsg(handle_result_out)
+        for out in result_out2:
+            logger.handleMsg(out)
+        logger.handleMsg('\n\n')
+
+        return HttpResponse(json.dumps({'original_result': result_out1, 'handle_result': result_out2}),
+                            content_type='application/json;charset=utf-8')
+
+
 # 用来测试Linux的Telnet的函数
-def executeSomeCommandsInLinux(request):
+def executeSomeCommandInLinux(request):
     if request.method == 'GET':
         configName = request.GET.get('configName')
         settingNum = int(request.GET.get('settingNum'))
 
         logger.handleMsg('[call api]\n调用时间：%s' % time.strftime("%Y-%m-%d %H.%M.%S", time.localtime()))
-        logger_linux.handleMsg("调用接口：executeSomeCommandsInLinux")
+        logger_linux.handleMsg("调用接口：executeSomeCommandInLinux")
         logger_linux.handleMsg("configName:%s" % str(configName))
         logger_linux.handleMsg("settingNum:%s" % str(settingNum))
 
@@ -175,7 +226,7 @@ def executeSomeCommandsInLinux(request):
 
 
 # 用来测试Linux的Telnet的函数
-def executeOneCommandsInLinux(request):
+def executeOneCommandInLinux(request):
     if request.method == 'GET':
         configName = request.GET.get('configName')
         settingNum = int(request.GET.get('settingNum'))
@@ -183,7 +234,7 @@ def executeOneCommandsInLinux(request):
         singleCommand.append(base64.b64decode(request.GET.get('command')).decode("utf-8"))
 
         logger.handleMsg('[call api]\n调用时间：%s' % time.strftime("%Y-%m-%d %H.%M.%S", time.localtime()))
-        logger_linux.handleMsg("调用接口：executeOneCommandsInLinux")
+        logger_linux.handleMsg("调用接口：executeOneCommandInLinux")
         logger_linux.handleMsg("configName:%s" % str(configName))
         logger_linux.handleMsg("settingNum:%s" % str(settingNum))
         logger_linux.handleMsg("singleCommand:%s" % str(singleCommand))
