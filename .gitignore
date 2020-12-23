@@ -3,5 +3,9 @@
 chen.yang/Network_Telenet/linux_log/
 chen.yang/Network_Telenet/telnet_log/
 
+# web后端项目，feng.zejia
+feng.zejia/netDemo/netTest/Telnet/linux_log/
+feng.zejia/netDemo/netTest/Telnet/telnet_log/
+
 # Python程序编译时的临时文件
 *.pyc
