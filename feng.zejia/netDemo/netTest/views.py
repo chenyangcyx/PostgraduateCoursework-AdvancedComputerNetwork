@@ -9,9 +9,10 @@ def executeSomeCommandsInRouter(request):
         settingNum = int(request.GET.get('settingNum'))
         json_file = json.load(open("./netTest/commands/setting.json", 'r', encoding='utf-8'))
 
-        logger.handleMsg("调用接口：executeConfigInst")
-        logger.handleMsg("configName:%s"%str(configName))
-        logger.handleMsg("settingNum:%s"%str(settingNum))
+        logger.handleMsg('[call api]\n调用时间：%s' % time.strftime("%Y-%m-%d %H.%M.%S", time.localtime()))
+        logger.handleMsg("调用接口：executeSomeCommandsInRouter")
+        logger.handleMsg("configName:%s" % str(configName))
+        logger.handleMsg("settingNum:%s" % str(settingNum))
 
         # 按照configName找到要验证的路由协议
         configItem = None
@@ -25,7 +26,7 @@ def executeSomeCommandsInRouter(request):
         password_enable = configItem['configDetail'][settingNum]['enablePassword']
         configCommands = configItem['configDetail'][settingNum]['configCommands']
 
-        logger.handleMsg("*****原始输出*****")
+        logger.handleMsg("**原始输出**")
         local_telnet = None
         dict_no = str(configName) + str(settingNum)
         if telnet_inst[dict_no] is None:
@@ -41,12 +42,14 @@ def executeSomeCommandsInRouter(request):
         for msg in original_result_out:
             for one_cmd in msg.split("\n"):
                 result_out1.append(one_cmd)
-        logger.handleMsg("\n\n*****清理后的输出*****")
+        logger.handleMsg("\n**清理后的输出**")
         result_out2 = MessageHandle.handleAllMsg(handle_result_out)
         for out in result_out2:
             logger.handleMsg(out)
+        logger.handleMsg('\n\n')
 
-        return HttpResponse(json.dumps({'original_result':result_out1,'handle_result_out':result_out2}), content_type='application/json;charset=utf-8')
+        return HttpResponse(json.dumps({'original_result': result_out1, 'handle_result_out': result_out2}),
+                            content_type='application/json;charset=utf-8')
 
 
 def executeOneCommandsInRouter(request):
@@ -57,10 +60,11 @@ def executeOneCommandsInRouter(request):
         singleCommand.append(base64.b64decode(request.GET.get('command')).decode("utf-8"))
         json_file = json.load(open("./netTest/commands/setting.json", 'r', encoding='utf-8'))
 
-        logger.handleMsg("调用接口：executeConfigInst")
+        logger.handleMsg('[call api]\n调用时间：%s' % time.strftime("%Y-%m-%d %H.%M.%S", time.localtime()))
+        logger.handleMsg("调用接口：executeOneCommandsInRouter")
         logger.handleMsg("configName:%s" % str(configName))
         logger.handleMsg("settingNum:%s" % str(settingNum))
-        logger.handleMsg("singleCommand:%s"%str(singleCommand))
+        logger.handleMsg("singleCommand:%s" % str(singleCommand))
 
         # 按照configName找到要验证的路由协议
         configItem = None
@@ -73,7 +77,7 @@ def executeOneCommandsInRouter(request):
         password_login = configItem['configDetail'][settingNum]['loginPassword']
         password_enable = configItem['configDetail'][settingNum]['enablePassword']
 
-        logger.handleMsg("*****原始输出*****")
+        logger.handleMsg("**原始输出**")
         local_telnet = None
         dict_no = str(configName) + str(settingNum)
         if telnet_inst[dict_no] is None:
@@ -89,12 +93,14 @@ def executeOneCommandsInRouter(request):
         for msg in original_result_out:
             for one_cmd in msg.split("\n"):
                 result_out1.append(one_cmd)
-        logger.handleMsg("\n\n*****清理后的输出*****")
+        logger.handleMsg("\n**清理后的输出**")
         result_out2 = MessageHandle.handleAllMsg(handle_result_out)
         for out in result_out2:
             logger.handleMsg(out)
+        logger.handleMsg('\n\n')
 
-        return HttpResponse(json.dumps({'original_result': result_out1, 'handle_result_out': result_out2}),content_type='application/json;charset=utf-8')
+        return HttpResponse(json.dumps({'original_result': result_out1, 'handle_result_out': result_out2}),
+                            content_type='application/json;charset=utf-8')
 
 
 # 用来测试Linux的Telnet的函数
@@ -103,6 +109,7 @@ def executeSomeCommandsInLinux(request):
         configName = request.GET.get('configName')
         settingNum = int(request.GET.get('settingNum'))
 
+        logger.handleMsg('[call api]\n调用时间：%s' % time.strftime("%Y-%m-%d %H.%M.%S", time.localtime()))
         logger_linux.handleMsg("调用接口：executeSomeCommandsInLinux")
         logger_linux.handleMsg("configName:%s" % str(configName))
         logger_linux.handleMsg("settingNum:%s" % str(settingNum))
@@ -141,9 +148,9 @@ def executeSomeCommandsInLinux(request):
             "ll",
             "ping baidu.com -c 2"
         ]
-        logger_linux.handleMsg("*****原始输出*****")
+        logger_linux.handleMsg("**原始输出**")
         local_telnet = None
-        dict_no=str(configName) + str(settingNum)
+        dict_no = str(configName) + str(settingNum)
         if dict_no not in telnet_inst:
             telnet_inst[dict_no] = TelnetClient(logger_linux)
             local_telnet = telnet_inst[dict_no]
@@ -157,12 +164,14 @@ def executeSomeCommandsInLinux(request):
         for msg in original_result_out:
             for one_cmd in msg.split("\n"):
                 result_out1.append(one_cmd)
-        logger_linux.handleMsg("\n\n*****清理后的输出*****")
+        logger_linux.handleMsg("\n**清理后的输出**")
         result_out2 = MessageHandle.handleAllMsg(handle_result_out)
         for out in result_out2:
             logger_linux.handleMsg(out)
+        logger_linux.handleMsg('\n\n')
 
-        return HttpResponse(json.dumps({'original_result':result_out1,'handle_result_out':result_out2}), content_type='application/json;charset=utf-8')
+        return HttpResponse(json.dumps({'original_result': result_out1, 'handle_result_out': result_out2}),
+                            content_type='application/json;charset=utf-8')
 
 
 # 用来测试Linux的Telnet的函数
@@ -173,7 +182,8 @@ def executeOneCommandsInLinux(request):
         singleCommand = list()
         singleCommand.append(base64.b64decode(request.GET.get('command')).decode("utf-8"))
 
-        logger_linux.handleMsg("调用接口：executeConfigInst")
+        logger.handleMsg('[call api]\n调用时间：%s' % time.strftime("%Y-%m-%d %H.%M.%S", time.localtime()))
+        logger_linux.handleMsg("调用接口：executeOneCommandsInLinux")
         logger_linux.handleMsg("configName:%s" % str(configName))
         logger_linux.handleMsg("settingNum:%s" % str(settingNum))
         logger_linux.handleMsg("singleCommand:%s" % str(singleCommand))
@@ -182,9 +192,9 @@ def executeOneCommandsInLinux(request):
         username = 'root'
         password = 'njuchenyang'
 
-        logger_linux.handleMsg("*****原始输出*****")
+        logger_linux.handleMsg("**原始输出**")
         local_telnet = None
-        dict_no=str(configName) + str(settingNum)
+        dict_no = str(configName) + str(settingNum)
         if dict_no not in telnet_inst:
             telnet_inst[dict_no] = TelnetClient(logger_linux)
             local_telnet = telnet_inst[dict_no]
@@ -198,9 +208,11 @@ def executeOneCommandsInLinux(request):
         for msg in original_result_out:
             for one_cmd in msg.split("\n"):
                 result_out1.append(one_cmd)
-        logger_linux.handleMsg("\n\n*****清理后的输出*****")
+        logger_linux.handleMsg("\n**清理后的输出**")
         result_out2 = MessageHandle.handleAllMsg(handle_result_out)
         for out in result_out2:
             logger_linux.handleMsg(out)
+        logger_linux.handleMsg('\n\n')
 
-        return HttpResponse(json.dumps({'original_result':result_out1,'handle_result_out':result_out2}), content_type='application/json;charset=utf-8')
+        return HttpResponse(json.dumps({'original_result': result_out1, 'handle_result_out': result_out2}),
+                            content_type='application/json;charset=utf-8')
