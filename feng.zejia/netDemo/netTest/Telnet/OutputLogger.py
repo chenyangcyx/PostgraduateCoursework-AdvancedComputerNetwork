@@ -18,7 +18,7 @@ class OutputLogger:
             self.writeToFile(msg)
 
     # 输出信息，带空行
-    def printMessage(self, msg):
+    def outprintMessage(self, msg):
         print(msg, file=sys.stdout, flush=True)
 
     # 写入到文件

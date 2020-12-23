@@ -1,4 +1,4 @@
-from JsonParse import *
+from netTest.JsonParse import JsonParser
 
 if __name__ == '__main__':
     # JsonParse的使用示例

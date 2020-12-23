@@ -1,4 +1,4 @@
-from Telnet import *
+from netTest.Telnet import *
 import time
 
 if __name__ == '__main__':
