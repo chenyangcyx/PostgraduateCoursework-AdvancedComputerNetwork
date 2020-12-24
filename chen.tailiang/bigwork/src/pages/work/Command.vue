@@ -1,8 +1,5 @@
 <template>
   <div class="fillcontain">
-<!--    <el-button @click="aaa" style="margin-bottom: 10px" type="success">{{ button }}</el-button>-->
-<!--    <el-button @click="bbb" style="margin-bottom: 10px" type="success">传送信息！</el-button>-->
-<!--    <el-button @click="bbb" style="margin-bottom: 10px" type="success">传送信息！</el-button>-->
     <el-button @click="executeSomeCommandInLinux" style="margin-bottom: 10px" type="success">发送一批命令（如配置路由器？）</el-button>
     <el-button @click="executeOneCommandInLinux" style="margin-bottom: 10px" type="success">发送一条命令（如ping？）</el-button>
 
@@ -30,14 +27,8 @@ export default {
     VueCommand
   },
   created() {
-    // // console.log(api);
-    // api.executeSomeCommandInLinux().then(res => {
-    //   console.log(res);
-    // })
-    // api.executeOneCommandInLinux()
   },
   mounted() {
-    // console.log(this.$refs.aa);
     let stdins = this.$refs.aa.$refs.stdin;
     this.stdins = stdins
     this.lastStdin = this.stdins[this.stdins.length - 1];
@@ -45,14 +36,8 @@ export default {
   },
   data: () => ({
     commands: {
-      'hello': () => {
-        createStdout('Hello world ');
-      },
-      'echo': _ => createStdout(JSON.stringify(_, null, 2)),
-      'echo1': _ => createStdout(JSON.stringify(_, null, 2)),
-      'echo2': _ => createStdout('JSON.stringify(_, null, 2)')
+      'echo': _ => createStdout('JSON.stringify(_, null, 2)')
     },
-    button: 'send two messages',
     remoteStr: '',
     history: [],
     lastStdin: null,
@@ -80,53 +65,15 @@ export default {
       });
     },
     aaa() {
-      this.refresh1()
-      this.lastStdin.local.stdin = new String("12313213");
-      this.history.push(createStdout('你坏<br>哈哈'));
-
-      this.sleep(100).then(res => {
-        this.refresh1()
-        this.lastStdin.local.stdin = new String("1321sadsadsa");
+      this.sleep(100).then(res=>{
+        this.lastStdin.local.stdin = new String("命令1");
         this.history.push(createStdout('你坏<br>哈哈'));
+        return this.sleep(100)
       })
-
-
-      // this.sleep(5).then(res=>{
-      //     this.refresh1()
-      //     this.lastStdin.local.stdin = new String("echo a");
-      //     this.handle();
-      //     return this.sleep(10)
-      // }).then(res=>{
-      //     this.refresh1();
-      //     this.lastStdin.local.stdin = new String("echo b");
-      //     this.handle();
-      //     return this.sleep(10)
-      // })
-      // let aa = ()=>{
-      //     createStdout(JSON.stringify(_, null, 2))
-      // }
-      //
-      //
-      // this.commands.push(aa)
-
-      // this.lastStdin.local.stdin = new String("echo a");
-      // this.handle()
-      // this.lastStdin.local.stdin = new String("echo b");
-      // this.handle();
 
     },
     refresh1() {
       this.lastStdin = this.stdins[this.stdins.length - 1];
-    },
-    handle() {
-      this.lastStdin.handle()
-    },
-
-    bbb() {
-      this.refresh1()
-      this.lastStdin.local.stdin = new String("sadasdsadasdsadasdsa");
-      this.history.push(createStdout('你坏<br>哈哈'));
-      // this.history.push(createStdout('你好'));
     },
     sleep(time) {
       return new Promise((resolve) => setTimeout(resolve, time));
