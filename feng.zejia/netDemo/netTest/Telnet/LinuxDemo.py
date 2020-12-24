@@ -1,6 +1,5 @@
-from Telnet import *
+from netTest.Telnet import *
 import time
-
 
 if __name__ == '__main__':
     # 测试Telenet连接Linux主机
@@ -44,7 +43,7 @@ if __name__ == '__main__':
     original_result_out = list()
     handle_result_out = list()
     if telnet_client_Linux.loginHostLinux(host_ip, username, password):
-        original_result_out,handle_result_out = telnet_client_Linux.executeSomeCommand(commands_linux, "Linux")
+        original_result_out, handle_result_out = telnet_client_Linux.executeSomeCommand(commands_linux, "Linux")
     logger.handleMsg("\n\n*****清理后的输出*****")
     result_out2 = MessageHandle.handleAllMsg(handle_result_out)
     for out in result_out2:

@@ -20,5 +20,11 @@ from netTest import views
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
-    url(r'^runjob/$', views.run_job)
+    # url(r'^runjob/$', views.run_job),
+    url(r'^executeConfigInst/$', views.executeSomeCommandInRouter),
+    url(r'^executeSomeCommandInRouter/$', views.executeSomeCommandInRouter),
+    url(r'^executeOneCommandInRouter/$', views.executeOneCommandInRouter),
+    url(r'^executeSomeCommandInLinux/$', views.executeSomeCommandInLinux),
+    url(r'^executeOneCommandInLinux/$', views.executeOneCommandInLinux),
+    url(r'^executeOneCommand/$', views.executeOneCommand)
 ]
