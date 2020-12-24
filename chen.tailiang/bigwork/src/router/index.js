@@ -5,7 +5,7 @@ import {weifei_perms} from './weifei/perms';
 import {work} from '@/router/work/work';
 
 Vue.use(Router);
-originChildren.push(...weifei_perms)
+// originChildren.push(...weifei_perms)
 
 originChildren.push(...work);
 
@@ -16,7 +16,7 @@ export default new Router({
     routes: [
         {
             path: '/',
-            redirect: '/login'
+            redirect: '/network/perm/Command'
         },
         {
             path: '/',

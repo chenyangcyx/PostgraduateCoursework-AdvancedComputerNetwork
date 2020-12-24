@@ -5,6 +5,20 @@ export const work= [
             title: '远程命令行',
         },
         component: () => import("../../pages/work/Command")
+    },
+    {
+        path: "/network/perm/topu",
+        meta: {
+            title: '拓扑图',
+        },
+        component: () => import("../../pages/work/Topu")
+    },
+    {
+        path: "/network/perm/list",
+        meta: {
+            title: '命令解释',
+        },
+        component: () => import("../../pages/work/list")
     }
 ]
 

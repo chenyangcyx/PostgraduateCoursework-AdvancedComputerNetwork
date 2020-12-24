@@ -14,7 +14,7 @@ module.exports = {
         // 配置多个代理
         proxy: {
             "/api": {
-                target: "http://localhost:9999",
+                target: "http://localhost:8000",
                 // target: "http://101.132.103.184:9999",
                 ws: true,// 是否启用websockets
 

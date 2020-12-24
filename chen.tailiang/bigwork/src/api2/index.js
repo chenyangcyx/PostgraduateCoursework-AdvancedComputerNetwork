@@ -12,15 +12,16 @@ request.interceptors.request.use(res=>{
 })
 request.interceptors.response.use(
     response => {
-        if(response.data.code == 200 && response.data.message == "success")
-            return response.data
-        else {
-            Message({
-                message: response.data.message,
-                type: "error",
-            })
-            return Promise.reject('error')
-        }
+        // if(response.data.code == 200 && response.data.message == "success")
+        //     return response.data
+        // else {
+        //     Message({
+        //         message: response.data.message,
+        //         type: "error",
+        //     })
+        //     return Promise.reject('error')
+        // }
+        return response.data;
     },
     error => {
         console.log(error);
