@@ -1,0 +1,7 @@
+show ip route
+sh ip interface s0
+debug ip packet 101
+show ip interface
+debug ip packet 101
+debug ip packet 102
+show ip cache

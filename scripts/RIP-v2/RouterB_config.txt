@@ -1,0 +1,52 @@
+configure terminal
+int s0/0/0
+ip address 192.168.2.2 255.255.255.0
+clock rate 64000
+no shutdown
+int s0/0/1
+ip address 192.168.3.1 255.255.255.0
+clock rate 64000
+no shutdown
+exit
+ip routing
+router rip
+network 192.168.2.0
+network 192.168.3.0
+version 2
+no auto-summary
+end
+#此处10.0.0.0将产生两条路径
+show ip route
+#以下为配置基于数据包的负载均衡，由于pt交换机没有ip route命令，以下未经过测试
+conf terminal
+int s0/0/0
+no ip route-cache
+exit
+int s0/0/1
+no ip route-cache
+exit
+access-list 101 permit icmp any 10.0.0.0 0.255.255.255
+end
+#查看s0快速交换是否关闭
+sh ip interface s0
+#重复ping 10.0.0.1查看是否实现数据包负载均衡
+debug ip packet 101
+
+#以下为配置基于各目的地的负载均衡，由于pt交换机没有ip route命令，以下未经过测试
+conf terminal
+int s0/0/0
+ip route-cache
+exit
+int s0/0/1
+ip route-cache
+exit
+end
+#核验快速交换是否被启用
+show ip interface
+#重复ping 10.0.0.1查看路径
+debug ip packet 101
+#重复ping 10.0.0.2查看路径是否与ping 101不同
+debug ip packet 102
+#查看路由缓存
+show ip cache
+
