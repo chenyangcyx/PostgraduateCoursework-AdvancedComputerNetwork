@@ -3,12 +3,17 @@ import Router from 'vue-router';
 import {originChildren} from "./originChildren";
 import {weifei_perms} from './weifei/perms';
 import {work} from '@/router/work/work';
+import {RIP_normal} from "@/router/work/RIP_normal";
+import {RIP_balance_route} from "@/router/work/RIP_balance_route";
+import {RIP_balance_packet} from "@/router/work/RIP_balance_packet";
 
 Vue.use(Router);
 // originChildren.push(...weifei_perms)
 
 originChildren.push(...work);
-
+originChildren.push(...RIP_normal)
+originChildren.push(...RIP_balance_packet)
+originChildren.push(...RIP_balance_route)
 
 
 

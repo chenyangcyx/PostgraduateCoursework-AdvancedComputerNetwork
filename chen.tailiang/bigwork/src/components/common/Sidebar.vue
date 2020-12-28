@@ -56,8 +56,11 @@
 
 <script>
 import bus from '../common/bus';
-import {weifei_perms_slider} from '../../router/weifei/perms';
-import {work_slider} from '@/router/work/work';
+// import {weifei_perms_slider} from '../../router/weifei/perms';
+// import {work_slider} from '@/router/work/work';
+import {RIP_normal_slider} from "@/router/work/RIP_normal";
+import {RIP_balance_packet_slider} from "@/router/work/RIP_balance_packet";
+import {RIP_balance_route_slider} from "@/router/work/RIP_balance_route";
 
 export default {
   data() {
@@ -70,12 +73,16 @@ export default {
         //   title: '系统首页',
         //   myIcon: "icons/zhuYe.png",
         // },
-        {
-          icon: 'el-icon-lx-home',
-          index: '/network/perm/Command',
-          title: '远程命令行',
-          myIcon: "icons/perm/yongHu.png",
-        },
+        // {
+        //   icon: 'el-icon-lx-home',
+        //   index: '/network/perm/Command',
+        //   title: '远程命令行',
+        //   myIcon: "icons/perm/yongHu.png",
+        // },
+
+        RIP_normal_slider,
+        RIP_balance_route_slider,
+        RIP_balance_packet_slider,
         {
           icon: 'el-icon-lx-home',
           index: '/network/perm/topu',

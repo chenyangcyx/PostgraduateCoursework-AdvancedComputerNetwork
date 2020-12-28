@@ -19,13 +19,13 @@ export const work= [
             title: '命令解释',
         },
         component: () => import("../../pages/work/list")
-    }
+    },
 ]
 
 export const work_slider = {
     icon: 'el-icon-s-tools',
     index:"/network/perm/Command",
-    title: '计网作业',
+    title: '路由配置',
     myIcon: "icons/perm/xiTong.png",
     subs: [
         {
