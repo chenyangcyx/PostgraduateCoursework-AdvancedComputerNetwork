@@ -1,5 +1,4 @@
 import base64
-import json
 from netTest import *
 
 
@@ -8,7 +7,6 @@ def executeConfigCommand(request):
     if request.method == 'GET':
         configName = request.GET.get('configName')
         settingNum = int(request.GET.get('settingNum'))
-        json_file = json.load(open("./netTest/commands/setting.json", 'r', encoding='utf-8'))
 
         logger.handleMsg('[call api]\n调用时间：%s' % time.strftime("%Y-%m-%d %H.%M.%S", time.localtime()))
         logger.handleMsg("调用接口：executeConfigCommand")
@@ -58,7 +56,6 @@ def executeTestCommand(request):
     if request.method == 'GET':
         configName = request.GET.get('configName')
         settingNum = int(request.GET.get('settingNum'))
-        json_file = json.load(open("./netTest/commands/setting.json", 'r', encoding='utf-8'))
 
         logger.handleMsg('[call api]\n调用时间：%s' % time.strftime("%Y-%m-%d %H.%M.%S", time.localtime()))
         logger.handleMsg("调用接口：executeTestCommand")
@@ -110,7 +107,6 @@ def executeOneCommand(request):
         settingNum = int(request.GET.get('settingNum'))
         singleCommand = list()
         singleCommand.append(base64.b64decode(request.GET.get('command')).decode("utf-8"))
-        json_file = json.load(open("./netTest/commands/setting.json", 'r', encoding='utf-8'))
 
         logger.handleMsg('[call api]\n调用时间：%s' % time.strftime("%Y-%m-%d %H.%M.%S", time.localtime()))
         logger.handleMsg("调用接口：executeOneCommand")
