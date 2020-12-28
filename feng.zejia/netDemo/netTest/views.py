@@ -3,14 +3,15 @@ import json
 from netTest import *
 
 
-def executeSomeCommandInRouter(request):
+# 执行路由器的配置脚本
+def executeConfigCommand(request):
     if request.method == 'GET':
         configName = request.GET.get('configName')
         settingNum = int(request.GET.get('settingNum'))
         json_file = json.load(open("./netTest/commands/setting.json", 'r', encoding='utf-8'))
 
         logger.handleMsg('[call api]\n调用时间：%s' % time.strftime("%Y-%m-%d %H.%M.%S", time.localtime()))
-        logger.handleMsg("调用接口：executeSomeCommandInRouter")
+        logger.handleMsg("调用接口：executeConfigCommand")
         logger.handleMsg("configName:%s" % str(configName))
         logger.handleMsg("settingNum:%s" % str(settingNum))
 
@@ -52,7 +53,58 @@ def executeSomeCommandInRouter(request):
                             content_type='application/json;charset=utf-8')
 
 
-def executeOneCommandInRouter(request):
+# 执行路由器的测试脚本
+def executeTestCommand(request):
+    if request.method == 'GET':
+        configName = request.GET.get('configName')
+        settingNum = int(request.GET.get('settingNum'))
+        json_file = json.load(open("./netTest/commands/setting.json", 'r', encoding='utf-8'))
+
+        logger.handleMsg('[call api]\n调用时间：%s' % time.strftime("%Y-%m-%d %H.%M.%S", time.localtime()))
+        logger.handleMsg("调用接口：executeTestCommand")
+        logger.handleMsg("configName:%s" % str(configName))
+        logger.handleMsg("settingNum:%s" % str(settingNum))
+
+        # 按照configName找到要验证的路由协议
+        configItem = None
+        for settingItem in json_file['routerSettings']:
+            if settingItem['configName'] == configName:
+                configItem = settingItem
+
+        # 读取参数，对各个参数进行解析
+        host_ip = configItem['configDetail'][settingNum]['hostIp']
+        password_login = configItem['configDetail'][settingNum]['loginPassword']
+        password_enable = configItem['configDetail'][settingNum]['enablePassword']
+        configCommands = configItem['configDetail'][settingNum]['testCommands']
+
+        logger.handleMsg("**原始输出**")
+        local_telnet = None
+        dict_no = str(configName) + str(settingNum)
+        if telnet_inst[dict_no] is None:
+            telnet_inst[dict_no] = TelnetClient(logger)
+            local_telnet = telnet_inst[dict_no]
+            while not local_telnet.loginHostRouter(host_ip, password_login, password_enable):
+                logger.handleMsg("连接失败，重试……")
+                pass
+        else:
+            local_telnet = telnet_inst[dict_no]
+        original_result_out, handle_result_out = local_telnet.executeSomeCommand(configCommands, "Router")
+        result_out1 = list()
+        for msg in original_result_out:
+            for one_cmd in msg.split("\n"):
+                result_out1.append(one_cmd)
+        logger.handleMsg("\n**清理后的输出**")
+        result_out2 = MessageHandle.handleAllMsg(handle_result_out)
+        for out in result_out2:
+            logger.handleMsg(out)
+        logger.handleMsg('\n\n')
+
+        return HttpResponse(json.dumps({'original_result': result_out1, 'handle_result': result_out2}),
+                            content_type='application/json;charset=utf-8')
+
+
+# 执行路由器上的一条脚本
+def executeOneCommand(request):
     if request.method == 'GET':
         configName = request.GET.get('configName')
         settingNum = int(request.GET.get('settingNum'))
@@ -61,7 +113,7 @@ def executeOneCommandInRouter(request):
         json_file = json.load(open("./netTest/commands/setting.json", 'r', encoding='utf-8'))
 
         logger.handleMsg('[call api]\n调用时间：%s' % time.strftime("%Y-%m-%d %H.%M.%S", time.localtime()))
-        logger.handleMsg("调用接口：executeOneCommandInRouter")
+        logger.handleMsg("调用接口：executeOneCommand")
         logger.handleMsg("configName:%s" % str(configName))
         logger.handleMsg("settingNum:%s" % str(settingNum))
         logger.handleMsg("singleCommand:%s" % str(singleCommand))
@@ -103,7 +155,8 @@ def executeOneCommandInRouter(request):
                             content_type='application/json;charset=utf-8')
 
 
-def executeOneCommand(request):
+# 执行一条命令
+def executeCommand(request):
     if request.method == 'GET':
         host = base64.b64decode(request.GET.get('host')).decode("utf-8")
         loginpassword = base64.b64decode(request.GET.get('loginpassword')).decode("utf-8")
@@ -120,7 +173,7 @@ def executeOneCommand(request):
         terminalType = request.GET.get('terminalType')
 
         logger.handleMsg('[call api]\n调用时间：%s' % time.strftime("%Y-%m-%d %H.%M.%S", time.localtime()))
-        logger.handleMsg("调用接口：executeOneCommand")
+        logger.handleMsg("调用接口：executeCommand")
         logger.handleMsg("host:%s" % str(host))
         logger.handleMsg("loginpassword:%s" % str(loginpassword))
         logger.handleMsg("enablepassword:%s" % str(enablepassword))
