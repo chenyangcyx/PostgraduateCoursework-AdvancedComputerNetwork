@@ -52,7 +52,7 @@ export default {
       this.history.push(createStdout("配置命令如下: <br>" + command.config_commands.join("<br>")))
       this.sleep(100).then(res=>{
         //在这里输入配置信息
-        let configName = "RIP";
+        let configName = "RIP_normal";
         let settingNum = 0;
         api.executeConfigCommand(configName,settingNum).then(res=>{
           let str = res.handle_result.join("<br>");
@@ -63,7 +63,7 @@ export default {
     executeTestCommand() {
       this.history.push(createStdout("查询命令如下: <br>" + command.test_commands.join("<br>")))
       this.sleep(100).then(res=>{
-        let configName = "RIP";
+        let configName = "RIP_normal";
         let settingNum = 0;
         api.executeTestCommand(configName,settingNum).then(res=>{
           let str = res.handle_result.join("<br>");
