@@ -21,7 +21,7 @@ urlpatterns = [
     url(r'^executeConfigCommand/$', views.executeConfigCommand),
     url(r'^executeTestCommand/$', views.executeTestCommand),
     url(r'^executeOneCommand/$', views.executeOneCommand),
-    url(r'^executeOneCommand/$', views.executeCommand),
+    url(r'^executeCommand/$', views.executeCommand),
     url(r'^executeSomeCommandInLinux/$', views.executeSomeCommandInLinux),
     url(r'^executeOneCommandInLinux/$', views.executeOneCommandInLinux)
 ]

@@ -1,7 +1,7 @@
 <template>
   <div class="fillcontain">
-    <el-button @click="executeSomeCommandInLinux" style="margin-bottom: 10px" type="success">配置RIP</el-button>
-    <el-button @click="executeOneCommandInLinux" style="margin-bottom: 10px" type="success">查看ip路由表</el-button>
+    <el-button @click="executeConfigCommand" style="margin-bottom: 10px" type="success">配置路由器</el-button>
+    <el-button @click="executeTestCommand" style="margin-bottom: 10px" type="success">查看结果</el-button>
 
     <div class="contain">
       <vue-command
@@ -46,23 +46,18 @@ export default {
 
   }),
   methods: {
-    executeSomeCommandInLinux() {
+    executeConfigCommand() {
       let configName = "RIP";
       let settingNum = 0;
-      api.executeOneCommandInLinux(configName,settingNum).then(res=>{
+      api.executeConfigCommand(configName,settingNum).then(res=>{
         let str = res.handle_result.join("<br>");
         this.history.push(createStdout(str));
-
       });
     },
-    executeOneCommandInLinux() {
+    executeTestCommand() {
       let configName = "RIP";
       let settingNum = 0;
-      let command = "str";
-      // 这里还需要定义一个变量，command的base64编码
-      let Base64 = require('js-base64').Base64
-      let command_base64=Base64.encode(command);
-      api.executeOneCommandInLinux(configName,settingNum,command_base64).then(res=>{
+      api.executeTestCommand(configName,settingNum).then(res=>{
         let str = res.handle_result.join("<br>");
         this.history.push(createStdout(str));
       });
