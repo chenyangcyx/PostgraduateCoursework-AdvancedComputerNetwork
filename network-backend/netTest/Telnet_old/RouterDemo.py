@@ -1,4 +1,4 @@
-from netTest.Telnet import *
+from netTest.Telnet_old import *
 import time
 import json
 

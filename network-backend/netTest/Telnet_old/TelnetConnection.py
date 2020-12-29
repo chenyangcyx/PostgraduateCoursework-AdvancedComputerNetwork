@@ -1,6 +1,6 @@
 import telnetlib
 import time
-from netTest.Telnet import MessageHandle as msg_handle
+from netTest.Telnet_old import MessageHandle as msg_handle
 
 
 class TelnetClient:
