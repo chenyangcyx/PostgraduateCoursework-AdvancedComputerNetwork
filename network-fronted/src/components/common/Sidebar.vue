@@ -13,7 +13,7 @@
     >
       <template v-for="item in items">
         <template v-if="item.subs">
-          <el-submenu v-if="item.perm == null || isShow(item.perm)" :index="item.index" :key="item.index">
+          <el-submenu  :index="item.index" :key="item.index">
             <template slot="title">
               <!--                            <i :class="item.icon"></i>-->
               <img v-if="item.myIcon != null"
@@ -22,7 +22,7 @@
                    :src="require('../../assets/' + item.myIcon)" alt="">
               <span slot="title">{{ item.title }}</span>
             </template>
-            <template v-if="subItem.perm == null || isShow(subItem.perm)" v-for="subItem in item.subs">
+            <template  v-for="subItem in item.subs">
               <el-menu-item
                   :index="subItem.index"
                   :key="subItem.index"
@@ -56,8 +56,6 @@
 
 <script>
 import bus from '../common/bus';
-// import {weifei_perms_slider} from '../../router/weifei/perms';
-// import {work_slider} from '@/router/work/work';
 import {RIP_normal_slider} from "@/router/work/RIP_normal";
 import {RIP_balance_packet_slider} from "@/router/work/RIP_balance_packet";
 import {RIP_balance_route_slider} from "@/router/work/RIP_balance_route";
@@ -67,18 +65,6 @@ export default {
     return {
       collapse: false,
       items: [
-        // {
-        //   icon: 'el-icon-lx-home',
-        //   index: '/dashboard',
-        //   title: '系统首页',
-        //   myIcon: "icons/zhuYe.png",
-        // },
-        // {
-        //   icon: 'el-icon-lx-home',
-        //   index: '/network/perm/Command',
-        //   title: '远程命令行',
-        //   myIcon: "icons/perm/yongHu.png",
-        // },
 
         RIP_normal_slider,
         RIP_balance_route_slider,
@@ -89,14 +75,12 @@ export default {
           title: '拓扑图',
           myIcon: "icons/perm/quanXian.png",
         },
-        {
-          icon: 'el-icon-lx-home',
-          index: '/network/perm/list',
-          title: '命令解释',
-          myIcon: "icons/perm/jueSe.png",
-        },
-        // work_slider,
-        // weifei_perms_slider,
+        // {
+        //   icon: 'el-icon-lx-home',
+        //   index: '/network/perm/list',
+        //   title: '命令解释',
+        //   myIcon: "icons/perm/jueSe.png",
+        // },
       ],
       myMenu: [],
     };
@@ -112,19 +96,9 @@ export default {
       this.collapse = msg;
       bus.$emit('collapse-content', msg);
     });
-
-    let menu = this.$store.getters.getMenu;
-    let MyMenu = this.$store.getters.getMyMenu;
-
-    this.myMenu = menu.filter(item => {
-      return item.resourceType != null && item.resourceType == 1 && MyMenu.indexOf(item.id) != -1
-    })
-
   },
   methods: {
-    isShow(perms) {
-      return this.myMenu.findIndex(item => item.resourcePerm == perms) != -1
-    },
+
     changeColor(event) {
       this.$refs.aaa.forEach(item => item.style['color'] = "#BFCBD9")
       event.target.style['color'] = "#20A0FF";

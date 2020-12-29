@@ -10,29 +10,9 @@ import './assets/css/icon.css';
 import './components/common/directives';
 import 'babel-polyfill';
 import store from './store/';
-import {DateUtil} from './utils/DataUtils';
-import {deepClone} from './utils/CommonUtils';
-import pinyin from './utils/pinyin';
-import utils from './utils/utils';
-import getFile from './api2/download';
-import getImg from './api2/getImg';
-import entities from './utils/entities';
 import echarts from 'echarts'
 Vue.prototype.$echarts = echarts
 
-let javaMath = {
-    INTEGER: {
-        MAX_VALUE: 2147483647
-    }
-}
-Vue.prototype.$dateUtil = DateUtil
-Vue.prototype.$deepClone = deepClone
-Vue.prototype.$pinyin = pinyin
-Vue.prototype.$utils = utils
-Vue.prototype.$getFile = getFile
-Vue.prototype.$getImg = getImg
-Vue.prototype.$javaMath = javaMath
-Vue.prototype.$entities = entities
 
 Vue.config.productionTip = false;
 Vue.use(VueI18n);

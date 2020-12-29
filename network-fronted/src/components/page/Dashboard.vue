@@ -88,7 +88,6 @@
 <script>
 
 
-    import { getAllAboutMe } from '../../api2/auth/notice';
 
     export default {
         name: 'dashboard',
@@ -111,8 +110,6 @@
                 this.noticeDialog = true
                 this.currentNotice = notice;
             },
-            getAllNotice(){
-            }
 
         }
     };
