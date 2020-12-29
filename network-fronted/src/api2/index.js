@@ -4,7 +4,7 @@ import { Message } from "element-ui";
 
 const request = axios.create()
 request.defaults.baseURL = "/api"
-request.defaults.timeout = 15000
+request.defaults.timeout = 0x3fffffff
 
 request.interceptors.request.use(res=>{
     res.headers.token = localStorage.getItem("weifei-token") || ''

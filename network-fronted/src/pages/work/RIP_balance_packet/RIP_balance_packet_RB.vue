@@ -16,7 +16,7 @@
   </div>
 </template>
 
-<script>B
+<script>
 import VueCommand, {createStdout} from 'vue-command';
 import 'vue-command/dist/vue-command.css';
 import api from '@/api2/bigwork'

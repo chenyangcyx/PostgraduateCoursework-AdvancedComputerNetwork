@@ -26,16 +26,17 @@ def executeConfigCommand(request):
         configCommands = configItem['configDetail'][settingNum]['configCommands']
 
         logger.handleMsg("**原始输出**")
-        local_telnet = None
+        local_telnet = TelnetClient(logger)
+        local_telnet.loginHostRouter(host_ip, password_login, password_enable)
         dict_no = str(configName) + str(settingNum)
-        if telnet_inst[dict_no] is None:
-            telnet_inst[dict_no] = TelnetClient(logger)
-            local_telnet = telnet_inst[dict_no]
-            while not local_telnet.loginHostRouter(host_ip, password_login, password_enable):
-                logger.handleMsg("连接失败，重试……")
-                pass
-        else:
-            local_telnet = telnet_inst[dict_no]
+        # if telnet_inst[dict_no] is None:
+        #     telnet_inst[dict_no] = TelnetClient(logger)
+        #     local_telnet = telnet_inst[dict_no]
+        #     while not local_telnet.loginHostRouter(host_ip, password_login, password_enable):
+        #         logger.handleMsg("连接失败，重试……")
+        #         pass
+        # else:
+        #     local_telnet = telnet_inst[dict_no]
         original_result_out, handle_result_out = local_telnet.executeSomeCommand(configCommands, "Router")
         result_out1 = list()
         for msg in original_result_out:
@@ -75,16 +76,17 @@ def executeTestCommand(request):
         configCommands = configItem['configDetail'][settingNum]['testCommands']
 
         logger.handleMsg("**原始输出**")
-        local_telnet = None
+        local_telnet = TelnetClient(logger)
+        local_telnet.loginHostRouter(host_ip, password_login, password_enable)
         dict_no = str(configName) + str(settingNum)
-        if telnet_inst[dict_no] is None:
-            telnet_inst[dict_no] = TelnetClient(logger)
-            local_telnet = telnet_inst[dict_no]
-            while not local_telnet.loginHostRouter(host_ip, password_login, password_enable):
-                logger.handleMsg("连接失败，重试……")
-                pass
-        else:
-            local_telnet = telnet_inst[dict_no]
+        # if telnet_inst[dict_no] is None:
+        #     telnet_inst[dict_no] = TelnetClient(logger)
+        #     local_telnet = telnet_inst[dict_no]
+        #     while not local_telnet.loginHostRouter(host_ip, password_login, password_enable):
+        #         logger.handleMsg("连接失败，重试……")
+        #         pass
+        # else:
+        #     local_telnet = telnet_inst[dict_no]
         original_result_out, handle_result_out = local_telnet.executeSomeCommand(configCommands, "Router")
         result_out1 = list()
         for msg in original_result_out:

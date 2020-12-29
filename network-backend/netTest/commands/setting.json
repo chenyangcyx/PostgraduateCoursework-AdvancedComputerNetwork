@@ -61,7 +61,7 @@
           "routerName": "RouterB",
           "hostIp": "192.168.1.2",
           "loginPassword": "CISCO",
-          "enablePassword": "password",
+          "enablePassword": "CISCO",
           "configCommands": [
             "configure terminal",
             "int s0/0/0",
@@ -142,7 +142,7 @@
           "routerName": "RouterB",
           "hostIp": "192.168.1.2",
           "loginPassword": "CISCO",
-          "enablePassword": "password",
+          "enablePassword": "CISCO",
           "configCommands": [
             "conf terminal",
             "int s0/0/0",
@@ -153,7 +153,7 @@
             "exit",
             "access-list 101 permit icmp any 10.0.0.0 0.255.255.255",
             "end",
-            "sh ip interface s0",
+            "sh ip interface s0/0/0",
             "debug ip packet 101"
           ],
           "testCommands": [
@@ -217,7 +217,7 @@
           "routerName": "RouterB",
           "hostIp": "192.168.1.2",
           "loginPassword": "CISCO",
-          "enablePassword": "password",
+          "enablePassword": "CISCO",
           "configCommands": [
             "conf terminal",
             "int s0/0/0",
