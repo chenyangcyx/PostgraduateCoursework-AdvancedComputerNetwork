@@ -2,6 +2,16 @@ import base64
 from netTest import *
 
 
+# 获取指定的Telnet连接对象
+# 使用字典的单例模式，全局只有唯一的一个对象实例
+def getTelnetObject(object_name, logger=None):
+    if object_name in telnet_dict:
+        return telnet_dict.get(object_name), True
+    else:
+        telnet_dict[object_name] = TelnetClient(logger)
+        return telnet_dict[object_name], False
+
+
 # 执行路由器的配置脚本
 def executeConfigCommand(request):
     if request.method == 'GET':
@@ -25,30 +35,34 @@ def executeConfigCommand(request):
         password_enable = configItem['configDetail'][settingNum]['enablePassword']
         configCommands = configItem['configDetail'][settingNum]['configCommands']
 
-        logger.handleMsg("**原始输出**")
-        local_telnet = TelnetClient(logger)
-        local_telnet.loginHostRouter(host_ip, password_login, password_enable)
+        # # 不使用单例模式创建对象
+        # local_telnet = TelnetClient(logger)
+        # local_telnet.loginHostRouter(host_ip, password_login, password_enable)
+
+        # 使用单例模式创建对象
         dict_no = str(configName) + str(settingNum)
-        # if telnet_inst[dict_no] is None:
-        #     telnet_inst[dict_no] = TelnetClient(logger)
-        #     local_telnet = telnet_inst[dict_no]
-        #     while not local_telnet.loginHostRouter(host_ip, password_login, password_enable):
-        #         logger.handleMsg("连接失败，重试……")
-        #         pass
-        # else:
-        #     local_telnet = telnet_inst[dict_no]
-        original_result_out, handle_result_out = local_telnet.executeSomeCommand(configCommands, "Router")
+        logger.handleMsg("获取Telnet:%s的唯一对象……" % dict_no)
+        local_telnet, if_exist = getTelnetObject(dict_no, logger)
+        if if_exist:
+            logger.handleMsg("Telnet:%s对象已经创建，获取成功" % dict_no)
+            pass
+        else:
+            logger.handleMsg("Telnet:%s对象未被创建，开始创建……" % dict_no)
+            while not local_telnet.loginRouter(host_ip, password_login, password_enable, False):
+                logger.handleMsg("Telnet连接失败，重试……")
+        logger.handleMsg("Telnet:%s对象创建成功！" % dict_no)
+
+        logger.handleMsg("**程序输出**")
+        result_out = local_telnet.executeSomeCMD(configCommands)
         result_out1 = list()
-        for msg in original_result_out:
+        for msg in result_out:
             for one_cmd in msg.split("\n"):
                 result_out1.append(one_cmd)
         logger.handleMsg("\n**清理后的输出**")
-        result_out2 = MessageHandle.handleAllMsg(handle_result_out)
-        for out in result_out2:
-            logger.handleMsg(out)
+        logger.handleMsg("……暂时没有……")
         logger.handleMsg('\n\n')
 
-        return HttpResponse(json.dumps({'original_result': result_out1, 'handle_result': result_out2}),
+        return HttpResponse(json.dumps({'original_result': result_out1, 'handle_result': result_out1}),
                             content_type='application/json;charset=utf-8')
 
 
@@ -75,30 +89,34 @@ def executeTestCommand(request):
         password_enable = configItem['configDetail'][settingNum]['enablePassword']
         configCommands = configItem['configDetail'][settingNum]['testCommands']
 
-        logger.handleMsg("**原始输出**")
-        local_telnet = TelnetClient(logger)
-        local_telnet.loginHostRouter(host_ip, password_login, password_enable)
+        # # 不使用单例模式创建对象
+        # local_telnet = TelnetClient(logger)
+        # local_telnet.loginHostRouter(host_ip, password_login, password_enable)
+
+        # 使用单例模式创建对象
         dict_no = str(configName) + str(settingNum)
-        # if telnet_inst[dict_no] is None:
-        #     telnet_inst[dict_no] = TelnetClient(logger)
-        #     local_telnet = telnet_inst[dict_no]
-        #     while not local_telnet.loginHostRouter(host_ip, password_login, password_enable):
-        #         logger.handleMsg("连接失败，重试……")
-        #         pass
-        # else:
-        #     local_telnet = telnet_inst[dict_no]
-        original_result_out, handle_result_out = local_telnet.executeSomeCommand(configCommands, "Router")
+        logger.handleMsg("获取Telnet:%s的唯一对象……" % dict_no)
+        local_telnet, if_exist = getTelnetObject(dict_no, logger)
+        if if_exist:
+            logger.handleMsg("Telnet:%s对象已经创建，获取成功" % dict_no)
+            pass
+        else:
+            logger.handleMsg("Telnet:%s对象未被创建，开始创建……" % dict_no)
+            while not local_telnet.loginRouter(host_ip, password_login, password_enable, False):
+                logger.handleMsg("Telnet连接失败，重试……")
+        logger.handleMsg("Telnet:%s对象创建成功！" % dict_no)
+
+        logger.handleMsg("**程序输出**")
+        result_out = local_telnet.executeSomeCMD(configCommands)
         result_out1 = list()
-        for msg in original_result_out:
+        for msg in result_out:
             for one_cmd in msg.split("\n"):
                 result_out1.append(one_cmd)
         logger.handleMsg("\n**清理后的输出**")
-        result_out2 = MessageHandle.handleAllMsg(handle_result_out)
-        for out in result_out2:
-            logger.handleMsg(out)
+        logger.handleMsg("……暂时没有……")
         logger.handleMsg('\n\n')
 
-        return HttpResponse(json.dumps({'original_result': result_out1, 'handle_result': result_out2}),
+        return HttpResponse(json.dumps({'original_result': result_out1, 'handle_result': result_out1}),
                             content_type='application/json;charset=utf-8')
 
 
@@ -127,29 +145,34 @@ def executeOneCommand(request):
         password_login = configItem['configDetail'][settingNum]['loginPassword']
         password_enable = configItem['configDetail'][settingNum]['enablePassword']
 
-        logger.handleMsg("**原始输出**")
-        local_telnet = None
+        # # 不使用单例模式创建对象
+        # local_telnet = TelnetClient(logger)
+        # local_telnet.loginHostRouter(host_ip, password_login, password_enable)
+
+        # 使用单例模式创建对象
         dict_no = str(configName) + str(settingNum)
-        if telnet_inst[dict_no] is None:
-            telnet_inst[dict_no] = TelnetClient(logger)
-            local_telnet = telnet_inst[dict_no]
-            while not local_telnet.loginHostRouter(host_ip, password_login, password_enable):
-                logger.handleMsg("连接失败，重试……")
-                pass
+        logger.handleMsg("获取Telnet:%s的唯一对象……" % dict_no)
+        local_telnet, if_exist = getTelnetObject(dict_no, logger)
+        if if_exist:
+            logger.handleMsg("Telnet:%s对象已经创建，获取成功" % dict_no)
+            pass
         else:
-            local_telnet = telnet_inst[dict_no]
-        original_result_out, handle_result_out = local_telnet.executeSomeCommand(singleCommand, "Router")
+            logger.handleMsg("Telnet:%s对象未被创建，开始创建……" % dict_no)
+            while not local_telnet.loginRouter(host_ip, password_login, password_enable, False):
+                logger.handleMsg("Telnet连接失败，重试……")
+        logger.handleMsg("Telnet:%s对象创建成功！" % dict_no)
+
+        logger.handleMsg("**程序输出**")
+        result_out = local_telnet.executeSomeCMD(singleCommand)
         result_out1 = list()
-        for msg in original_result_out:
+        for msg in result_out:
             for one_cmd in msg.split("\n"):
                 result_out1.append(one_cmd)
         logger.handleMsg("\n**清理后的输出**")
-        result_out2 = MessageHandle.handleAllMsg(handle_result_out)
-        for out in result_out2:
-            logger.handleMsg(out)
+        logger.handleMsg("……暂时没有……")
         logger.handleMsg('\n\n')
 
-        return HttpResponse(json.dumps({'original_result': result_out1, 'handle_result': result_out2}),
+        return HttpResponse(json.dumps({'original_result': result_out1, 'handle_result': result_out1}),
                             content_type='application/json;charset=utf-8')
 
 
@@ -168,7 +191,6 @@ def executeCommand(request):
                 command.append(com)
         elif isSingleCommand == '1':
             command = command_str
-        terminalType = request.GET.get('terminalType')
 
         logger.handleMsg('[call api]\n调用时间：%s' % time.strftime("%Y-%m-%d %H.%M.%S", time.localtime()))
         logger.handleMsg("调用接口：executeCommand")
@@ -177,29 +199,33 @@ def executeCommand(request):
         logger.handleMsg("enablepassword:%s" % str(enablepassword))
         logger.handleMsg("isSingleCommand:%s" % str(isSingleCommand))
         logger.handleMsg("command:%s" % str(command))
-        logger.handleMsg("terminalType:%s" % str(terminalType))
 
-        logger.handleMsg("**原始输出**")
-        local_telnet = None
+        # # 不使用单例模式创建对象
+        # local_telnet = TelnetClient(logger)
+        # local_telnet.loginHostRouter(host_ip, password_login, password_enable)
+
+        # 使用单例模式创建对象
         dict_no = str(host) + str(loginpassword) + str(enablepassword)
-        if telnet_inst[dict_no] is None:
-            telnet_inst[dict_no] = TelnetClient(logger)
-            local_telnet = telnet_inst[dict_no]
-            while not local_telnet.loginHostRouter(host, loginpassword, enablepassword):
-                logger.handleMsg("连接失败，重试……")
-                pass
+        logger.handleMsg("获取Telnet:%s的唯一对象……" % dict_no)
+        local_telnet, if_exist = getTelnetObject(dict_no, logger)
+        if if_exist:
+            logger.handleMsg("Telnet:%s对象已经创建，获取成功" % dict_no)
+            pass
         else:
-            local_telnet = telnet_inst[dict_no]
-        original_result_out, handle_result_out = local_telnet.executeSomeCommand(command, terminalType)
+            logger.handleMsg("Telnet:%s对象未被创建，开始创建……" % dict_no)
+            while not local_telnet.loginRouter(host, loginpassword, enablepassword, False):
+                logger.handleMsg("Telnet连接失败，重试……")
+        logger.handleMsg("Telnet:%s对象创建成功！" % dict_no)
+
+        logger.handleMsg("**程序输出**")
+        result_out = local_telnet.executeSomeCMD(command)
         result_out1 = list()
-        for msg in original_result_out:
+        for msg in result_out:
             for one_cmd in msg.split("\n"):
                 result_out1.append(one_cmd)
         logger.handleMsg("\n**清理后的输出**")
-        result_out2 = MessageHandle.handleAllMsg(handle_result_out)
-        for out in result_out2:
-            logger.handleMsg(out)
+        logger.handleMsg("……暂时没有……")
         logger.handleMsg('\n\n')
 
-        return HttpResponse(json.dumps({'original_result': result_out1, 'handle_result': result_out2}),
+        return HttpResponse(json.dumps({'original_result': result_out1, 'handle_result': result_out1}),
                             content_type='application/json;charset=utf-8')

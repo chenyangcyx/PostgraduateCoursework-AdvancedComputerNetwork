@@ -11,4 +11,4 @@ logger = OutputLogger(True, True,
 json_file = json.load(open("./netTest/setting.json", 'r', encoding='utf-8'))
 
 # telnet连接的映射，全局只创建一个对应路由器的连接
-telnet_inst = dict()
+telnet_dict = {}
