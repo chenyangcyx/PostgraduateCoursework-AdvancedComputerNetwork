@@ -1,3 +1,3 @@
-from netTest.Telnet_old.MessageHandle import *
-from netTest.Telnet_old.TelnetConnection import *
-from netTest.Telnet_old.OutputLogger import *
+from .MessageHandle import *
+from .TelnetConnection import *
+from .OutputLogger import *

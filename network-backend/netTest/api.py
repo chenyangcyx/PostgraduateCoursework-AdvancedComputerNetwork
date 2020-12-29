@@ -1,6 +1,7 @@
 import base64
+from django.http import HttpResponse
 from netTest import *
-
+from netTest.Telnet import TelnetClient
 
 # 获取指定的Telnet连接对象
 # 使用字典的单例模式，全局只有唯一的一个对象实例
@@ -87,7 +88,7 @@ def executeTestCommand(request):
         host_ip = configItem['configDetail'][settingNum]['hostIp']
         password_login = configItem['configDetail'][settingNum]['loginPassword']
         password_enable = configItem['configDetail'][settingNum]['enablePassword']
-        configCommands = configItem['configDetail'][settingNum]['testCommands']
+        testCommands = configItem['configDetail'][settingNum]['testCommands']
 
         # # 不使用单例模式创建对象
         # local_telnet = TelnetClient(logger)
@@ -107,7 +108,7 @@ def executeTestCommand(request):
         logger.handleMsg("Telnet:%s对象创建成功！" % dict_no)
 
         logger.handleMsg("**程序输出**")
-        result_out = local_telnet.executeSomeCMD(configCommands)
+        result_out = local_telnet.executeSomeCMD(testCommands)
         result_out1 = list()
         for msg in result_out:
             for one_cmd in msg.split("\n"):

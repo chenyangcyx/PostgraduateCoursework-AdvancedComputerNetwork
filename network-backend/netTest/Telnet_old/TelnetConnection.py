@@ -1,7 +1,6 @@
 import telnetlib
-import time
-from netTest.Telnet_old import MessageHandle as msg_handle
-
+from ..Telnet_old import *
+from ..Telnet_old import MessageHandle as msg_handle
 
 class TelnetClient:
     def __init__(self, logger):

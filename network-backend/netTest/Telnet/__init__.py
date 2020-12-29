@@ -1,2 +1,2 @@
-from netTest.Telnet.OutputLogger import *
-from netTest.Telnet.TelnetConnection import *
+from .OutputLogger import *
+from .TelnetConnection import *

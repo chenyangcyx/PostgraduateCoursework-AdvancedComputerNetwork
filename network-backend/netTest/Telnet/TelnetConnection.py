@@ -1,4 +1,4 @@
-import ciscolib
+from netTest.Telnet import ciscolib
 
 
 class TelnetClient:
@@ -12,10 +12,10 @@ class TelnetClient:
     def loginRouter(self, host_ip, password_login, password_enable, if_send_heartpacket=False):
         self.tn = ciscolib.Device(host_ip, password_login, enable_password=password_enable)
         try:
-            self.logger.handleMsg('开始连接主机：%s' % host_ip)
+            self.logger.handleMsg('开始连接主机: %s' % host_ip)
             self.tn.connect()
         except Exception as e:
-            self.logger.handleMsg('无法连接到主机%s：%s' % (host_ip, str(e)))
+            self.logger.handleMsg('无法连接到主机%s: %s' % (host_ip, str(e)))
             return False
         self.logger.handleMsg('连接成功！')
         return True
@@ -26,7 +26,7 @@ class TelnetClient:
             self.logger.handleMsg('进入特权模式……')
             self.tn.enable()
         except Exception as e:
-            self.logger.handleMsg('进入enalbe模式失败：%s' % str(e))
+            self.logger.handleMsg('进入enalbe模式失败: %s' % str(e))
             return False
         self.logger.handleMsg('进入enable模式成功！')
         return True
