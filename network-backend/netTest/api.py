@@ -49,6 +49,7 @@ def executeConfigCommand(request):
         # # 不使用单例模式创建对象
         # local_telnet = TelnetClient(logger)
         # local_telnet.loginHostRouter(host_ip, password_login, password_enable)
+        # local_telnet.goEnable()
 
         # 使用单例模式创建对象
         dict_no = str(configName) + str(settingNum)
@@ -61,6 +62,7 @@ def executeConfigCommand(request):
             logger.handleMsg("Telnet:%s对象未被创建，开始创建……" % dict_no)
             while not local_telnet.loginRouter(host_ip, password_login, password_enable, False):
                 logger.handleMsg("Telnet连接失败，重试……")
+            local_telnet.goEnable()
         logger.handleMsg("Telnet:%s对象创建成功！" % dict_no)
 
         logger.handleMsg("**程序输出**")
@@ -103,6 +105,7 @@ def executeTestCommand(request):
         # # 不使用单例模式创建对象
         # local_telnet = TelnetClient(logger)
         # local_telnet.loginHostRouter(host_ip, password_login, password_enable)
+        # local_telnet.goEnable()
 
         # 使用单例模式创建对象
         dict_no = str(configName) + str(settingNum)
@@ -115,6 +118,7 @@ def executeTestCommand(request):
             logger.handleMsg("Telnet:%s对象未被创建，开始创建……" % dict_no)
             while not local_telnet.loginRouter(host_ip, password_login, password_enable, False):
                 logger.handleMsg("Telnet连接失败，重试……")
+            local_telnet.goEnable()
         logger.handleMsg("Telnet:%s对象创建成功！" % dict_no)
 
         logger.handleMsg("**程序输出**")
@@ -159,6 +163,7 @@ def executeOneCommand(request):
         # # 不使用单例模式创建对象
         # local_telnet = TelnetClient(logger)
         # local_telnet.loginHostRouter(host_ip, password_login, password_enable)
+        # local_telnet.goEnable()
 
         # 使用单例模式创建对象
         dict_no = str(configName) + str(settingNum)
@@ -171,6 +176,7 @@ def executeOneCommand(request):
             logger.handleMsg("Telnet:%s对象未被创建，开始创建……" % dict_no)
             while not local_telnet.loginRouter(host_ip, password_login, password_enable, False):
                 logger.handleMsg("Telnet连接失败，重试……")
+            local_telnet.goEnable()
         logger.handleMsg("Telnet:%s对象创建成功！" % dict_no)
 
         logger.handleMsg("**程序输出**")
@@ -214,6 +220,7 @@ def executeCommand(request):
         # # 不使用单例模式创建对象
         # local_telnet = TelnetClient(logger)
         # local_telnet.loginHostRouter(host_ip, password_login, password_enable)
+        # local_telnet.goEnable()
 
         # 使用单例模式创建对象
         dict_no = str(host) + str(loginpassword) + str(enablepassword)
@@ -226,6 +233,7 @@ def executeCommand(request):
             logger.handleMsg("Telnet:%s对象未被创建，开始创建……" % dict_no)
             while not local_telnet.loginRouter(host, loginpassword, enablepassword, False):
                 logger.handleMsg("Telnet连接失败，重试……")
+            local_telnet.goEnable()
         logger.handleMsg("Telnet:%s对象创建成功！" % dict_no)
 
         logger.handleMsg("**程序输出**")
