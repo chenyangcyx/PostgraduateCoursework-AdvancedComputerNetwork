@@ -2,7 +2,7 @@ import base64
 import json
 import time
 from django.http import HttpResponse
-from netTest.Telnet import TelnetClient, OutputLogger
+from netTest.Telnet import TelnetClient, OutputLogger, MessageHandle
 
 # 声明logger对象，用来屏幕输出和写文件记录
 logger = OutputLogger(True, True, "./netTest/program_log/%s.txt" % time.strftime("%Y-%m-%d %H.%M.%S", time.localtime()))
@@ -56,7 +56,7 @@ def executeConfigCommand(request):
         password_enable = configItem['configDetail'][settingNum]['enablePassword']
         configCommands = configItem['configDetail'][settingNum]['configCommands']
         logger.handleMsg('获取程序参数成功')
-        logger.handleMsg('host_ip: %s'%host_ip)
+        logger.handleMsg('host_ip: %s' % host_ip)
         logger.handleMsg('password_login: %s' % password_login)
         logger.handleMsg('password_enable: %s' % password_enable)
         logger.handleMsg('configCommands: %s' % configCommands)
@@ -89,10 +89,12 @@ def executeConfigCommand(request):
         for msg in result_out1:
             logger.handleMsg(msg)
         logger.handleMsg("\n**清理后的输出**")
-        logger.handleMsg("……暂时没有……")
-        logger.handleMsg('\n\n')
+        result_out2 = MessageHandle.deleteLineWithCmdPrefix(local_telnet.tn.hostname, result_out1)
+        for msg in result_out2:
+            logger.handleMsg(msg)
+        logger.handleMsg('\n')
 
-        return HttpResponse(json.dumps({'original_result': result_out1, 'handle_result': result_out1}),
+        return HttpResponse(json.dumps({'original_result': result_out1, 'handle_result': result_out2}),
                             content_type='application/json;charset=utf-8')
 
 
@@ -154,10 +156,12 @@ def executeTestCommand(request):
         for msg in result_out1:
             logger.handleMsg(msg)
         logger.handleMsg("\n**清理后的输出**")
-        logger.handleMsg("……暂时没有……")
-        logger.handleMsg('\n\n')
+        result_out2 = MessageHandle.deleteLineWithCmdPrefix(local_telnet.tn.hostname, result_out1)
+        for msg in result_out2:
+            logger.handleMsg(msg)
+        logger.handleMsg('\n')
 
-        return HttpResponse(json.dumps({'original_result': result_out1, 'handle_result': result_out1}),
+        return HttpResponse(json.dumps({'original_result': result_out1, 'handle_result': result_out2}),
                             content_type='application/json;charset=utf-8')
 
 
@@ -220,10 +224,12 @@ def executeOneCommand(request):
         for msg in result_out1:
             logger.handleMsg(msg)
         logger.handleMsg("\n**清理后的输出**")
-        logger.handleMsg("……暂时没有……")
-        logger.handleMsg('\n\n')
+        result_out2 = MessageHandle.deleteLineWithCmdPrefix(local_telnet.tn.hostname, result_out1)
+        for msg in result_out2:
+            logger.handleMsg(msg)
+        logger.handleMsg('\n')
 
-        return HttpResponse(json.dumps({'original_result': result_out1, 'handle_result': result_out1}),
+        return HttpResponse(json.dumps({'original_result': result_out1, 'handle_result': result_out2}),
                             content_type='application/json;charset=utf-8')
 
 
@@ -278,9 +284,6 @@ def executeCommand(request):
         logger.handleMsg("**程序输出**")
         for msg in result_out1:
             logger.handleMsg(msg)
-        logger.handleMsg("\n**清理后的输出**")
-        logger.handleMsg("……暂时没有……")
-        logger.handleMsg('\n\n')
+        logger.handleMsg('\n')
 
-        return HttpResponse(json.dumps({'original_result': result_out1, 'handle_result': result_out1}),
-                            content_type='application/json;charset=utf-8')
+        return HttpResponse(json.dumps(result_out1), content_type='application/json;charset=utf-8')

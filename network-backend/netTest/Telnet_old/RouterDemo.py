@@ -1,7 +1,7 @@
 import json
 import time
+from netTest.Telnet_old import OutputLogger, TelnetClient, MessageHandle
 
-from netTest.Telnet_old import OutputLogger
 
 if __name__ == '__main__':
     logger = OutputLogger(True, True, "telnet_log/%s.txt" % time.strftime("%Y-%m-%d %H.%M.%S", time.localtime()))
