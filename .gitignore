@@ -1,7 +1,5 @@
 # network-backend项目
 # 程序运行时的log文件
-network-backend/netTest/Telnet_old/linux_log/
-network-backend/netTest/Telnet_old/telnet_log/
 network-backend/netTest/program_log/
 
 # Python程序编译时的临时文件
