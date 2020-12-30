@@ -65,12 +65,14 @@ def executeConfigCommand(request):
             local_telnet.goEnable()
         logger.handleMsg("Telnet:%s对象创建成功！" % dict_no)
 
-        logger.handleMsg("**程序输出**")
         result_out = local_telnet.executeSomeCMD(configCommands)
         result_out1 = list()
         for msg in result_out:
             for one_cmd in msg.split("\n"):
                 result_out1.append(one_cmd)
+        logger.handleMsg("**程序输出**")
+        for msg in result_out1:
+            logger.handleMsg(msg)
         logger.handleMsg("\n**清理后的输出**")
         logger.handleMsg("……暂时没有……")
         logger.handleMsg('\n\n')
@@ -121,12 +123,14 @@ def executeTestCommand(request):
             local_telnet.goEnable()
         logger.handleMsg("Telnet:%s对象创建成功！" % dict_no)
 
-        logger.handleMsg("**程序输出**")
         result_out = local_telnet.executeSomeCMD(testCommands)
         result_out1 = list()
         for msg in result_out:
             for one_cmd in msg.split("\n"):
                 result_out1.append(one_cmd)
+        logger.handleMsg("**程序输出**")
+        for msg in result_out1:
+            logger.handleMsg(msg)
         logger.handleMsg("\n**清理后的输出**")
         logger.handleMsg("……暂时没有……")
         logger.handleMsg('\n\n')
@@ -179,12 +183,14 @@ def executeOneCommand(request):
             local_telnet.goEnable()
         logger.handleMsg("Telnet:%s对象创建成功！" % dict_no)
 
-        logger.handleMsg("**程序输出**")
         result_out = local_telnet.executeSomeCMD(singleCommand)
         result_out1 = list()
         for msg in result_out:
             for one_cmd in msg.split("\n"):
                 result_out1.append(one_cmd)
+        logger.handleMsg("**程序输出**")
+        for msg in result_out1:
+            logger.handleMsg(msg)
         logger.handleMsg("\n**清理后的输出**")
         logger.handleMsg("……暂时没有……")
         logger.handleMsg('\n\n')
@@ -236,12 +242,14 @@ def executeCommand(request):
             local_telnet.goEnable()
         logger.handleMsg("Telnet:%s对象创建成功！" % dict_no)
 
-        logger.handleMsg("**程序输出**")
         result_out = local_telnet.executeSomeCMD(command)
         result_out1 = list()
         for msg in result_out:
             for one_cmd in msg.split("\n"):
                 result_out1.append(one_cmd)
+        logger.handleMsg("**程序输出**")
+        for msg in result_out1:
+            logger.handleMsg(msg)
         logger.handleMsg("\n**清理后的输出**")
         logger.handleMsg("……暂时没有……")
         logger.handleMsg('\n\n')
