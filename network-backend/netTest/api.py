@@ -4,7 +4,6 @@ import time
 from django.http import HttpResponse
 from netTest.Telnet import TelnetClient, OutputLogger
 
-
 # 声明logger对象，用来屏幕输出和写文件记录
 logger = OutputLogger(True, True, "./netTest/program_log/%s.txt" % time.strftime("%Y-%m-%d %H.%M.%S", time.localtime()))
 # json文件的读取，全局唯一
@@ -23,6 +22,15 @@ def getTelnetObject(object_name, logger=None):
         return telnet_dict[object_name], False
 
 
+# 输出获取到的json数据
+def printJsonObject(json_object):
+    logger.handleMsg('获取到的JSON数据：')
+    logger.handleMsg('configName: %s' % json_object['configName'])
+    logger.handleMsg('configDescription: %s' % json_object['configDescription'])
+    logger.handleMsg('routerNum: %s' % json_object['routerNum'])
+    logger.handleMsg('configDetail: %s' % json_object['configDetail'])
+
+
 # 执行路由器的配置脚本
 def executeConfigCommand(request):
     if request.method == 'GET':
@@ -39,12 +47,19 @@ def executeConfigCommand(request):
         for settingItem in json_file['routerSettings']:
             if settingItem['configName'] == configName:
                 configItem = settingItem
+        logger.handleMsg('获取configItem成功')
+        printJsonObject(configItem)
 
         # 读取参数，对各个参数进行解析
         host_ip = configItem['configDetail'][settingNum]['hostIp']
         password_login = configItem['configDetail'][settingNum]['loginPassword']
         password_enable = configItem['configDetail'][settingNum]['enablePassword']
         configCommands = configItem['configDetail'][settingNum]['configCommands']
+        logger.handleMsg('获取程序参数成功')
+        logger.handleMsg('host_ip: %s'%host_ip)
+        logger.handleMsg('password_login: %s' % password_login)
+        logger.handleMsg('password_enable: %s' % password_enable)
+        logger.handleMsg('configCommands: %s' % configCommands)
 
         # # 不使用单例模式创建对象
         # local_telnet = TelnetClient(logger)
@@ -97,12 +112,19 @@ def executeTestCommand(request):
         for settingItem in json_file['routerSettings']:
             if settingItem['configName'] == configName:
                 configItem = settingItem
+        logger.handleMsg('获取configItem成功')
+        printJsonObject(configItem)
 
         # 读取参数，对各个参数进行解析
         host_ip = configItem['configDetail'][settingNum]['hostIp']
         password_login = configItem['configDetail'][settingNum]['loginPassword']
         password_enable = configItem['configDetail'][settingNum]['enablePassword']
         testCommands = configItem['configDetail'][settingNum]['testCommands']
+        logger.handleMsg('获取程序参数成功')
+        logger.handleMsg('host_ip: %s' % host_ip)
+        logger.handleMsg('password_login: %s' % password_login)
+        logger.handleMsg('password_enable: %s' % password_enable)
+        logger.handleMsg('testCommands: %s' % testCommands)
 
         # # 不使用单例模式创建对象
         # local_telnet = TelnetClient(logger)
@@ -158,11 +180,17 @@ def executeOneCommand(request):
         for settingItem in json_file['routerSettings']:
             if settingItem['configName'] == configName:
                 configItem = settingItem
+        logger.handleMsg('获取configItem成功')
+        printJsonObject(configItem)
 
         # 读取参数，对各个参数进行解析
         host_ip = configItem['configDetail'][settingNum]['hostIp']
         password_login = configItem['configDetail'][settingNum]['loginPassword']
         password_enable = configItem['configDetail'][settingNum]['enablePassword']
+        logger.handleMsg('获取程序参数成功')
+        logger.handleMsg('host_ip: %s' % host_ip)
+        logger.handleMsg('password_login: %s' % password_login)
+        logger.handleMsg('password_enable: %s' % password_enable)
 
         # # 不使用单例模式创建对象
         # local_telnet = TelnetClient(logger)
