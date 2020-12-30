@@ -1,3 +1,5 @@
+import _thread
+import time
 from netTest.Telnet import ciscolib
 
 
@@ -9,7 +11,7 @@ class TelnetClient:
         self.tn = None
 
     # telnet登录主机
-    def loginRouter(self, host_ip, password_login, password_enable, if_send_heartpacket=False):
+    def loginRouter(self, host_ip, password_login, password_enable, if_send_heartbeat=False):
         self.tn = ciscolib.Device(host_ip, password_login, enable_password=password_enable)
         try:
             self.logger.handleMsg('开始连接主机: %s' % host_ip)
@@ -18,7 +20,16 @@ class TelnetClient:
             self.logger.handleMsg('无法连接到主机%s: %s' % (host_ip, str(e)))
             return False
         self.logger.handleMsg('连接成功！')
+        # 发送心跳包，防止telnet连接断开
+        if if_send_heartbeat:
+            _thread.start_new_thread(self.sendHeartbeat, (30,))
         return True
+
+    # 发送心跳包，以保持telnet的连接
+    def sendHeartbeat(self, delay_time):
+        while 1:
+            time.sleep(delay_time)
+            self.tn.cmd('\n')
 
     # 进入enable模式
     def goEnable(self):
