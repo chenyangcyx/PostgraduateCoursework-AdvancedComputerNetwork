@@ -38,7 +38,7 @@ if __name__ == '__main__':
         "ll",
         "ping baidu.com -c 2"
     ]
-    logger = OutputLogger(True, True, "../linux_log/%s.txt" % time.strftime("%Y-%m-%d %H.%M.%S", time.localtime()))
+    logger = OutputLogger(True, True, "../program_log/%s.txt" % time.strftime("%Y-%m-%d %H.%M.%S", time.localtime()))
     telnet_client_Linux = TelnetClient(logger)
     logger.handleMsg("*****原始输出*****")
     original_result_out = list()
