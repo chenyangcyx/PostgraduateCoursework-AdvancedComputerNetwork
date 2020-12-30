@@ -1,6 +1,6 @@
 import time
-from ..Telnet_old import *
 
+from netTest.Telnet_old import OutputLogger
 
 if __name__ == '__main__':
     # 测试Telenet连接Linux主机

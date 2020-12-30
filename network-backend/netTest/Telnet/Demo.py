@@ -1,9 +1,10 @@
 import json
 import time
-from netTest.Telnet import OutputLogger,TelnetClient
+from netTest.Telnet import OutputLogger, TelnetClient
 
 if __name__ == '__main__':
-    logger_demo = OutputLogger(True, True, "../program_log/%s.txt" % time.strftime("%Y-%m-%d %H.%M.%S", time.localtime()))
+    logger_demo = OutputLogger(True, True,
+                               "../program_log/%s.txt" % time.strftime("%Y-%m-%d %H.%M.%S", time.localtime()))
     json_file = json.load(open("../setting.json", 'r', encoding='utf-8'))
 
     configName = 'RIP_normal'
@@ -41,5 +42,5 @@ if __name__ == '__main__':
         # 进入特权模式下执行指令
         telnet_client_Router.goEnable()
         # 其次，调用executeSomeCommand()函数，传入命令的列表
-        result_out= telnet_client_Router.executeSomeCMD(configCommands)
+        result_out = telnet_client_Router.executeSomeCMD(configCommands)
         logger_demo.handleMsg(result_out)
