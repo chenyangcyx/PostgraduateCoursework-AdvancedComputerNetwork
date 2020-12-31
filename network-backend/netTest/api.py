@@ -81,14 +81,11 @@ def executeConfigCommand(request):
         logger.handleMsg("Telnet:%s对象创建成功！" % dict_no)
 
         result_out = local_telnet.executeSomeCMD(configCommands)
-        result_out1 = list()
-        for msg in result_out:
-            for one_cmd in msg.split("\n"):
-                result_out1.append(one_cmd)
         logger.handleMsg("**程序输出**")
+        result_out1 = MessageHandle.reformatOriginalResult(result_out)
         for msg in result_out1:
             logger.handleMsg(msg)
-        logger.handleMsg("\n**清理后的输出**")
+        logger.handleMsg("\n**清理后输出**")
         result_out2 = MessageHandle.deleteLineWithCmdPrefix(local_telnet.tn.hostname, result_out1)
         for msg in result_out2:
             logger.handleMsg(msg)
@@ -153,9 +150,10 @@ def executeTestCommand(request):
             for one_cmd in msg.split("\n"):
                 result_out1.append(one_cmd)
         logger.handleMsg("**程序输出**")
+        result_out1 = MessageHandle.reformatOriginalResult(result_out)
         for msg in result_out1:
             logger.handleMsg(msg)
-        logger.handleMsg("\n**清理后的输出**")
+        logger.handleMsg("\n**清理后输出**")
         result_out2 = MessageHandle.deleteLineWithCmdPrefix(local_telnet.tn.hostname, result_out1)
         for msg in result_out2:
             logger.handleMsg(msg)
@@ -221,9 +219,10 @@ def executeOneCommand(request):
             for one_cmd in msg.split("\n"):
                 result_out1.append(one_cmd)
         logger.handleMsg("**程序输出**")
+        result_out1 = MessageHandle.reformatOriginalResult(result_out)
         for msg in result_out1:
             logger.handleMsg(msg)
-        logger.handleMsg("\n**清理后的输出**")
+        logger.handleMsg("\n**清理后输出**")
         result_out2 = MessageHandle.deleteLineWithCmdPrefix(local_telnet.tn.hostname, result_out1)
         for msg in result_out2:
             logger.handleMsg(msg)
@@ -277,11 +276,8 @@ def executeCommand(request):
         logger.handleMsg("Telnet:%s对象创建成功！" % dict_no)
 
         result_out = local_telnet.executeSomeCMD(command)
-        result_out1 = list()
-        for msg in result_out:
-            for one_cmd in msg.split("\n"):
-                result_out1.append(one_cmd)
         logger.handleMsg("**程序输出**")
+        result_out1 = MessageHandle.reformatOriginalResult(result_out)
         for msg in result_out1:
             logger.handleMsg(msg)
         logger.handleMsg('\n')
