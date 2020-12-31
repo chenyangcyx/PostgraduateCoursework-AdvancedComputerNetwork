@@ -22,6 +22,7 @@ class TelnetClient:
         self.logger.handleMsg('连接成功！')
         # 发送心跳包，防止telnet连接断开
         if if_send_heartbeat:
+            self.logger.handleMsg('创建线程发送心跳包……')
             _thread.start_new_thread(self.sendHeartbeat, (30,))
         return True
 
@@ -29,6 +30,7 @@ class TelnetClient:
     def sendHeartbeat(self, delay_time):
         while 1:
             time.sleep(delay_time)
+            self.logger.handleMsg('发送心跳包……')
             self.tn.cmd('\n')
 
     # 进入enable模式

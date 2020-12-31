@@ -37,7 +37,7 @@ if __name__ == '__main__':
     # 实例化Telnet连接对象
     telnet_client = TelnetClient(logger_demo)
     # 登录telnet客户端
-    while not telnet_client.loginRouter(host_ip, password_login, password_enable, False):
+    while not telnet_client.loginRouter(host_ip, password_login, password_enable, True):
         logger_demo.handleMsg("Telnet连接失败，重试……")
     # 进入特权模式
     telnet_client.goEnable()
