@@ -43,8 +43,9 @@ if __name__ == '__main__':
     telnet_client.goEnable()
 
     # 测试发送命令
+    test_command=['show ip interface']
     logger_demo.handleMsg('\n测试发送命令……')
-    result_out = telnet_client.executeSomeCMD(testCommands)
+    result_out = telnet_client.executeSomeCMD(test_command)
     logger_demo.handleMsg("**程序输出**")
     # 处理原始输出
     result_out1=MessageHandle.reformatOriginalResult(result_out)

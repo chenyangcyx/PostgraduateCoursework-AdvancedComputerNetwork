@@ -152,12 +152,10 @@
             "no ip route-cache",
             "exit",
             "access-list 101 permit icmp any 10.0.0.0 0.255.255.255",
-            "end",
-            "sh ip interface s0/0/0",
-            "debug ip packet 101"
+            "end"
           ],
           "testCommands": [
-            "sh ip interface s0",
+            "sh ip interface s0/0/0",
             "debug ip packet 101"
           ]
         },
@@ -177,7 +175,8 @@
             "network 192.168.3.0",
             "network 10.0.0.0",
             "version 2",
-            "no auto-summary"
+            "no auto-summary",
+            "end"
           ],
           "testCommands": [
             "show ip route"
@@ -226,11 +225,7 @@
             "int s0/0/1",
             "ip route-cache",
             "exit",
-            "end",
-            "show ip interface",
-            "debug ip packet 101",
-            "debug ip packet 102",
-            "show ip cache"
+            "end"
           ],
           "testCommands": [
             "show ip interface",
@@ -255,7 +250,8 @@
             "network 192.168.3.0",
             "network 10.0.0.0",
             "version 2",
-            "no auto-summary"
+            "no auto-summary",
+            "end"
           ],
           "testCommands": [
             "show ip route"
