@@ -30,7 +30,6 @@ class TelnetClient:
     def sendHeartbeat(self, delay_time):
         while 1:
             time.sleep(delay_time)
-            self.logger.handleMsg('发送心跳包……')
             self.tn.cmd('\n')
 
     # 进入enable模式
