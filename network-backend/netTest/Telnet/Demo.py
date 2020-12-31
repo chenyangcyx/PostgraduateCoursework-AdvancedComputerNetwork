@@ -1,6 +1,6 @@
 import json
 import time
-from netTest.Telnet import OutputLogger, TelnetClient
+from netTest.Telnet import OutputLogger, TelnetClient, MessageHandle
 
 if __name__ == '__main__':
     json_file = json.load(open("../setting.json", 'r', encoding='utf-8'))
@@ -44,20 +44,17 @@ if __name__ == '__main__':
 
     # 测试发送命令
     logger_demo.handleMsg('\n测试发送命令……')
-    result_out = telnet_client.executeSomeCMD(configCommands)
+    result_out = telnet_client.executeSomeCMD(testCommands)
     logger_demo.handleMsg("**程序输出**")
-    result_out1="Router#"
-    for msg in result_out:
-        result_out1+=msg
-    logger_demo.handleMsg(result_out1)
-    # result_out1 = list()
-    # for msg in result_out:
-    #     for one_cmd in msg.split("\n"):
-    #         result_out1.append(one_cmd)
-    # logger_demo.handleMsg("**程序输出**")
-    # for msg in result_out1:
-    #     logger_demo.handleMsg(msg)
-
+    # 处理原始输出
+    result_out1=MessageHandle.reformatOriginalResult(result_out)
+    for msg in result_out1:
+        logger_demo.handleMsg(msg)
+    # 获取命令执行结果
+    logger_demo.handleMsg("**清理后输出**")
+    result_out2=MessageHandle.deleteLineWithCmdPrefix(telnet_client.tn.hostname,result_out1)
+    for msg in result_out2:
+        logger_demo.handleMsg(msg)
 
 
 

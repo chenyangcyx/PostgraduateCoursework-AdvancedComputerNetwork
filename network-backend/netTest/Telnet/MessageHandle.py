@@ -1,6 +1,16 @@
 import re
 
 
+# 重新组织原始输出
+def reformatOriginalResult(in_list):
+    result_out = "Router#"
+    for msg in in_list:
+        result_out += msg
+    message_list=list()
+    for msg in result_out.split('\n'):
+        message_list.append(msg)
+    return message_list
+
 # 删除所有带命令行前缀的行
 def deleteLineWithCmdPrefix(hostname, in_list):
     handle_result = list()
