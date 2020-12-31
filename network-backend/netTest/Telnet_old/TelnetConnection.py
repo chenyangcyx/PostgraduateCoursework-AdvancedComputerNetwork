@@ -91,8 +91,9 @@ class TelnetClient:
             return original_result, handle_result
         elif cmd_type == "Router":
             self.writeCMD((command + '\n').encode())
-            original_result = self.tn.read_until(b'Router', timeout=30).decode()
-            original_result = original_result.replace("\r\n", "\n")
+            expect_re = ['Router.*?#']
+            idx, match, ret_text = self.tn.expect([except_message.encode() for except_message in expect_re], timeout=30)
+            original_result = ret_text.decode().replace("\r\n", "\n")
             handle_result = ""
             for str in original_result.split('\n'):
                 str2 = msg_handle.handleMsgFromRouter(str)
@@ -138,7 +139,9 @@ class TelnetClient:
             return self.tn.read_very_eager().decode()
         else:
             self.writeCMD((msg + '\n').encode())
-            return self.tn.read_until(b'Router', timeout=30).decode()
+            expect_re = ['Router.*?#']
+            idx, match, ret_text = self.tn.expect(expect_re, timeout=30)
+            return ret_text.decode()
 
     # 退出telnet
     def logoutHost(self):
