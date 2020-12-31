@@ -121,9 +121,9 @@ class Device(object):
     def cmd(self, cmd_text):
         self.write(cmd_text + "\n")
         text = self.read_until_prompt()
-        ret_text = ""
-        for a in text.split('\n')[:-1]:
-            ret_text += a + "\n"
+        ret_text = text.split('\n')[0]
+        for a in text.split('\n')[1:]:
+            ret_text += '\n'+a
         if 'hostname' in cmd_text:
             self._get_hostname()
         if "Invalid input" in ret_text or "Incomplete command" in ret_text:
@@ -153,7 +153,7 @@ class Device(object):
                 model = None
         else:
             model = None
-            raise ModelNotSupported("Unable to do `show version`", cmd_output)
+            raise ModelNotSupported("Unable to do `show version`")
         return model
 
     def get_ios_version(self):
@@ -164,7 +164,7 @@ class Device(object):
             version = match.group(1)
         else:
             version = None
-            raise ModelNotSupported("Unable to do `show version`", haystack)
+            raise ModelNotSupported("Unable to do `show version`")
         return version
 
     def get_interfaces(self):
@@ -174,7 +174,7 @@ class Device(object):
         interface_data = self.cmd('show interfaces')
         port_matches = re.findall(detail_re, interface_data)
         if not port_matches:
-            raise ModelNotSupported("Unable to parse `show interfaces`", interface_data)
+            raise ModelNotSupported("Unable to parse `show interfaces`")
         for match in port_matches:
             port = dict()
             port['name'], port['status'], port['description'] = match

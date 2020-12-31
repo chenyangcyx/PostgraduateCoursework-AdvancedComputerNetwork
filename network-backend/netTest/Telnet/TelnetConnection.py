@@ -44,20 +44,19 @@ class TelnetClient:
 
     # 执行命令
     def executeCMD(self, cmd):
-        self.logger.handleMsg('executeCMD: %s' % cmd)
-        result = self.tn.cmd(cmd)
-        self.logger.handleMsg('executeCMD-Result: %s' % result)
+        self.logger.handleMsg('executeCMD:\n%s' % cmd)
+        result = self.tn.cmd(cmd).replace("\r\n", "\n")
+        self.logger.handleMsg('executeCMD-Result:\n%s' % result)
         return result
 
     # 执行多条命令
     def executeSomeCMD(self, commands):
         result_list = list()
-        self.logger.handleMsg('executeSomeCMD: %s' % commands)
+        self.logger.handleMsg('executeSomeCMD:\n%s' % commands)
         for com in commands:
             result = self.executeCMD(com)
-            self.logger.handleMsg(result)
             result_list.append(result)
-        self.logger.handleMsg('executeSomeCMD-Result: %s' % result_list)
+        self.logger.handleMsg('executeSomeCMD-Result:\n%s' % result_list)
         return result_list
 
     # 与Telnet实时交互，无返回值
@@ -71,7 +70,6 @@ class TelnetClient:
         self.logger.handleMsg('getNeighbors……')
         result = self.tn.get_neighbors()
         self.logger.handleMsg('getNeighbors-Result: %s' % result)
-        return result
 
     # 获取路由器/交换机的版本号
     def getVersion(self, type=1):
@@ -97,23 +95,23 @@ class TelnetClient:
     # {name, status, description, vlan, duplex, speed, media}
     def getAllInterfaces(self):
         self.logger.handleMsg('getAllInterfaces……')
-        result = self.tn.get_interfaces()
-        self.logger.handleMsg('getAllInterfaces-Result: %s' % result)
-        return result
+        try:
+            result = self.tn.get_interfaces()
+            self.logger.handleMsg('getAllInterfaces-Result: %s' % result)
+        except Exception as e:
+            self.logger.handleMsg('getAllInterfaces: Error, %s' % str(e))
 
     # 获取路由器/交换机的所有ARP表
     def getARPTable(self):
         self.logger.handleMsg('getARPTable……')
         result = self.tn.get_arp_table()
         self.logger.handleMsg('getARPTable-Result: %s' % result)
-        return result
 
     # 获取路由器/交换机的MAC表
     def getMACTable(self):
         self.logger.handleMsg('getMACTable……')
         result = self.tn.get_mac_table()
         self.logger.handleMsg('getMACTable-Result: %s' % result)
-        return result
 
     # 退出telnet
     def logoutRouter(self):

@@ -6,7 +6,7 @@ if __name__ == '__main__':
     json_file = json.load(open("../setting.json", 'r', encoding='utf-8'))
 
     configName = 'RIP_normal'
-    settingNum = 0
+    settingNum = 1
 
     # 按照configName找到要验证的路由协议
     configItem = None
@@ -44,42 +44,51 @@ if __name__ == '__main__':
 
     # 测试发送命令
     logger_demo.handleMsg('\n测试发送命令……')
-    command = ['show ip route']
-    result_out = telnet_client.executeSomeCMD(command)
-    result_out1 = list()
+    result_out = telnet_client.executeSomeCMD(configCommands)
+    logger_demo.handleMsg("**程序输出**")
+    result_out1="Router#"
     for msg in result_out:
-        for one_cmd in msg.split("\n"):
-            result_out1.append(one_cmd)
-    logger_demo.handleMsg("**程序输出**")
-    for msg in result_out1:
-        logger_demo.handleMsg(msg)
+        result_out1+=msg
+    logger_demo.handleMsg(result_out1)
+    # result_out1 = list()
+    # for msg in result_out:
+    #     for one_cmd in msg.split("\n"):
+    #         result_out1.append(one_cmd)
+    # logger_demo.handleMsg("**程序输出**")
+    # for msg in result_out1:
+    #     logger_demo.handleMsg(msg)
 
-    # 测试获取neighbors
-    logger_demo.handleMsg('\n测试获取Neighbors……')
-    logger_demo.handleMsg("**程序输出**")
-    logger_demo.handleMsg(telnet_client.getNeighbors())
 
-    # 测试获取版本号-1
-    logger_demo.handleMsg('\n测试获取Version-1……')
-    logger_demo.handleMsg("**程序输出**")
-    logger_demo.handleMsg(telnet_client.getVersion(1))
 
-    # 测试获取版本号-2
-    logger_demo.handleMsg('\n测试获取Version-2……')
-    logger_demo.handleMsg("**程序输出**")
-    logger_demo.handleMsg(telnet_client.getVersion(2))
 
-    # 测试获取所有接口信息
-    logger_demo.handleMsg('\n测试获取Interfaces……')
-    logger_demo.handleMsg("**程序输出**")
-    logger_demo.handleMsg(telnet_client.getAllInterfaces())
 
-    # 测试获取所有ARP表
-    logger_demo.handleMsg('\n测试获取ARPTable……')
-    logger_demo.handleMsg("**程序输出**")
-    logger_demo.handleMsg(telnet_client.getARPTable())
 
-    # 测试获取所有MAC表
-    logger_demo.handleMsg('\n测试获取MACTable……')
-    logger_demo.handleMsg("**程序输出**")
-    logger_demo.handleMsg(telnet_client.getMACTable())
+    # # 测试获取neighbors
+    # logger_demo.handleMsg('\n测试获取Neighbors……')
+    # logger_demo.handleMsg("**程序输出**")
+    # telnet_client.getNeighbors()
+    #
+    # # 测试获取版本号-1
+    # logger_demo.handleMsg('\n测试获取Version-1……')
+    # logger_demo.handleMsg("**程序输出**")
+    # telnet_client.getVersion(1)
+    #
+    # # 测试获取版本号-2
+    # logger_demo.handleMsg('\n测试获取Version-2……')
+    # logger_demo.handleMsg("**程序输出**")
+    # telnet_client.getVersion(2)
+    #
+    # # 测试获取所有接口信息
+    # logger_demo.handleMsg('\n测试获取Interfaces……')
+    # logger_demo.handleMsg("**程序输出**")
+    # telnet_client.getAllInterfaces()
+    #
+    # # 测试获取所有ARP表
+    # logger_demo.handleMsg('\n测试获取ARPTable……')
+    # logger_demo.handleMsg("**程序输出**")
+    # telnet_client.getARPTable()
+    #
+    # # 测试获取所有MAC表
+    # logger_demo.handleMsg('\n测试获取MACTable……')
+    # logger_demo.handleMsg("**程序输出**")
+    # telnet_client.getMACTable()
