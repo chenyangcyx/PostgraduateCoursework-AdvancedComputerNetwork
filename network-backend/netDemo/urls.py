@@ -15,13 +15,11 @@ Including another URLconf
     3. Add a URL to urlpatterns:  url(r'^blog/', include(blog_urls))
 """
 from django.conf.urls import url
-from netTest import views
+from netTest import api
 
 urlpatterns = [
-    url(r'^executeConfigCommand/$', views.executeConfigCommand),
-    url(r'^executeTestCommand/$', views.executeTestCommand),
-    url(r'^executeOneCommand/$', views.executeOneCommand),
-    url(r'^executeCommand/$', views.executeCommand),
-    url(r'^executeSomeCommandInLinux/$', views.executeSomeCommandInLinux),
-    url(r'^executeOneCommandInLinux/$', views.executeOneCommandInLinux)
+    url(r'^executeConfigCommand/$', api.executeConfigCommand),
+    url(r'^executeTestCommand/$', api.executeTestCommand),
+    url(r'^executeOneCommand/$', api.executeOneCommand),
+    url(r'^executeCommand/$', api.executeCommand)
 ]

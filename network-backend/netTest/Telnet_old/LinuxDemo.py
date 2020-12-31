@@ -1,5 +1,6 @@
-from netTest.Telnet import *
 import time
+from netTest.Telnet_old import OutputLogger, TelnetClient, MessageHandle
+
 
 if __name__ == '__main__':
     # 测试Telenet连接Linux主机
@@ -37,7 +38,7 @@ if __name__ == '__main__':
         "ll",
         "ping baidu.com -c 2"
     ]
-    logger = OutputLogger(True, True, "../linux_log/%s.txt" % time.strftime("%Y-%m-%d %H.%M.%S", time.localtime()))
+    logger = OutputLogger(True, True, "../program_log/%s.txt" % time.strftime("%Y-%m-%d %H.%M.%S", time.localtime()))
     telnet_client_Linux = TelnetClient(logger)
     logger.handleMsg("*****原始输出*****")
     original_result_out = list()
