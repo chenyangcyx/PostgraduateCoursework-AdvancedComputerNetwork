@@ -27,7 +27,7 @@ class Device(object):
 
     def disconnect(self):
         if self._connection is not None:
-            self._connection.write(b"exit\n")
+            self._connection.write(b"logout\n")
             self._connection.close()
         self._connection = None
         self.connected = False
