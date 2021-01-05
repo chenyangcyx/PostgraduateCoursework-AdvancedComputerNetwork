@@ -9,7 +9,7 @@ if __name__ == '__main__':
     # 所有的设置都是从json中读取，所以此处先调用JsonParse模块读取json获取设置
     json_file = json.load(open("../setting.json", 'r', encoding='utf-8'))
 
-    configName = 'RIP_normal'
+    configName = 'RIP'
     settingNum = 0
 
     # 按照configName找到要验证的路由协议

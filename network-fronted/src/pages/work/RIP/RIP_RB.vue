@@ -20,7 +20,7 @@
 import VueCommand, {createStdout} from 'vue-command';
 import 'vue-command/dist/vue-command.css';
 import api from '@/api2/bigwork'
-import command from "@/pages/work/RIP_normal/RC.json";
+import command from "@/pages/work/RIP/RB.json";
 
 export default {
   name: 'Command',
@@ -52,7 +52,7 @@ export default {
       this.sleep(100).then(res=>{
         //在这里输入配置信息
         let configName = "RIP_normal";
-        let settingNum = 2;
+        let settingNum = 1;
         api.executeConfigCommand(configName,settingNum).then(res=>{
           this.history.push(createStdout("配置命令如下: <br>" + res.original_result.join("<br>")))
           let str = "<br>结果如下：<br>" + res.handle_result.join("<br>");
@@ -63,7 +63,7 @@ export default {
     executeTestCommand() {
       this.sleep(100).then(res=>{
         let configName = "RIP_normal";
-        let settingNum = 2;
+        let settingNum = 1;
         api.executeTestCommand(configName,settingNum).then(res=>{
           this.history.push(createStdout("查询命令如下: <br>" + res.original_result.join("<br>")))
           let str = "<br>结果如下：<br>" + res.handle_result.join("<br>");

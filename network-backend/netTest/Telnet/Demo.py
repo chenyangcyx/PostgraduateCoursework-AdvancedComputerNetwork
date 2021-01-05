@@ -5,7 +5,7 @@ from netTest.Telnet import OutputLogger, TelnetClient, MessageHandle
 if __name__ == '__main__':
     json_file = json.load(open("../setting.json", 'r', encoding='utf-8'))
 
-    configName = 'RIP_normal'
+    configName = 'RIP'
     settingNum = 1
 
     # 按照configName找到要验证的路由协议

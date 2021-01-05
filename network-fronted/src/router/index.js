@@ -2,14 +2,14 @@ import Vue from 'vue';
 import Router from 'vue-router';
 import {originChildren} from "./originChildren";
 import {work} from '@/router/work/work';
-import {RIP_normal} from "@/router/work/RIP_normal";
-import {RIP_balance_route} from "@/router/work/RIP_balance_route";
+import {RIP} from "@/router/work/RIP";
+import {OSPF} from "@/router/work/OSPF";
 
 Vue.use(Router);
 
 originChildren.push(...work);
-originChildren.push(...RIP_normal)
-originChildren.push(...RIP_balance_route)
+originChildren.push(...RIP)
+originChildren.push(...OSPF)
 
 
 
