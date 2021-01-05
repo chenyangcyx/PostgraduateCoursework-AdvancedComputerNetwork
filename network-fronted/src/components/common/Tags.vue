@@ -43,18 +43,18 @@
                 if (item) {
                     delItem.path === this.$route.fullPath && this.$router.push(item.path);
                 }else{
-                    this.$router.push('/dashboard');
+                    this.$router.push('/network/perm/topu');
                 }
             },
             // 关闭全部标签
             closeAll(){
                 this.tagsList = [];
-                this.$router.push('/dashboard');
+                this.$router.push('/network/perm/topu');
             },
             // 关闭其他标签
             closeOther(){
                 const curItem = this.tagsList.filter(item => {
-                    return item.path === this.$route.fullPath || item.path === '/dashboard';
+                    return item.path === this.$route.fullPath || item.path === '/network/perm/topu';
                 })
                 this.tagsList = curItem;
             },

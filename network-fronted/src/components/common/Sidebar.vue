@@ -57,7 +57,6 @@
 <script>
 import bus from '../common/bus';
 import {RIP_normal_slider} from "@/router/work/RIP_normal";
-import {RIP_balance_packet_slider} from "@/router/work/RIP_balance_packet";
 import {RIP_balance_route_slider} from "@/router/work/RIP_balance_route";
 
 export default {
@@ -68,7 +67,6 @@ export default {
 
         RIP_normal_slider,
         RIP_balance_route_slider,
-        RIP_balance_packet_slider,
         {
           icon: 'el-icon-lx-home',
           index: '/network/perm/topu',

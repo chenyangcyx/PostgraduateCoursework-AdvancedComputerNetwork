@@ -48,24 +48,25 @@ export default {
   }),
   methods: {
     executeConfigCommand() {
-      this.history.push(createStdout("配置命令如下: <br>" + command.config_commands.join("<br>")))
+
       this.sleep(100).then(res=>{
         //在这里输入配置信息
         let configName = "RIP_normal";
         let settingNum = 2;
         api.executeConfigCommand(configName,settingNum).then(res=>{
-          let str = res.handle_result.join("<br>");
+          this.history.push(createStdout("配置命令如下: <br>" + res.original_result.join("<br>")))
+          let str = "<br>结果如下：<br>" + res.handle_result.join("<br>");
           this.history.push(createStdout(str));
         });
       })
     },
     executeTestCommand() {
-      this.history.push(createStdout("查询命令如下: <br>" + command.test_commands.join("<br>")))
       this.sleep(100).then(res=>{
         let configName = "RIP_normal";
         let settingNum = 2;
         api.executeTestCommand(configName,settingNum).then(res=>{
-          let str = res.handle_result.join("<br>");
+          this.history.push(createStdout("查询命令如下: <br>" + res.original_result.join("<br>")))
+          let str = "<br>结果如下：<br>" + res.handle_result.join("<br>");
           this.history.push(createStdout(str));
         });
       })
