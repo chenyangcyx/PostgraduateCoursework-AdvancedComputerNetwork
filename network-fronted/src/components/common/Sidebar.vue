@@ -65,6 +65,12 @@ export default {
       collapse: false,
       items: [
 
+        {
+          icon: 'el-icon-lx-home',
+          index: '/network/RouterConfig',
+          title: '路由器配置',
+          myIcon: "icons/perm/quanXian.png",
+        },
         RIP_slider,
         OSPF_slider,
         {

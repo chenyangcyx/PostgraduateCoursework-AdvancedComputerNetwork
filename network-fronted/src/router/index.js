@@ -19,6 +19,7 @@ export default new Router({
             path: '/',
             redirect: '/network/perm/topu'
         },
+
         {
             path: '/',
             component: () => import(/* webpackChunkName: "home" */ '../components/common/Home.vue'),

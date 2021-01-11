@@ -1,109 +1,110 @@
 <template>
-  <div class="fillcontain">
-    <el-button @click="executeConfigCommand" style="margin-bottom: 10px" type="success">配置路由器</el-button>
-    <el-button @click="executeTestCommand" style="margin-bottom: 10px" type="success">查看结果</el-button>
-
-    <div class="contain">
-      <vue-command
-          class="vuecommand"
-          ref="aa" title="高级计算机网络大作业"
-          prompt=""
-          :history.sync="history"
-          :commands.sync="commands"
-          :is-in-progress="true">
-      </vue-command>
-    </div>
-  </div>
+  <router ref="router"
+          @executeConfigCommand="executeConfigCommand"
+          @executeTestCommand="executeTestCommand"
+          @generateTemplate="generateTemplate"
+          @executeCustomizedOrder="executeCustomizedOrder"
+          @ping="ping"
+          @clearAllConfig="clearAllConfig"
+          @checkRouterTable="checkRouterTable"
+          @checkRouterProtocol="checkRouterProtocol"
+          @checkInterface="checkInterface"
+          @validateConfig="validateConfig"
+        ></router>
 </template>
 
 <script>
-import VueCommand, {createStdout} from 'vue-command';
-import 'vue-command/dist/vue-command.css';
+import  {createStdout} from 'vue-command';
 import api from '@/api2/bigwork'
-import command from "@/pages/work/OSPF/RA.json";
+import Router from "@/pages/work/common/Router";
+import utils from "@/utils/Commonutils";
 
 export default {
   name: 'Command',
   components: {
-    VueCommand
+  Router
   },
   created() {
   },
   mounted() {
-    let stdins = this.$refs.aa.$refs.stdin;
-    this.stdins = stdins
-    this.lastStdin = this.stdins[this.stdins.length - 1];
-    this.stdinsLen = this.stdins.length
   },
   data: () => ({
-    commands: {
-      'echo': _ => createStdout('JSON.stringify(_, null, 2)')
-    },
-    remoteStr: '',
-    history: [],
-    lastStdin: null,
-    stdinsLen: 0,
-    stdins: null
-
   }),
   methods: {
-    executeConfigCommand() {
-
-      this.sleep(100).then(res=>{
-        //在这里输入配置信息
+    //配置路由器
+    executeConfigCommand(config) {
+      utils.sleep(100).then(r => {
         let configName = "OSPF";
         let settingNum = 0;
-        api.executeConfigCommand(configName,settingNum).then(res=>{
-          this.history.push(createStdout("配置命令如下: <br>" + res.original_result.join("<br>")))
+        let router = this.$refs.router;
+        console.log(router);
+        api.executeConfigCommand(configName, settingNum).then(res => {
+          router.history.push(createStdout("配置命令如下: <br>" + res.original_result.join("<br>")))
           let str = "<br>结果如下：<br>" + res.handle_result.join("<br>");
-          this.history.push(createStdout(str));
+          router.history.push(createStdout(str));
         });
       })
     },
+    //生成模板
+    generateTemplate(){
+      let router = this.$refs.router.config = 'no\n' +
+          'enable\n' +
+          'configure terminal\n' +
+          'interface f0/0\n' +
+          'ip address 192.168.1.1 255.255.255.0\n' +
+          'no shutdown\n' +
+          'exit\n' +
+          'line vty 0 4\n' +
+          'password CISCO\n' +
+          'login\n' +
+          'exit\n' +
+          'enable password CISCO\n' +
+          'exit'
+    },
+    //执行用户自定义命令
+    executeCustomizedOrder(text){
+      console.log(text.split("\n"));
+    },
+    //执行ping命令
+    ping(){
+
+    },
+    //清除所有配置
+    clearAllConfig(){
+
+    },
+    //查看路由表
+    checkRouterTable(){},
+    //查看路由协议
+    checkRouterProtocol(){
+
+    },
+    //查看接口信息
+    checkInterface(){
+
+    },
+    //验证配置结果
+    validateConfig(){
+
+    },
+
+    //查看结果
     executeTestCommand() {
       this.sleep(100).then(res=>{
         let configName = "OSPF";
         let settingNum = 0;
+        let router = this.$refs.router;
         api.executeTestCommand(configName,settingNum).then(res=>{
-          this.history.push(createStdout("查询命令如下: <br>" + res.original_result.join("<br>")))
+          router.history.push(createStdout("查询命令如下: <br>" + res.original_result.join("<br>")))
           let str = "<br>结果如下：<br>" + res.handle_result.join("<br>");
-          this.history.push(createStdout(str));
+          router.history.push(createStdout(str));
         });
       })
     },
-
-    aaa() {
-      this.sleep(100).then(res=>{
-        this.lastStdin.local.stdin = new String("命令1");
-        this.history.push(createStdout('你坏<br>哈哈'));
-        return this.sleep(100)
-      })
-
-    },
-    refresh1() {
-      this.lastStdin = this.stdins[this.stdins.length - 1];
-    },
-    sleep(time) {
-      return new Promise((resolve) => setTimeout(resolve, time));
-    }
   }
 };
 </script>
 
 <style scoped>
-.fillcontain {
-  background: #fff;
-  padding: 20px 20px;
 
-}
-
-.contain {
-  height: 420px;
-}
-
-.vuecommand {
-  min-height: 400px;
-  max-height: 400px;
-  overflow-y: scroll;
-}
 </style>

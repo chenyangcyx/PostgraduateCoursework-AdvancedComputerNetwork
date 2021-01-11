@@ -20,6 +20,13 @@ export const work= [
         },
         component: () => import("../../pages/work/list")
     },
+    {
+        path: "/network/RouterConfig",
+        meta: {
+            title: '路由器配置',
+        },
+        component: () => import("@/pages/work/RouterConfig")
+    },
 ]
 
 export const work_slider = {
