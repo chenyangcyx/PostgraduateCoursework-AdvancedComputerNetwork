@@ -121,16 +121,17 @@
           "loginPassword": "CISCO",
           "enablePassword": "CISCO",
           "configCommands": [
-            "configure terminal",
-            "interface s0/0/0",
-            "ip address 192.168.2.1 255.255.255.0",
-            "clock rate 64000",
+            "conf terminal",
+            "interface f0/1",
+            "ip address 10.0.0.1 255.255.255.0",
             "no shutdown",
             "exit",
-            "no route rip",
-            "router ospf 1",
-            "network 192.168.2.0 0.0.0.255 area 0",
-            "network 10.0.0.0 0.0.0.255 area 1",
+            "ip routing",
+            "router rip",
+            "network 192.168.2.0",
+            "network 10.0.0.0",
+            "version 2",
+            "no auto-summary",
             "end"
           ],
           "testCommands": [
@@ -143,21 +144,17 @@
           "loginPassword": "CISCO",
           "enablePassword": "CISCO",
           "configCommands": [
-            "configure terminal",
+            "conf terminal",
             "int s0/0/0",
-            "ip address 192.168.2.2 255.255.255.0",
-            "clock rate 64000",
-            "no shutdown",
-            "int s0/0/1",
-            "ip address 192.168.3.1 255.255.255.0",
-            "clock rate 64000",
-            "no shutdown",
+            "no ip route-cache",
             "exit",
-            "no route rip",
-            "router ospf 1",
-            "network 192.168.2.0 0.0.0.255 area 0",
-            "network 192.168.3.0 0.0.0.255 area 51",
-            "end"
+            "int s0/0/1",
+            "no ip route-cache",
+            "exit",
+            "access-list 101 permit icmp any 10.0.0.0 0.255.255.255",
+            "end",
+            "sh ip interface s0/0/0",
+            "debug ip packet 101"
           ],
           "testCommands": [
             "show ip route"
@@ -170,16 +167,16 @@
           "enablePassword": "CISCO",
           "configCommands": [
             "configure terminal",
-            "int s0/0/1",
-            "ip address 192.168.3.2 255.255.255.0",
-            "clock rate 64000",
+            "interface f0/1",
+            "ip address 10.0.0.2 255.255.255.0",
             "no shutdown",
             "exit",
-            "no route rip",
-            "router ospf 1",
-            "network 10.0.0.0 0.0.0.255 area 1",
-            "network 192.168.3.0 0.0.0.255 area 51",
-            "end"
+            "ip routing",
+            "router rip",
+            "network 192.168.3.0",
+            "network 10.0.0.0",
+            "version 2",
+            "no auto-summary"
           ],
           "testCommands": [
             "show ip route"

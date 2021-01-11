@@ -1,0 +1,25 @@
+configure terminal
+int s0/0/0
+ip address 192.168.2.2 255.255.255.0
+clock rate 64000
+no shutdown
+int s0/0/1
+ip address 192.168.3.1 255.255.255.0
+clock rate 64000
+no shutdown
+exit
+
+configure terminal
+no route rip
+exit
+
+show ip route
+
+configure terminal
+router ospf 1
+network 192.168.2.0 0.0.0.255 area 0
+network 192.168.3.0 0.0.0.255 area 51
+end
+exit
+
+show ip route
