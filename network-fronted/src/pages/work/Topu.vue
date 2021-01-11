@@ -17,7 +17,7 @@ export default {
   name: "Topu",
   data() {
     return {
-      imgsrc: "https://gitee.com/CTLQAQ/picgo/raw/master/topu.PNG"
+      imgsrc: require('./tuopu.png')
     }
   }
 }
@@ -36,6 +36,8 @@ h2 {
 
 .img {
   text-align: center;
+  width: 60%;
+  height: 60%;
 }
 
 .img-content {

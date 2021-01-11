@@ -51,7 +51,7 @@ export default {
 
       this.sleep(100).then(res=>{
         //在这里输入配置信息
-        let configName = "RIP_balance_route";
+        let configName = "OSPF";
         let settingNum = 0;
         api.executeConfigCommand(configName,settingNum).then(res=>{
           this.history.push(createStdout("配置命令如下: <br>" + res.original_result.join("<br>")))
@@ -62,7 +62,7 @@ export default {
     },
     executeTestCommand() {
       this.sleep(100).then(res=>{
-        let configName = "RIP_balance_route";
+        let configName = "OSPF";
         let settingNum = 0;
         api.executeTestCommand(configName,settingNum).then(res=>{
           this.history.push(createStdout("查询命令如下: <br>" + res.original_result.join("<br>")))

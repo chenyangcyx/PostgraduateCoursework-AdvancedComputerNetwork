@@ -75,7 +75,7 @@ def executeConfigCommand(request):
             pass
         else:
             logger.handleMsg("Telnet:%s对象未被创建，开始创建……" % dict_no)
-            while not local_telnet.loginRouter(host_ip, password_login, password_enable, True):
+            while not local_telnet.loginRouter(host_ip, password_login, password_enable, if_send_heartbeat=False):
                 logger.handleMsg("Telnet连接失败，重试……")
             local_telnet.goEnable()
         logger.handleMsg("Telnet:%s对象创建成功！" % dict_no)
@@ -139,7 +139,7 @@ def executeTestCommand(request):
             pass
         else:
             logger.handleMsg("Telnet:%s对象未被创建，开始创建……" % dict_no)
-            while not local_telnet.loginRouter(host_ip, password_login, password_enable, True):
+            while not local_telnet.loginRouter(host_ip, password_login, password_enable, if_send_heartbeat=False):
                 logger.handleMsg("Telnet连接失败，重试……")
             local_telnet.goEnable()
         logger.handleMsg("Telnet:%s对象创建成功！" % dict_no)
@@ -208,7 +208,7 @@ def executeOneCommand(request):
             pass
         else:
             logger.handleMsg("Telnet:%s对象未被创建，开始创建……" % dict_no)
-            while not local_telnet.loginRouter(host_ip, password_login, password_enable, True):
+            while not local_telnet.loginRouter(host_ip, password_login, password_enable, if_send_heartbeat=False):
                 logger.handleMsg("Telnet连接失败，重试……")
             local_telnet.goEnable()
         logger.handleMsg("Telnet:%s对象创建成功！" % dict_no)
@@ -270,7 +270,7 @@ def executeCommand(request):
             pass
         else:
             logger.handleMsg("Telnet:%s对象未被创建，开始创建……" % dict_no)
-            while not local_telnet.loginRouter(host, loginpassword, enablepassword, True):
+            while not local_telnet.loginRouter(host, loginpassword, enablepassword, if_send_heartbeat=False):
                 logger.handleMsg("Telnet连接失败，重试……")
             local_telnet.goEnable()
         logger.handleMsg("Telnet:%s对象创建成功！" % dict_no)

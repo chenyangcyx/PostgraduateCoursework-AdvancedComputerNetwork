@@ -54,7 +54,8 @@
             "end"
           ],
           "testCommands": [
-            "show ip route"
+            "show ip route",
+            "show ip protocols"
           ]
         },
         {
@@ -82,7 +83,8 @@
             "end"
           ],
           "testCommands": [
-            "show ip route"
+            "show ip route",
+            "show ip protocols"
           ]
         },
         {
@@ -105,7 +107,8 @@
             "end"
           ],
           "testCommands": [
-            "show ip route"
+            "show ip route",
+            "show ip protocols"
           ]
         }
       ]
@@ -127,14 +130,14 @@
             "clock rate 64000",
             "no shutdown",
             "exit",
-            "no route rip",
             "router ospf 1",
             "network 192.168.2.0 0.0.0.255 area 0",
             "network 10.0.0.0 0.0.0.255 area 1",
             "end"
           ],
           "testCommands": [
-            "show ip route"
+            "show ip route",
+            "show ip protocols"
           ]
         },
         {
@@ -153,14 +156,14 @@
             "clock rate 64000",
             "no shutdown",
             "exit",
-            "no route rip",
             "router ospf 1",
             "network 192.168.2.0 0.0.0.255 area 0",
             "network 192.168.3.0 0.0.0.255 area 51",
             "end"
           ],
           "testCommands": [
-            "show ip route"
+            "show ip route",
+            "show ip protocols"
           ]
         },
         {
@@ -175,14 +178,14 @@
             "clock rate 64000",
             "no shutdown",
             "exit",
-            "no route rip",
             "router ospf 1",
             "network 10.0.0.0 0.0.0.255 area 1",
             "network 192.168.3.0 0.0.0.255 area 51",
             "end"
           ],
           "testCommands": [
-            "show ip route"
+            "show ip route",
+            "show ip protocols"
           ]
         }
       ]
