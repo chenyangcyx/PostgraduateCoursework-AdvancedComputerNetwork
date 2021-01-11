@@ -1,0 +1,78 @@
+具体配置：
+host_ip: 192.168.1.2
+password_login: CISCO
+password_enable: CISCO
+configCommands: ['configure terminal', 'int s0/0/0', 'ip address 192.168.2.2 255.255.255.0', 'clock rate 64000', 'no shutdown', 'int s0/0/1', 'ip address 192.168.3.1 255.255.255.0', 'clock rate 64000', 'no shutdown', 'exit', 'ip routing', 'router rip', 'network 192.168.2.0', 'network 192.168.3.0', 'version 2', 'no auto-summary', 'end']
+testCommands: ['show ip route']
+
+开始连接主机: 192.168.1.2
+连接成功！
+进入特权模式……
+进入enable模式成功！
+
+测试发送命令……
+executeSomeCMD: ['show ip route']
+executeCMD: show ip route
+executeCMD-Result: show ip route
+Codes: C - connected, S - static, R - RIP, M - mobile, B - BGP
+       D - EIGRP, EX - EIGRP external, O - OSPF, IA - OSPF inter area 
+       N1 - OSPF NSSA external type 1, N2 - OSPF NSSA external type 2
+       E1 - OSPF external type 1, E2 - OSPF external type 2
+       i - IS-IS, su - IS-IS summary, L1 - IS-IS level-1, L2 - IS-IS level-2
+       ia - IS-IS inter area, * - candidate default, U - per-user static route
+       o - ODR, P - periodic downloaded static route
+
+Gateway of last resort is not set
+
+C    192.168.1.0/24 is directly connected, FastEthernet0/0
+
+show ip route
+Codes: C - connected, S - static, R - RIP, M - mobile, B - BGP
+       D - EIGRP, EX - EIGRP external, O - OSPF, IA - OSPF inter area 
+       N1 - OSPF NSSA external type 1, N2 - OSPF NSSA external type 2
+       E1 - OSPF external type 1, E2 - OSPF external type 2
+       i - IS-IS, su - IS-IS summary, L1 - IS-IS level-1, L2 - IS-IS level-2
+       ia - IS-IS inter area, * - candidate default, U - per-user static route
+       o - ODR, P - periodic downloaded static route
+
+Gateway of last resort is not set
+
+C    192.168.1.0/24 is directly connected, FastEthernet0/0
+
+executeSomeCMD-Result: ['show ip route\r\nCodes: C - connected, S - static, R - RIP, M - mobile, B - BGP\r\n       D - EIGRP, EX - EIGRP external, O - OSPF, IA - OSPF inter area \r\n       N1 - OSPF NSSA external type 1, N2 - OSPF NSSA external type 2\r\n       E1 - OSPF external type 1, E2 - OSPF external type 2\r\n       i - IS-IS, su - IS-IS summary, L1 - IS-IS level-1, L2 - IS-IS level-2\r\n       ia - IS-IS inter area, * - candidate default, U - per-user static route\r\n       o - ODR, P - periodic downloaded static route\r\n\r\nGateway of last resort is not set\r\n\r\nC    192.168.1.0/24 is directly connected, FastEthernet0/0\r\n']
+**程序输出**
+show ip route
+Codes: C - connected, S - static, R - RIP, M - mobile, B - BGP
+       D - EIGRP, EX - EIGRP external, O - OSPF, IA - OSPF inter area 
+       N1 - OSPF NSSA external type 1, N2 - OSPF NSSA external type 2
+       E1 - OSPF external type 1, E2 - OSPF external type 2
+       i - IS-IS, su - IS-IS summary, L1 - IS-IS level-1, L2 - IS-IS level-2
+       ia - IS-IS inter area, * - candidate default, U - per-user static route
+       o - ODR, P - periodic downloaded static route
+
+Gateway of last resort is not set
+
+C    192.168.1.0/24 is directly connected, FastEthernet0/0
+
+
+测试获取Neighbors……
+**程序输出**
+getNeighbors……
+getNeighbors-Result: []
+[]
+
+测试获取Version-1……
+**程序输出**
+getVersion, function:get_model()……
+getVersion-Result: Error, __init__() takes 2 positional arguments but 3 were given
+None
+
+测试获取Version-2……
+**程序输出**
+getVersion, function:get_ios_version()……
+getVersion-Result: Error, __init__() takes 2 positional arguments but 3 were given
+None
+
+测试获取Interfaces……
+**程序输出**
+getAllInterfaces……

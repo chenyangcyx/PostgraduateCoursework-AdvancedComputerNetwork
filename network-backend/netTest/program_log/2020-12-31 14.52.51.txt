@@ -1,0 +1,192 @@
+具体配置：
+host_ip: 192.168.1.2
+password_login: CISCO
+password_enable: CISCO
+configCommands: ['configure terminal', 'int s0/0/0', 'ip address 192.168.2.2 255.255.255.0', 'clock rate 64000', 'no shutdown', 'int s0/0/1', 'ip address 192.168.3.1 255.255.255.0', 'clock rate 64000', 'no shutdown', 'exit', 'ip routing', 'router rip', 'network 192.168.2.0', 'network 192.168.3.0', 'version 2', 'no auto-summary', 'end']
+testCommands: ['show ip route']
+
+开始连接主机: 192.168.1.2
+连接成功！
+进入特权模式……
+进入enable模式成功！
+
+测试发送命令……
+executeSomeCMD: ['configure terminal', 'int s0/0/0', 'ip address 192.168.2.2 255.255.255.0', 'clock rate 64000', 'no shutdown', 'int s0/0/1', 'ip address 192.168.3.1 255.255.255.0', 'clock rate 64000', 'no shutdown', 'exit', 'ip routing', 'router rip', 'network 192.168.2.0', 'network 192.168.3.0', 'version 2', 'no auto-summary', 'end']
+executeCMD: configure terminal
+executeCMD-Result: configure terminal
+Enter configuration commands, one per line.  End with CNTL/Z.
+
+configure terminal
+Enter configuration commands, one per line.  End with CNTL/Z.
+
+executeCMD: int s0/0/0
+executeCMD-Result: int s0/0/0
+
+int s0/0/0
+
+executeCMD: ip address 192.168.2.2 255.255.255.0
+executeCMD-Result: ip address 192.168.2.2 255.255.255.0
+
+ip address 192.168.2.2 255.255.255.0
+
+executeCMD: clock rate 64000
+executeCMD-Result: clock rate 64000
+This command applies only to DCE interfaces
+
+clock rate 64000
+This command applies only to DCE interfaces
+
+executeCMD: no shutdown
+executeCMD-Result: no shutdown
+
+no shutdown
+
+executeCMD: int s0/0/1
+executeCMD-Result: int s0/0/1
+
+int s0/0/1
+
+executeCMD: ip address 192.168.3.1 255.255.255.0
+executeCMD-Result: ip address 192.168.3.1 255.255.255.0
+
+ip address 192.168.3.1 255.255.255.0
+
+executeCMD: clock rate 64000
+executeCMD-Result: clock rate 64000
+This command applies only to DCE interfaces
+
+clock rate 64000
+This command applies only to DCE interfaces
+
+executeCMD: no shutdown
+executeCMD-Result: no shutdown
+
+no shutdown
+
+executeCMD: exit
+executeCMD-Result: exit
+
+exit
+
+executeCMD: ip routing
+executeCMD-Result: ip routing
+
+ip routing
+
+executeCMD: router rip
+executeCMD-Result: router rip
+
+router rip
+
+executeCMD: network 192.168.2.0
+executeCMD-Result: network 192.168.2.0
+
+network 192.168.2.0
+
+executeCMD: network 192.168.3.0
+executeCMD-Result: network 192.168.3.0
+
+network 192.168.3.0
+
+executeCMD: version 2
+executeCMD-Result: version 2
+
+version 2
+
+executeCMD: no auto-summary
+executeCMD-Result: no auto-summary
+
+no auto-summary
+
+executeCMD: end
+executeCMD-Result: end
+
+end
+
+executeSomeCMD-Result: ['configure terminal\r\nEnter configuration commands, one per line.  End with CNTL/Z.\r\n', 'int s0/0/0\r\n', 'ip address 192.168.2.2 255.255.255.0\r\n', 'clock rate 64000\r\nThis command applies only to DCE interfaces\r\n', 'no shutdown\r\n', 'int s0/0/1\r\n', 'ip address 192.168.3.1 255.255.255.0\r\n', 'clock rate 64000\r\nThis command applies only to DCE interfaces\r\n', 'no shutdown\r\n', 'exit\r\n', 'ip routing\r\n', 'router rip\r\n', 'network 192.168.2.0\r\n', 'network 192.168.3.0\r\n', 'version 2\r\n', 'no auto-summary\r\n', 'end\r\n']
+**程序输出**
+configure terminal
+Enter configuration commands, one per line.  End with CNTL/Z.
+
+int s0/0/0
+
+ip address 192.168.2.2 255.255.255.0
+
+clock rate 64000
+This command applies only to DCE interfaces
+
+no shutdown
+
+int s0/0/1
+
+ip address 192.168.3.1 255.255.255.0
+
+clock rate 64000
+This command applies only to DCE interfaces
+
+no shutdown
+
+exit
+
+ip routing
+
+router rip
+
+network 192.168.2.0
+
+network 192.168.3.0
+
+version 2
+
+no auto-summary
+
+end
+
+
+测试获取Neighbors……
+**程序输出**
+getNeighbors……
+getNeighbors-Result: []
+[]
+
+测试获取Version-1……
+**程序输出**
+getVersion, function:get_model()……
+getVersion-Result: Error, This model of switch is not supported by this version of CiscoLib
+Please contact the CiscoLib developer for help.
+
+Reason: Unable to do `show version`
+
+None
+
+测试获取Version-2……
+**程序输出**
+getVersion, function:get_ios_version()……
+getVersion-Result: Error, This model of switch is not supported by this version of CiscoLib
+Please contact the CiscoLib developer for help.
+
+Reason: Unable to do `show version`
+
+None
+
+测试获取Interfaces……
+**程序输出**
+getAllInterfaces……
+getAllInterfaces: Error, This model of switch is not supported by this version of CiscoLib
+Please contact the CiscoLib developer for help.
+
+Reason: Unable to parse `show interfaces`
+
+None
+
+测试获取ARPTable……
+**程序输出**
+getARPTable……
+getARPTable-Result: [{'ip': '192.168.1.2', 'age': '-', 'mac': '04fe.7feb.07e8', 'interface': 'FastEthernet0/0'}, {'ip': '192.168.1.100', 'age': '0', 'mac': '80fa.5b32.4a0b', 'interface': 'FastEthernet0/0'}]
+[{'ip': '192.168.1.2', 'age': '-', 'mac': '04fe.7feb.07e8', 'interface': 'FastEthernet0/0'}, {'ip': '192.168.1.100', 'age': '0', 'mac': '80fa.5b32.4a0b', 'interface': 'FastEthernet0/0'}]
+
+测试获取MACTable……
+**程序输出**
+getMACTable……
+getMACTable-Result: []
+[]

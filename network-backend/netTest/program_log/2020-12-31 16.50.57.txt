@@ -1,0 +1,113 @@
+[call api]
+调用时间：2020-12-31 16.51.04
+调用接口：executeConfigCommand
+configName:RIP_normal
+settingNum:0
+获取configItem成功
+获取到的JSON数据：
+configName: RIP_normal
+configDescription: 动态路由-RIP协议
+routerNum: 3
+configDetail: [{'routerName': 'RouterA', 'hostIp': '192.168.1.1', 'loginPassword': 'CISCO', 'enablePassword': 'CISCO', 'configCommands': ['configure terminal', 'interface s0/0/0', 'ip address 192.168.2.1 255.255.255.0', 'clock rate 64000', 'no shutdown', 'exit', 'ip routing', 'router rip', 'network 192.168.2.0', 'version 2', 'no auto-summary', 'end'], 'testCommands': ['show ip route']}, {'routerName': 'RouterB', 'hostIp': '192.168.1.2', 'loginPassword': 'CISCO', 'enablePassword': 'CISCO', 'configCommands': ['configure terminal', 'int s0/0/0', 'ip address 192.168.2.2 255.255.255.0', 'clock rate 64000', 'no shutdown', 'int s0/0/1', 'ip address 192.168.3.1 255.255.255.0', 'clock rate 64000', 'no shutdown', 'exit', 'ip routing', 'router rip', 'network 192.168.2.0', 'network 192.168.3.0', 'version 2', 'no auto-summary', 'end'], 'testCommands': ['show ip route']}, {'routerName': 'RouterC', 'hostIp': '192.168.1.3', 'loginPassword': 'CISCO', 'enablePassword': 'CISCO', 'configCommands': ['configure terminal', 'int s0/0/1', 'ip address 192.168.3.2 255.255.255.0', 'clock rate 64000', 'no shutdown', 'exit', 'ip routing', 'router rip', 'network 192.168.3.0', 'version 2 ', 'no auto-summary', 'end'], 'testCommands': ['show ip route']}]
+获取程序参数成功
+host_ip: 192.168.1.1
+password_login: CISCO
+password_enable: CISCO
+configCommands: ['configure terminal', 'interface s0/0/0', 'ip address 192.168.2.1 255.255.255.0', 'clock rate 64000', 'no shutdown', 'exit', 'ip routing', 'router rip', 'network 192.168.2.0', 'version 2', 'no auto-summary', 'end']
+获取Telnet:RIP_normal0的唯一对象……
+Telnet:RIP_normal0对象未被创建，开始创建……
+开始连接主机: 192.168.1.1
+连接成功！
+创建线程发送心跳包……
+进入特权模式……
+进入enable模式成功！
+Telnet:RIP_normal0对象创建成功！
+executeSomeCMD:
+['configure terminal', 'interface s0/0/0', 'ip address 192.168.2.1 255.255.255.0', 'clock rate 64000', 'no shutdown', 'exit', 'ip routing', 'router rip', 'network 192.168.2.0', 'version 2', 'no auto-summary', 'end']
+executeCMD:
+configure terminal
+executeCMD-Result:
+configure terminal
+Enter configuration commands, one per line.  End with CNTL/Z.
+Router(config)#
+executeCMD:
+interface s0/0/0
+executeCMD-Result:
+interface s0/0/0
+Router(config-if)#
+executeCMD:
+ip address 192.168.2.1 255.255.255.0
+executeCMD-Result:
+ip address 192.168.2.1 255.255.255.0
+Router(config-if)#
+executeCMD:
+clock rate 64000
+executeCMD-Result:
+clock rate 64000
+This command applies only to DCE interfaces
+Router(config-if)#
+executeCMD:
+no shutdown
+executeCMD-Result:
+no shutdown
+Router(config-if)#
+executeCMD:
+exit
+executeCMD-Result:
+exit
+Router(config)#
+executeCMD:
+ip routing
+executeCMD-Result:
+ip routing
+Router(config)#
+executeCMD:
+router rip
+executeCMD-Result:
+router rip
+Router(config-router)#
+executeCMD:
+network 192.168.2.0
+executeCMD-Result:
+network 192.168.2.0
+Router(config-router)#
+executeCMD:
+version 2
+executeCMD-Result:
+version 2
+Router(config-router)#
+executeCMD:
+no auto-summary
+executeCMD-Result:
+no auto-summary
+Router(config-router)#
+executeCMD:
+end
+executeCMD-Result:
+end
+Router#
+executeSomeCMD-Result:
+['configure terminal\nEnter configuration commands, one per line.  End with CNTL/Z.\nRouter(config)#', 'interface s0/0/0\nRouter(config-if)#', 'ip address 192.168.2.1 255.255.255.0\nRouter(config-if)#', 'clock rate 64000\nThis command applies only to DCE interfaces\nRouter(config-if)#', 'no shutdown\nRouter(config-if)#', 'exit\nRouter(config)#', 'ip routing\nRouter(config)#', 'router rip\nRouter(config-router)#', 'network 192.168.2.0\nRouter(config-router)#', 'version 2\nRouter(config-router)#', 'no auto-summary\nRouter(config-router)#', 'end\nRouter#']
+**程序输出**
+Router#configure terminal
+Enter configuration commands, one per line.  End with CNTL/Z.
+Router(config)#interface s0/0/0
+Router(config-if)#ip address 192.168.2.1 255.255.255.0
+Router(config-if)#clock rate 64000
+This command applies only to DCE interfaces
+Router(config-if)#no shutdown
+Router(config-if)#exit
+Router(config)#ip routing
+Router(config)#router rip
+Router(config-router)#network 192.168.2.0
+Router(config-router)#version 2
+Router(config-router)#no auto-summary
+Router(config-router)#end
+Router#
+
+**清理后输出**
+Enter configuration commands, one per line.  End with CNTL/Z.
+This command applies only to DCE interfaces
+
+
+发送心跳包……

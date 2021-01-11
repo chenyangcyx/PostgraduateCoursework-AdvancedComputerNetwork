@@ -1,0 +1,761 @@
+[call api]
+调用时间：2020-12-31 16.22.28
+调用接口：executeConfigCommand
+configName:RIP_balance_packet
+settingNum:0
+获取configItem成功
+获取到的JSON数据：
+configName: RIP_balance_packet
+configDescription: 动态路由-RIP协议，启用负载均衡，基于数据包
+routerNum: 3
+configDetail: [{'routerName': 'RouterA', 'hostIp': '192.168.1.1', 'loginPassword': 'CISCO', 'enablePassword': 'CISCO', 'configCommands': ['conf terminal', 'interface f0/1', 'ip address 10.0.0.1 255.0.0.0', 'no shutdown', 'exit', 'ip routing', 'router rip', 'network 192.168.2.0', 'network 10.0.0.0', 'version 2', 'no auto-summary', 'end'], 'testCommands': ['show ip route']}, {'routerName': 'RouterB', 'hostIp': '192.168.1.2', 'loginPassword': 'CISCO', 'enablePassword': 'CISCO', 'configCommands': ['conf terminal', 'int s0/0/0', 'no ip route-cache', 'exit', 'int s0/0/1', 'no ip route-cache', 'exit', 'access-list 101 permit icmp any 10.0.0.0 0.255.255.255', 'end'], 'testCommands': ['sh ip interface s0/0/0', 'debug ip packet 101']}, {'routerName': 'RouterC', 'hostIp': '192.168.1.3', 'loginPassword': 'CISCO', 'enablePassword': 'CISCO', 'configCommands': ['configure terminal', 'interface f0/1', 'ip address 10.0.0.2 255.0.0.0', 'no shutdown', 'exit', 'ip routing', 'router rip', 'network 192.168.3.0', 'network 10.0.0.0', 'version 2', 'no auto-summary', 'end'], 'testCommands': ['show ip route']}]
+获取程序参数成功
+host_ip: 192.168.1.1
+password_login: CISCO
+password_enable: CISCO
+configCommands: ['conf terminal', 'interface f0/1', 'ip address 10.0.0.1 255.0.0.0', 'no shutdown', 'exit', 'ip routing', 'router rip', 'network 192.168.2.0', 'network 10.0.0.0', 'version 2', 'no auto-summary', 'end']
+获取Telnet:RIP_balance_packet0的唯一对象……
+Telnet:RIP_balance_packet0对象未被创建，开始创建……
+开始连接主机: 192.168.1.1
+连接成功！
+进入特权模式……
+进入enable模式成功！
+Telnet:RIP_balance_packet0对象创建成功！
+executeSomeCMD:
+['conf terminal', 'interface f0/1', 'ip address 10.0.0.1 255.0.0.0', 'no shutdown', 'exit', 'ip routing', 'router rip', 'network 192.168.2.0', 'network 10.0.0.0', 'version 2', 'no auto-summary', 'end']
+executeCMD:
+conf terminal
+executeCMD-Result:
+conf terminal
+Enter configuration commands, one per line.  End with CNTL/Z.
+Router(config)#
+executeCMD:
+interface f0/1
+executeCMD-Result:
+interface f0/1
+Router(config-if)#
+executeCMD:
+ip address 10.0.0.1 255.0.0.0
+executeCMD-Result:
+ip address 10.0.0.1 255.0.0.0
+Router(config-if)#
+executeCMD:
+no shutdown
+executeCMD-Result:
+no shutdown
+Router(config-if)#
+executeCMD:
+exit
+executeCMD-Result:
+exit
+Router(config)#
+executeCMD:
+ip routing
+executeCMD-Result:
+ip routing
+Router(config)#
+executeCMD:
+router rip
+executeCMD-Result:
+router rip
+Router(config-router)#
+executeCMD:
+network 192.168.2.0
+executeCMD-Result:
+network 192.168.2.0
+Router(config-router)#
+executeCMD:
+network 10.0.0.0
+executeCMD-Result:
+network 10.0.0.0
+Router(config-router)#
+executeCMD:
+version 2
+executeCMD-Result:
+version 2
+Router(config-router)#
+executeCMD:
+no auto-summary
+executeCMD-Result:
+no auto-summary
+Router(config-router)#
+executeCMD:
+end
+executeCMD-Result:
+end
+Router#
+executeSomeCMD-Result:
+['conf terminal\nEnter configuration commands, one per line.  End with CNTL/Z.\nRouter(config)#', 'interface f0/1\nRouter(config-if)#', 'ip address 10.0.0.1 255.0.0.0\nRouter(config-if)#', 'no shutdown\nRouter(config-if)#', 'exit\nRouter(config)#', 'ip routing\nRouter(config)#', 'router rip\nRouter(config-router)#', 'network 192.168.2.0\nRouter(config-router)#', 'network 10.0.0.0\nRouter(config-router)#', 'version 2\nRouter(config-router)#', 'no auto-summary\nRouter(config-router)#', 'end\nRouter#']
+**程序输出**
+Router#conf terminal
+Enter configuration commands, one per line.  End with CNTL/Z.
+Router(config)#interface f0/1
+Router(config-if)#ip address 10.0.0.1 255.0.0.0
+Router(config-if)#no shutdown
+Router(config-if)#exit
+Router(config)#ip routing
+Router(config)#router rip
+Router(config-router)#network 192.168.2.0
+Router(config-router)#network 10.0.0.0
+Router(config-router)#version 2
+Router(config-router)#no auto-summary
+Router(config-router)#end
+Router#
+
+**清理后输出**
+Enter configuration commands, one per line.  End with CNTL/Z.
+
+
+[call api]
+调用时间：2020-12-31 16.22.32
+调用接口：executeConfigCommand
+configName:RIP_balance_packet
+settingNum:1
+获取configItem成功
+获取到的JSON数据：
+configName: RIP_balance_packet
+configDescription: 动态路由-RIP协议，启用负载均衡，基于数据包
+routerNum: 3
+configDetail: [{'routerName': 'RouterA', 'hostIp': '192.168.1.1', 'loginPassword': 'CISCO', 'enablePassword': 'CISCO', 'configCommands': ['conf terminal', 'interface f0/1', 'ip address 10.0.0.1 255.0.0.0', 'no shutdown', 'exit', 'ip routing', 'router rip', 'network 192.168.2.0', 'network 10.0.0.0', 'version 2', 'no auto-summary', 'end'], 'testCommands': ['show ip route']}, {'routerName': 'RouterB', 'hostIp': '192.168.1.2', 'loginPassword': 'CISCO', 'enablePassword': 'CISCO', 'configCommands': ['conf terminal', 'int s0/0/0', 'no ip route-cache', 'exit', 'int s0/0/1', 'no ip route-cache', 'exit', 'access-list 101 permit icmp any 10.0.0.0 0.255.255.255', 'end'], 'testCommands': ['sh ip interface s0/0/0', 'debug ip packet 101']}, {'routerName': 'RouterC', 'hostIp': '192.168.1.3', 'loginPassword': 'CISCO', 'enablePassword': 'CISCO', 'configCommands': ['configure terminal', 'interface f0/1', 'ip address 10.0.0.2 255.0.0.0', 'no shutdown', 'exit', 'ip routing', 'router rip', 'network 192.168.3.0', 'network 10.0.0.0', 'version 2', 'no auto-summary', 'end'], 'testCommands': ['show ip route']}]
+获取程序参数成功
+host_ip: 192.168.1.2
+password_login: CISCO
+password_enable: CISCO
+configCommands: ['conf terminal', 'int s0/0/0', 'no ip route-cache', 'exit', 'int s0/0/1', 'no ip route-cache', 'exit', 'access-list 101 permit icmp any 10.0.0.0 0.255.255.255', 'end']
+获取Telnet:RIP_balance_packet1的唯一对象……
+Telnet:RIP_balance_packet1对象未被创建，开始创建……
+开始连接主机: 192.168.1.2
+连接成功！
+进入特权模式……
+进入enable模式成功！
+Telnet:RIP_balance_packet1对象创建成功！
+executeSomeCMD:
+['conf terminal', 'int s0/0/0', 'no ip route-cache', 'exit', 'int s0/0/1', 'no ip route-cache', 'exit', 'access-list 101 permit icmp any 10.0.0.0 0.255.255.255', 'end']
+executeCMD:
+conf terminal
+executeCMD-Result:
+conf terminal
+Enter configuration commands, one per line.  End with CNTL/Z.
+Router(config)#
+executeCMD:
+int s0/0/0
+executeCMD-Result:
+int s0/0/0
+Router(config-if)#
+executeCMD:
+no ip route-cache
+executeCMD-Result:
+no ip route-cache
+Router(config-if)#
+executeCMD:
+exit
+executeCMD-Result:
+exit
+Router(config)#
+executeCMD:
+int s0/0/1
+executeCMD-Result:
+int s0/0/1
+Router(config-if)#
+executeCMD:
+no ip route-cache
+executeCMD-Result:
+no ip route-cache
+Router(config-if)#
+executeCMD:
+exit
+executeCMD-Result:
+exit
+Router(config)#
+executeCMD:
+access-list 101 permit icmp any 10.0.0.0 0.255.255.255
+executeCMD-Result:
+access-list 101 permit icmp any 10.0.0.0 0.255.255.255
+Router(config)#
+executeCMD:
+end
+executeCMD-Result:
+end
+Router#
+executeSomeCMD-Result:
+['conf terminal\nEnter configuration commands, one per line.  End with CNTL/Z.\nRouter(config)#', 'int s0/0/0\nRouter(config-if)#', 'no ip route-cache\nRouter(config-if)#', 'exit\nRouter(config)#', 'int s0/0/1\nRouter(config-if)#', 'no ip route-cache\nRouter(config-if)#', 'exit\nRouter(config)#', 'access-list 101 permit icmp any 10.0.0.0 0.255.255.255\nRouter(config)#', 'end\nRouter#']
+**程序输出**
+Router#conf terminal
+Enter configuration commands, one per line.  End with CNTL/Z.
+Router(config)#int s0/0/0
+Router(config-if)#no ip route-cache
+Router(config-if)#exit
+Router(config)#int s0/0/1
+Router(config-if)#no ip route-cache
+Router(config-if)#exit
+Router(config)#access-list 101 permit icmp any 10.0.0.0 0.255.255.255
+Router(config)#end
+Router#
+
+**清理后输出**
+Enter configuration commands, one per line.  End with CNTL/Z.
+
+
+[call api]
+调用时间：2020-12-31 16.22.36
+调用接口：executeConfigCommand
+configName:RIP_balance_packet
+settingNum:2
+获取configItem成功
+获取到的JSON数据：
+configName: RIP_balance_packet
+configDescription: 动态路由-RIP协议，启用负载均衡，基于数据包
+routerNum: 3
+configDetail: [{'routerName': 'RouterA', 'hostIp': '192.168.1.1', 'loginPassword': 'CISCO', 'enablePassword': 'CISCO', 'configCommands': ['conf terminal', 'interface f0/1', 'ip address 10.0.0.1 255.0.0.0', 'no shutdown', 'exit', 'ip routing', 'router rip', 'network 192.168.2.0', 'network 10.0.0.0', 'version 2', 'no auto-summary', 'end'], 'testCommands': ['show ip route']}, {'routerName': 'RouterB', 'hostIp': '192.168.1.2', 'loginPassword': 'CISCO', 'enablePassword': 'CISCO', 'configCommands': ['conf terminal', 'int s0/0/0', 'no ip route-cache', 'exit', 'int s0/0/1', 'no ip route-cache', 'exit', 'access-list 101 permit icmp any 10.0.0.0 0.255.255.255', 'end'], 'testCommands': ['sh ip interface s0/0/0', 'debug ip packet 101']}, {'routerName': 'RouterC', 'hostIp': '192.168.1.3', 'loginPassword': 'CISCO', 'enablePassword': 'CISCO', 'configCommands': ['configure terminal', 'interface f0/1', 'ip address 10.0.0.2 255.0.0.0', 'no shutdown', 'exit', 'ip routing', 'router rip', 'network 192.168.3.0', 'network 10.0.0.0', 'version 2', 'no auto-summary', 'end'], 'testCommands': ['show ip route']}]
+获取程序参数成功
+host_ip: 192.168.1.3
+password_login: CISCO
+password_enable: CISCO
+configCommands: ['configure terminal', 'interface f0/1', 'ip address 10.0.0.2 255.0.0.0', 'no shutdown', 'exit', 'ip routing', 'router rip', 'network 192.168.3.0', 'network 10.0.0.0', 'version 2', 'no auto-summary', 'end']
+获取Telnet:RIP_balance_packet2的唯一对象……
+Telnet:RIP_balance_packet2对象未被创建，开始创建……
+开始连接主机: 192.168.1.3
+连接成功！
+进入特权模式……
+进入enable模式成功！
+Telnet:RIP_balance_packet2对象创建成功！
+executeSomeCMD:
+['configure terminal', 'interface f0/1', 'ip address 10.0.0.2 255.0.0.0', 'no shutdown', 'exit', 'ip routing', 'router rip', 'network 192.168.3.0', 'network 10.0.0.0', 'version 2', 'no auto-summary', 'end']
+executeCMD:
+configure terminal
+executeCMD-Result:
+configure terminal
+Enter configuration commands, one per line.  End with CNTL/Z.
+Router(config)#
+executeCMD:
+interface f0/1
+executeCMD-Result:
+interface f0/1
+Router(config-if)#
+executeCMD:
+ip address 10.0.0.2 255.0.0.0
+executeCMD-Result:
+ip address 10.0.0.2 255.0.0.0
+Router(config-if)#
+executeCMD:
+no shutdown
+executeCMD-Result:
+no shutdown
+Router(config-if)#
+executeCMD:
+exit
+executeCMD-Result:
+exit
+Router(config)#
+executeCMD:
+ip routing
+executeCMD-Result:
+ip routing
+Router(config)#
+executeCMD:
+router rip
+executeCMD-Result:
+router rip
+Router(config-router)#
+executeCMD:
+network 192.168.3.0
+executeCMD-Result:
+network 192.168.3.0
+Router(config-router)#
+executeCMD:
+network 10.0.0.0
+executeCMD-Result:
+network 10.0.0.0
+Router(config-router)#
+executeCMD:
+version 2
+executeCMD-Result:
+version 2
+Router(config-router)#
+executeCMD:
+no auto-summary
+executeCMD-Result:
+no auto-summary
+Router(config-router)#
+executeCMD:
+end
+executeCMD-Result:
+end
+Router#
+executeSomeCMD-Result:
+['configure terminal\nEnter configuration commands, one per line.  End with CNTL/Z.\nRouter(config)#', 'interface f0/1\nRouter(config-if)#', 'ip address 10.0.0.2 255.0.0.0\nRouter(config-if)#', 'no shutdown\nRouter(config-if)#', 'exit\nRouter(config)#', 'ip routing\nRouter(config)#', 'router rip\nRouter(config-router)#', 'network 192.168.3.0\nRouter(config-router)#', 'network 10.0.0.0\nRouter(config-router)#', 'version 2\nRouter(config-router)#', 'no auto-summary\nRouter(config-router)#', 'end\nRouter#']
+**程序输出**
+Router#configure terminal
+Enter configuration commands, one per line.  End with CNTL/Z.
+Router(config)#interface f0/1
+Router(config-if)#ip address 10.0.0.2 255.0.0.0
+Router(config-if)#no shutdown
+Router(config-if)#exit
+Router(config)#ip routing
+Router(config)#router rip
+Router(config-router)#network 192.168.3.0
+Router(config-router)#network 10.0.0.0
+Router(config-router)#version 2
+Router(config-router)#no auto-summary
+Router(config-router)#end
+Router#
+
+**清理后输出**
+Enter configuration commands, one per line.  End with CNTL/Z.
+
+
+[call api]
+调用时间：2020-12-31 16.28.12
+调用接口：executeTestCommand
+configName:RIP_balance_packet
+settingNum:1
+获取configItem成功
+获取到的JSON数据：
+configName: RIP_balance_packet
+configDescription: 动态路由-RIP协议，启用负载均衡，基于数据包
+routerNum: 3
+configDetail: [{'routerName': 'RouterA', 'hostIp': '192.168.1.1', 'loginPassword': 'CISCO', 'enablePassword': 'CISCO', 'configCommands': ['conf terminal', 'interface f0/1', 'ip address 10.0.0.1 255.0.0.0', 'no shutdown', 'exit', 'ip routing', 'router rip', 'network 192.168.2.0', 'network 10.0.0.0', 'version 2', 'no auto-summary', 'end'], 'testCommands': ['show ip route']}, {'routerName': 'RouterB', 'hostIp': '192.168.1.2', 'loginPassword': 'CISCO', 'enablePassword': 'CISCO', 'configCommands': ['conf terminal', 'int s0/0/0', 'no ip route-cache', 'exit', 'int s0/0/1', 'no ip route-cache', 'exit', 'access-list 101 permit icmp any 10.0.0.0 0.255.255.255', 'end'], 'testCommands': ['sh ip interface s0/0/0', 'debug ip packet 101']}, {'routerName': 'RouterC', 'hostIp': '192.168.1.3', 'loginPassword': 'CISCO', 'enablePassword': 'CISCO', 'configCommands': ['configure terminal', 'interface f0/1', 'ip address 10.0.0.2 255.0.0.0', 'no shutdown', 'exit', 'ip routing', 'router rip', 'network 192.168.3.0', 'network 10.0.0.0', 'version 2', 'no auto-summary', 'end'], 'testCommands': ['show ip route']}]
+获取程序参数成功
+host_ip: 192.168.1.2
+password_login: CISCO
+password_enable: CISCO
+testCommands: ['sh ip interface s0/0/0', 'debug ip packet 101']
+获取Telnet:RIP_balance_packet1的唯一对象……
+Telnet:RIP_balance_packet1对象已经创建，获取成功
+Telnet:RIP_balance_packet1对象创建成功！
+executeSomeCMD:
+['sh ip interface s0/0/0', 'debug ip packet 101']
+executeCMD:
+sh ip interface s0/0/0
+executeCMD-Result:
+sh ip interface s0/0/0
+Serial0/0/0 is up, line protocol is up
+  Internet address is 192.168.2.2/24
+  Broadcast address is 255.255.255.255
+  Address determined by setup command
+  MTU is 1500 bytes
+  Helper address is not set
+  Directed broadcast forwarding is disabled
+  Multicast reserved groups joined: 224.0.0.9
+  Outgoing access list is not set
+  Inbound  access list is not set
+  Proxy ARP is enabled
+  Local Proxy ARP is disabled
+  Security level is default
+  Split horizon is enabled
+  ICMP redirects are always sent
+  ICMP unreachables are always sent
+  ICMP mask replies are never sent
+  IP fast switching is disabled
+  IP fast switching on the same interface is disabled
+  IP Flow switching is disabled
+  IP CEF switching is disabled
+  IP Null turbo vector
+  IP multicast fast switching is disabled
+  IP multicast distributed fast switching is disabled
+  IP route-cache flags are No CEF
+  Router Discovery is disabled
+  IP output packet accounting is disabled
+  IP access violation accounting is disabled
+  TCP/IP header compression is disabled
+  RTP/IP header compression is disabled
+  Policy routing is disabled
+  Network address translation is disabled
+  BGP Policy Mapping is disabled
+  Input features: MCI Check
+  WCCP Redirect outbound is disabled
+  WCCP Redirect inbound is disabled
+  WCCP Redirect exclude is disabled
+Router#
+executeCMD:
+debug ip packet 101
+executeCMD-Result:
+debug ip packet 101
+IP packet debugging is on for access list 101
+Router#
+executeSomeCMD-Result:
+['sh ip interface s0/0/0\nSerial0/0/0 is up, line protocol is up\n  Internet address is 192.168.2.2/24\n  Broadcast address is 255.255.255.255\n  Address determined by setup command\n  MTU is 1500 bytes\n  Helper address is not set\n  Directed broadcast forwarding is disabled\n  Multicast reserved groups joined: 224.0.0.9\n  Outgoing access list is not set\n  Inbound  access list is not set\n  Proxy ARP is enabled\n  Local Proxy ARP is disabled\n  Security level is default\n  Split horizon is enabled\n  ICMP redirects are always sent\n  ICMP unreachables are always sent\n  ICMP mask replies are never sent\n  IP fast switching is disabled\n  IP fast switching on the same interface is disabled\n  IP Flow switching is disabled\n  IP CEF switching is disabled\n  IP Null turbo vector\n  IP multicast fast switching is disabled\n  IP multicast distributed fast switching is disabled\n  IP route-cache flags are No CEF\n  Router Discovery is disabled\n  IP output packet accounting is disabled\n  IP access violation accounting is disabled\n  TCP/IP header compression is disabled\n  RTP/IP header compression is disabled\n  Policy routing is disabled\n  Network address translation is disabled\n  BGP Policy Mapping is disabled\n  Input features: MCI Check\n  WCCP Redirect outbound is disabled\n  WCCP Redirect inbound is disabled\n  WCCP Redirect exclude is disabled\nRouter#', 'debug ip packet 101\nIP packet debugging is on for access list 101\nRouter#']
+**程序输出**
+Router#sh ip interface s0/0/0
+Serial0/0/0 is up, line protocol is up
+  Internet address is 192.168.2.2/24
+  Broadcast address is 255.255.255.255
+  Address determined by setup command
+  MTU is 1500 bytes
+  Helper address is not set
+  Directed broadcast forwarding is disabled
+  Multicast reserved groups joined: 224.0.0.9
+  Outgoing access list is not set
+  Inbound  access list is not set
+  Proxy ARP is enabled
+  Local Proxy ARP is disabled
+  Security level is default
+  Split horizon is enabled
+  ICMP redirects are always sent
+  ICMP unreachables are always sent
+  ICMP mask replies are never sent
+  IP fast switching is disabled
+  IP fast switching on the same interface is disabled
+  IP Flow switching is disabled
+  IP CEF switching is disabled
+  IP Null turbo vector
+  IP multicast fast switching is disabled
+  IP multicast distributed fast switching is disabled
+  IP route-cache flags are No CEF
+  Router Discovery is disabled
+  IP output packet accounting is disabled
+  IP access violation accounting is disabled
+  TCP/IP header compression is disabled
+  RTP/IP header compression is disabled
+  Policy routing is disabled
+  Network address translation is disabled
+  BGP Policy Mapping is disabled
+  Input features: MCI Check
+  WCCP Redirect outbound is disabled
+  WCCP Redirect inbound is disabled
+  WCCP Redirect exclude is disabled
+Router#debug ip packet 101
+IP packet debugging is on for access list 101
+Router#
+
+**清理后输出**
+Serial0/0/0 is up, line protocol is up
+  Internet address is 192.168.2.2/24
+  Broadcast address is 255.255.255.255
+  Address determined by setup command
+  MTU is 1500 bytes
+  Helper address is not set
+  Directed broadcast forwarding is disabled
+  Multicast reserved groups joined: 224.0.0.9
+  Outgoing access list is not set
+  Inbound  access list is not set
+  Proxy ARP is enabled
+  Local Proxy ARP is disabled
+  Security level is default
+  Split horizon is enabled
+  ICMP redirects are always sent
+  ICMP unreachables are always sent
+  ICMP mask replies are never sent
+  IP fast switching is disabled
+  IP fast switching on the same interface is disabled
+  IP Flow switching is disabled
+  IP CEF switching is disabled
+  IP Null turbo vector
+  IP multicast fast switching is disabled
+  IP multicast distributed fast switching is disabled
+  IP route-cache flags are No CEF
+  Router Discovery is disabled
+  IP output packet accounting is disabled
+  IP access violation accounting is disabled
+  TCP/IP header compression is disabled
+  RTP/IP header compression is disabled
+  Policy routing is disabled
+  Network address translation is disabled
+  BGP Policy Mapping is disabled
+  Input features: MCI Check
+  WCCP Redirect outbound is disabled
+  WCCP Redirect inbound is disabled
+  WCCP Redirect exclude is disabled
+IP packet debugging is on for access list 101
+
+
+[call api]
+调用时间：2020-12-31 16.28.20
+调用接口：executeConfigCommand
+configName:RIP_balance_route
+settingNum:0
+获取configItem成功
+获取到的JSON数据：
+configName: RIP_balance_route
+configDescription: 动态路由-RIP协议，启用负载均衡，基于路由路径
+routerNum: 3
+configDetail: [{'routerName': 'RouterA', 'hostIp': '192.168.1.1', 'loginPassword': 'CISCO', 'enablePassword': 'CISCO', 'configCommands': ['conf terminal', 'interface f0/1', 'ip address 10.0.0.1 255.0.0.0', 'no shutdown', 'exit', 'ip routing', 'router rip', 'network 192.168.2.0', 'network 10.0.0.0', 'version 2', 'no auto-summary', 'end'], 'testCommands': ['show ip route']}, {'routerName': 'RouterB', 'hostIp': '192.168.1.2', 'loginPassword': 'CISCO', 'enablePassword': 'CISCO', 'configCommands': ['conf terminal', 'int s0/0/0', 'ip route-cache', 'exit', 'int s0/0/1', 'ip route-cache', 'exit', 'end'], 'testCommands': ['show ip interface', 'debug ip packet 101', 'debug ip packet 102', 'show ip cache']}, {'routerName': 'RouterC', 'hostIp': '192.168.1.3', 'loginPassword': 'CISCO', 'enablePassword': 'CISCO', 'configCommands': ['configure terminal', 'interface f0/1', 'ip address 10.0.0.2 255.0.0.0', 'no shutdown', 'exit', 'ip routing', 'router rip', 'network 192.168.3.0', 'network 10.0.0.0', 'version 2', 'no auto-summary', 'end'], 'testCommands': ['show ip route']}]
+获取程序参数成功
+host_ip: 192.168.1.1
+password_login: CISCO
+password_enable: CISCO
+configCommands: ['conf terminal', 'interface f0/1', 'ip address 10.0.0.1 255.0.0.0', 'no shutdown', 'exit', 'ip routing', 'router rip', 'network 192.168.2.0', 'network 10.0.0.0', 'version 2', 'no auto-summary', 'end']
+获取Telnet:RIP_balance_route0的唯一对象……
+Telnet:RIP_balance_route0对象未被创建，开始创建……
+开始连接主机: 192.168.1.1
+连接成功！
+进入特权模式……
+进入enable模式成功！
+Telnet:RIP_balance_route0对象创建成功！
+executeSomeCMD:
+['conf terminal', 'interface f0/1', 'ip address 10.0.0.1 255.0.0.0', 'no shutdown', 'exit', 'ip routing', 'router rip', 'network 192.168.2.0', 'network 10.0.0.0', 'version 2', 'no auto-summary', 'end']
+executeCMD:
+conf terminal
+executeCMD-Result:
+conf terminal
+Enter configuration commands, one per line.  End with CNTL/Z.
+Router(config)#
+executeCMD:
+interface f0/1
+executeCMD-Result:
+interface f0/1
+Router(config-if)#
+executeCMD:
+ip address 10.0.0.1 255.0.0.0
+executeCMD-Result:
+ip address 10.0.0.1 255.0.0.0
+Router(config-if)#
+executeCMD:
+no shutdown
+executeCMD-Result:
+no shutdown
+Router(config-if)#
+executeCMD:
+exit
+executeCMD-Result:
+exit
+Router(config)#
+executeCMD:
+ip routing
+executeCMD-Result:
+ip routing
+Router(config)#
+executeCMD:
+router rip
+executeCMD-Result:
+router rip
+Router(config-router)#
+executeCMD:
+network 192.168.2.0
+executeCMD-Result:
+network 192.168.2.0
+Router(config-router)#
+executeCMD:
+network 10.0.0.0
+executeCMD-Result:
+network 10.0.0.0
+Router(config-router)#
+executeCMD:
+version 2
+executeCMD-Result:
+version 2
+Router(config-router)#
+executeCMD:
+no auto-summary
+executeCMD-Result:
+no auto-summary
+Router(config-router)#
+executeCMD:
+end
+executeCMD-Result:
+end
+Router#
+executeSomeCMD-Result:
+['conf terminal\nEnter configuration commands, one per line.  End with CNTL/Z.\nRouter(config)#', 'interface f0/1\nRouter(config-if)#', 'ip address 10.0.0.1 255.0.0.0\nRouter(config-if)#', 'no shutdown\nRouter(config-if)#', 'exit\nRouter(config)#', 'ip routing\nRouter(config)#', 'router rip\nRouter(config-router)#', 'network 192.168.2.0\nRouter(config-router)#', 'network 10.0.0.0\nRouter(config-router)#', 'version 2\nRouter(config-router)#', 'no auto-summary\nRouter(config-router)#', 'end\nRouter#']
+**程序输出**
+Router#conf terminal
+Enter configuration commands, one per line.  End with CNTL/Z.
+Router(config)#interface f0/1
+Router(config-if)#ip address 10.0.0.1 255.0.0.0
+Router(config-if)#no shutdown
+Router(config-if)#exit
+Router(config)#ip routing
+Router(config)#router rip
+Router(config-router)#network 192.168.2.0
+Router(config-router)#network 10.0.0.0
+Router(config-router)#version 2
+Router(config-router)#no auto-summary
+Router(config-router)#end
+Router#
+
+**清理后输出**
+Enter configuration commands, one per line.  End with CNTL/Z.
+
+
+[call api]
+调用时间：2020-12-31 16.28.24
+调用接口：executeConfigCommand
+configName:RIP_balance_route
+settingNum:1
+获取configItem成功
+获取到的JSON数据：
+configName: RIP_balance_route
+configDescription: 动态路由-RIP协议，启用负载均衡，基于路由路径
+routerNum: 3
+configDetail: [{'routerName': 'RouterA', 'hostIp': '192.168.1.1', 'loginPassword': 'CISCO', 'enablePassword': 'CISCO', 'configCommands': ['conf terminal', 'interface f0/1', 'ip address 10.0.0.1 255.0.0.0', 'no shutdown', 'exit', 'ip routing', 'router rip', 'network 192.168.2.0', 'network 10.0.0.0', 'version 2', 'no auto-summary', 'end'], 'testCommands': ['show ip route']}, {'routerName': 'RouterB', 'hostIp': '192.168.1.2', 'loginPassword': 'CISCO', 'enablePassword': 'CISCO', 'configCommands': ['conf terminal', 'int s0/0/0', 'ip route-cache', 'exit', 'int s0/0/1', 'ip route-cache', 'exit', 'end'], 'testCommands': ['show ip interface', 'debug ip packet 101', 'debug ip packet 102', 'show ip cache']}, {'routerName': 'RouterC', 'hostIp': '192.168.1.3', 'loginPassword': 'CISCO', 'enablePassword': 'CISCO', 'configCommands': ['configure terminal', 'interface f0/1', 'ip address 10.0.0.2 255.0.0.0', 'no shutdown', 'exit', 'ip routing', 'router rip', 'network 192.168.3.0', 'network 10.0.0.0', 'version 2', 'no auto-summary', 'end'], 'testCommands': ['show ip route']}]
+获取程序参数成功
+host_ip: 192.168.1.2
+password_login: CISCO
+password_enable: CISCO
+configCommands: ['conf terminal', 'int s0/0/0', 'ip route-cache', 'exit', 'int s0/0/1', 'ip route-cache', 'exit', 'end']
+获取Telnet:RIP_balance_route1的唯一对象……
+Telnet:RIP_balance_route1对象未被创建，开始创建……
+开始连接主机: 192.168.1.2
+连接成功！
+进入特权模式……
+进入enable模式成功！
+Telnet:RIP_balance_route1对象创建成功！
+executeSomeCMD:
+['conf terminal', 'int s0/0/0', 'ip route-cache', 'exit', 'int s0/0/1', 'ip route-cache', 'exit', 'end']
+executeCMD:
+conf terminal
+executeCMD-Result:
+conf terminal
+Enter configuration commands, one per line.  End with CNTL/Z.
+Router(config)#
+executeCMD:
+int s0/0/0
+executeCMD-Result:
+int s0/0/0
+Router(config-if)#
+executeCMD:
+ip route-cache
+executeCMD-Result:
+ip route-cache
+Router(config-if)#
+executeCMD:
+exit
+executeCMD-Result:
+exit
+Router(config)#
+executeCMD:
+int s0/0/1
+executeCMD-Result:
+int s0/0/1
+Router(config-if)#
+executeCMD:
+ip route-cache
+executeCMD-Result:
+ip route-cache
+Router(config-if)#
+executeCMD:
+exit
+executeCMD-Result:
+exit
+Router(config)#
+executeCMD:
+end
+executeCMD-Result:
+end
+Router#
+executeSomeCMD-Result:
+['conf terminal\nEnter configuration commands, one per line.  End with CNTL/Z.\nRouter(config)#', 'int s0/0/0\nRouter(config-if)#', 'ip route-cache\nRouter(config-if)#', 'exit\nRouter(config)#', 'int s0/0/1\nRouter(config-if)#', 'ip route-cache\nRouter(config-if)#', 'exit\nRouter(config)#', 'end\nRouter#']
+**程序输出**
+Router#conf terminal
+Enter configuration commands, one per line.  End with CNTL/Z.
+Router(config)#int s0/0/0
+Router(config-if)#ip route-cache
+Router(config-if)#exit
+Router(config)#int s0/0/1
+Router(config-if)#ip route-cache
+Router(config-if)#exit
+Router(config)#end
+Router#
+
+**清理后输出**
+Enter configuration commands, one per line.  End with CNTL/Z.
+
+
+[call api]
+调用时间：2020-12-31 16.28.27
+调用接口：executeConfigCommand
+configName:RIP_balance_route
+settingNum:2
+获取configItem成功
+获取到的JSON数据：
+configName: RIP_balance_route
+configDescription: 动态路由-RIP协议，启用负载均衡，基于路由路径
+routerNum: 3
+configDetail: [{'routerName': 'RouterA', 'hostIp': '192.168.1.1', 'loginPassword': 'CISCO', 'enablePassword': 'CISCO', 'configCommands': ['conf terminal', 'interface f0/1', 'ip address 10.0.0.1 255.0.0.0', 'no shutdown', 'exit', 'ip routing', 'router rip', 'network 192.168.2.0', 'network 10.0.0.0', 'version 2', 'no auto-summary', 'end'], 'testCommands': ['show ip route']}, {'routerName': 'RouterB', 'hostIp': '192.168.1.2', 'loginPassword': 'CISCO', 'enablePassword': 'CISCO', 'configCommands': ['conf terminal', 'int s0/0/0', 'ip route-cache', 'exit', 'int s0/0/1', 'ip route-cache', 'exit', 'end'], 'testCommands': ['show ip interface', 'debug ip packet 101', 'debug ip packet 102', 'show ip cache']}, {'routerName': 'RouterC', 'hostIp': '192.168.1.3', 'loginPassword': 'CISCO', 'enablePassword': 'CISCO', 'configCommands': ['configure terminal', 'interface f0/1', 'ip address 10.0.0.2 255.0.0.0', 'no shutdown', 'exit', 'ip routing', 'router rip', 'network 192.168.3.0', 'network 10.0.0.0', 'version 2', 'no auto-summary', 'end'], 'testCommands': ['show ip route']}]
+获取程序参数成功
+host_ip: 192.168.1.3
+password_login: CISCO
+password_enable: CISCO
+configCommands: ['configure terminal', 'interface f0/1', 'ip address 10.0.0.2 255.0.0.0', 'no shutdown', 'exit', 'ip routing', 'router rip', 'network 192.168.3.0', 'network 10.0.0.0', 'version 2', 'no auto-summary', 'end']
+获取Telnet:RIP_balance_route2的唯一对象……
+Telnet:RIP_balance_route2对象未被创建，开始创建……
+开始连接主机: 192.168.1.3
+连接成功！
+进入特权模式……
+进入enable模式成功！
+Telnet:RIP_balance_route2对象创建成功！
+executeSomeCMD:
+['configure terminal', 'interface f0/1', 'ip address 10.0.0.2 255.0.0.0', 'no shutdown', 'exit', 'ip routing', 'router rip', 'network 192.168.3.0', 'network 10.0.0.0', 'version 2', 'no auto-summary', 'end']
+executeCMD:
+configure terminal
+executeCMD-Result:
+configure terminal
+Enter configuration commands, one per line.  End with CNTL/Z.
+Router(config)#
+executeCMD:
+interface f0/1
+executeCMD-Result:
+interface f0/1
+Router(config-if)#
+executeCMD:
+ip address 10.0.0.2 255.0.0.0
+executeCMD-Result:
+ip address 10.0.0.2 255.0.0.0
+Router(config-if)#
+executeCMD:
+no shutdown
+executeCMD-Result:
+no shutdown
+Router(config-if)#
+executeCMD:
+exit
+executeCMD-Result:
+exit
+Router(config)#
+executeCMD:
+ip routing
+executeCMD-Result:
+ip routing
+Router(config)#
+executeCMD:
+router rip
+executeCMD-Result:
+router rip
+Router(config-router)#
+executeCMD:
+network 192.168.3.0
+executeCMD-Result:
+network 192.168.3.0
+Router(config-router)#
+executeCMD:
+network 10.0.0.0
+executeCMD-Result:
+network 10.0.0.0
+Router(config-router)#
+executeCMD:
+version 2
+executeCMD-Result:
+version 2
+Router(config-router)#
+executeCMD:
+no auto-summary
+executeCMD-Result:
+no auto-summary
+Router(config-router)#
+executeCMD:
+end
+executeCMD-Result:
+end
+Router#
+executeSomeCMD-Result:
+['configure terminal\nEnter configuration commands, one per line.  End with CNTL/Z.\nRouter(config)#', 'interface f0/1\nRouter(config-if)#', 'ip address 10.0.0.2 255.0.0.0\nRouter(config-if)#', 'no shutdown\nRouter(config-if)#', 'exit\nRouter(config)#', 'ip routing\nRouter(config)#', 'router rip\nRouter(config-router)#', 'network 192.168.3.0\nRouter(config-router)#', 'network 10.0.0.0\nRouter(config-router)#', 'version 2\nRouter(config-router)#', 'no auto-summary\nRouter(config-router)#', 'end\nRouter#']
+**程序输出**
+Router#configure terminal
+Enter configuration commands, one per line.  End with CNTL/Z.
+Router(config)#interface f0/1
+Router(config-if)#ip address 10.0.0.2 255.0.0.0
+Router(config-if)#no shutdown
+Router(config-if)#exit
+Router(config)#ip routing
+Router(config)#router rip
+Router(config-router)#network 192.168.3.0
+Router(config-router)#network 10.0.0.0
+Router(config-router)#version 2
+Router(config-router)#no auto-summary
+Router(config-router)#end
+Router#
+
+**清理后输出**
+Enter configuration commands, one per line.  End with CNTL/Z.
+
+

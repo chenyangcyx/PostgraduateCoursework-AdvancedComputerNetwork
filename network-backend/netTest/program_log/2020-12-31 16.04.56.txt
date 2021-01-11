@@ -1,0 +1,50 @@
+具体配置：
+host_ip: 192.168.1.2
+password_login: CISCO
+password_enable: CISCO
+configCommands: ['configure terminal', 'int s0/0/0', 'ip address 192.168.2.2 255.255.255.0', 'clock rate 64000', 'no shutdown', 'int s0/0/1', 'ip address 192.168.3.1 255.255.255.0', 'clock rate 64000', 'no shutdown', 'exit', 'ip routing', 'router rip', 'network 192.168.2.0', 'network 192.168.3.0', 'version 2', 'no auto-summary', 'end']
+testCommands: ['show ip route']
+
+开始连接主机: 192.168.1.2
+连接成功！
+进入特权模式……
+进入enable模式成功！
+
+测试发送命令……
+executeSomeCMD:
+['show ip cache']
+executeCMD:
+show ip cache
+executeCMD-Result:
+show ip cache
+IP routing cache 0 entries, 0 bytes
+   0 adds, 0 invalidates, 0 refcounts
+Minimum invalidation interval 2 seconds, maximum interval 5 seconds,
+   quiet interval 3 seconds, threshold 0 requests
+Invalidation rate 0 in last second, 0 in last 3 seconds
+
+Prefix/Length           Age       Interface       Next Hop
+
+Router#
+executeSomeCMD-Result:
+['show ip cache\nIP routing cache 0 entries, 0 bytes\n   0 adds, 0 invalidates, 0 refcounts\nMinimum invalidation interval 2 seconds, maximum interval 5 seconds,\n   quiet interval 3 seconds, threshold 0 requests\nInvalidation rate 0 in last second, 0 in last 3 seconds\n\nPrefix/Length           Age       Interface       Next Hop\n\nRouter#']
+**程序输出**
+Router#show ip cache
+IP routing cache 0 entries, 0 bytes
+   0 adds, 0 invalidates, 0 refcounts
+Minimum invalidation interval 2 seconds, maximum interval 5 seconds,
+   quiet interval 3 seconds, threshold 0 requests
+Invalidation rate 0 in last second, 0 in last 3 seconds
+
+Prefix/Length           Age       Interface       Next Hop
+
+Router#
+**清理后输出**
+IP routing cache 0 entries, 0 bytes
+   0 adds, 0 invalidates, 0 refcounts
+Minimum invalidation interval 2 seconds, maximum interval 5 seconds,
+   quiet interval 3 seconds, threshold 0 requests
+Invalidation rate 0 in last second, 0 in last 3 seconds
+
+Prefix/Length           Age       Interface       Next Hop
+

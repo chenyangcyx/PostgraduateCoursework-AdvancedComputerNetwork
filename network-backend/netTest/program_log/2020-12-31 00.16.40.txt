@@ -1,0 +1,25 @@
+[call api]
+调用时间：2020-12-31 00.17.08
+调用接口：executeConfigCommand
+configName:RIP_normal
+settingNum:0
+获取configItem成功
+获取到的JSON数据：
+configName: RIP_normal
+configDescription: 动态路由-RIP协议
+routerNum: 3
+configDetail: [{'routerName': 'RouterA', 'hostIp': '192.168.1.1', 'loginPassword': 'CISCO', 'enablePassword': 'CISCO', 'configCommands': ['configure terminal', 'interface s0/0/0', 'ip address 192.168.2.1 255.255.255.0', 'clock rate 64000', 'no shutdown', 'exit', 'ip routing', 'router rip', 'network 192.168.2.0', 'version 2', 'no auto-summary', 'end'], 'testCommands': ['show ip route']}, {'routerName': 'RouterB', 'hostIp': '192.168.1.2', 'loginPassword': 'CISCO', 'enablePassword': 'CISCO', 'configCommands': ['configure terminal', 'int s0/0/0', 'ip address 192.168.2.2 255.255.255.0', 'clock rate 64000', 'no shutdown', 'int s0/0/1', 'ip address 192.168.3.1 255.255.255.0', 'clock rate 64000', 'no shutdown', 'exit', 'ip routing', 'router rip', 'network 192.168.2.0', 'network 192.168.3.0', 'version 2', 'no auto-summary', 'end'], 'testCommands': ['show ip route']}, {'routerName': 'RouterC', 'hostIp': '192.168.1.3', 'loginPassword': 'CISCO', 'enablePassword': 'CISCO', 'configCommands': ['configure terminal', 'int s0/0/1', 'ip address 192.168.3.2 255.255.255.0', 'clock rate 64000', 'no shutdown', 'exit', 'ip routing', 'router rip', 'network 192.168.3.0', 'version 2 ', 'no auto-summary', 'end'], 'testCommands': ['show ip route']}]
+获取程序参数成功
+host_ip: 192.168.1.1
+password_login: CISCO
+password_enable: CISCO
+configCommands: ['configure terminal', 'interface s0/0/0', 'ip address 192.168.2.1 255.255.255.0', 'clock rate 64000', 'no shutdown', 'exit', 'ip routing', 'router rip', 'network 192.168.2.0', 'version 2', 'no auto-summary', 'end']
+获取Telnet:RIP_normal0的唯一对象……
+Telnet:RIP_normal0对象未被创建，开始创建……
+开始连接主机: 192.168.1.1
+无法连接到主机192.168.1.1: timed out
+Telnet连接失败，重试……
+开始连接主机: 192.168.1.1
+无法连接到主机192.168.1.1: timed out
+Telnet连接失败，重试……
+开始连接主机: 192.168.1.1

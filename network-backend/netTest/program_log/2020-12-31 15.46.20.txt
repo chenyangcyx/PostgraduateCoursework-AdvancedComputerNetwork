@@ -1,0 +1,125 @@
+具体配置：
+host_ip: 192.168.1.2
+password_login: CISCO
+password_enable: CISCO
+configCommands: ['configure terminal', 'int s0/0/0', 'ip address 192.168.2.2 255.255.255.0', 'clock rate 64000', 'no shutdown', 'int s0/0/1', 'ip address 192.168.3.1 255.255.255.0', 'clock rate 64000', 'no shutdown', 'exit', 'ip routing', 'router rip', 'network 192.168.2.0', 'network 192.168.3.0', 'version 2', 'no auto-summary', 'end']
+testCommands: ['show ip route']
+
+开始连接主机: 192.168.1.2
+连接成功！
+进入特权模式……
+进入enable模式成功！
+
+测试发送命令……
+executeSomeCMD:
+['configure terminal', 'int s0/0/0', 'ip address 192.168.2.2 255.255.255.0', 'clock rate 64000', 'no shutdown', 'int s0/0/1', 'ip address 192.168.3.1 255.255.255.0', 'clock rate 64000', 'no shutdown', 'exit', 'ip routing', 'router rip', 'network 192.168.2.0', 'network 192.168.3.0', 'version 2', 'no auto-summary', 'end']
+executeCMD:
+configure terminal
+executeCMD-Result:
+configure terminal
+Enter configuration commands, one per line.  End with CNTL/Z.
+Router(config)#
+executeCMD:
+int s0/0/0
+executeCMD-Result:
+int s0/0/0
+Router(config-if)#
+executeCMD:
+ip address 192.168.2.2 255.255.255.0
+executeCMD-Result:
+ip address 192.168.2.2 255.255.255.0
+Router(config-if)#
+executeCMD:
+clock rate 64000
+executeCMD-Result:
+clock rate 64000
+Router(config-if)#
+executeCMD:
+no shutdown
+executeCMD-Result:
+no shutdown
+Router(config-if)#
+executeCMD:
+int s0/0/1
+executeCMD-Result:
+int s0/0/1
+Router(config-if)#
+executeCMD:
+ip address 192.168.3.1 255.255.255.0
+executeCMD-Result:
+ip address 192.168.3.1 255.255.255.0
+Router(config-if)#
+executeCMD:
+clock rate 64000
+executeCMD-Result:
+clock rate 64000
+Router(config-if)#
+executeCMD:
+no shutdown
+executeCMD-Result:
+no shutdown
+Router(config-if)#
+executeCMD:
+exit
+executeCMD-Result:
+exit
+Router(config)#
+executeCMD:
+ip routing
+executeCMD-Result:
+ip routing
+Router(config)#
+executeCMD:
+router rip
+executeCMD-Result:
+router rip
+Router(config-router)#
+executeCMD:
+network 192.168.2.0
+executeCMD-Result:
+network 192.168.2.0
+Router(config-router)#
+executeCMD:
+network 192.168.3.0
+executeCMD-Result:
+network 192.168.3.0
+Router(config-router)#
+executeCMD:
+version 2
+executeCMD-Result:
+version 2
+Router(config-router)#
+executeCMD:
+no auto-summary
+executeCMD-Result:
+no auto-summary
+Router(config-router)#
+executeCMD:
+end
+executeCMD-Result:
+end
+Router#
+executeSomeCMD-Result:
+['configure terminal\nEnter configuration commands, one per line.  End with CNTL/Z.\nRouter(config)#', 'int s0/0/0\nRouter(config-if)#', 'ip address 192.168.2.2 255.255.255.0\nRouter(config-if)#', 'clock rate 64000\nRouter(config-if)#', 'no shutdown\nRouter(config-if)#', 'int s0/0/1\nRouter(config-if)#', 'ip address 192.168.3.1 255.255.255.0\nRouter(config-if)#', 'clock rate 64000\nRouter(config-if)#', 'no shutdown\nRouter(config-if)#', 'exit\nRouter(config)#', 'ip routing\nRouter(config)#', 'router rip\nRouter(config-router)#', 'network 192.168.2.0\nRouter(config-router)#', 'network 192.168.3.0\nRouter(config-router)#', 'version 2\nRouter(config-router)#', 'no auto-summary\nRouter(config-router)#', 'end\nRouter#']
+**程序输出**
+Router#configure terminal
+Enter configuration commands, one per line.  End with CNTL/Z.
+Router(config)#int s0/0/0
+Router(config-if)#ip address 192.168.2.2 255.255.255.0
+Router(config-if)#clock rate 64000
+Router(config-if)#no shutdown
+Router(config-if)#int s0/0/1
+Router(config-if)#ip address 192.168.3.1 255.255.255.0
+Router(config-if)#clock rate 64000
+Router(config-if)#no shutdown
+Router(config-if)#exit
+Router(config)#ip routing
+Router(config)#router rip
+Router(config-router)#network 192.168.2.0
+Router(config-router)#network 192.168.3.0
+Router(config-router)#version 2
+Router(config-router)#no auto-summary
+Router(config-router)#end
+Router#
+**清理后输出**
+Enter configuration commands, one per line.  End with CNTL/Z.

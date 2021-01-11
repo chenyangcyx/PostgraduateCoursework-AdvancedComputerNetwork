@@ -1,0 +1,1247 @@
+[call api]
+调用时间：2021-01-11 15.00.01
+调用接口：executeConfigCommand
+configName:RIP
+settingNum:0
+获取configItem成功
+获取到的JSON数据：
+configName: RIP
+configDescription: 动态路由-RIP协议
+routerNum: 3
+configDetail: [{'routerName': 'RouterA', 'hostIp': '192.168.1.1', 'loginPassword': 'CISCO', 'enablePassword': 'CISCO', 'configCommands': ['configure terminal', 'interface s0/0/0', 'ip address 192.168.2.1 255.255.255.0', 'clock rate 64000', 'no shutdown', 'exit', 'ip routing', 'router rip', 'network 192.168.2.0', 'version 2', 'no auto-summary', 'end'], 'testCommands': ['show ip route', 'show ip protocols']}, {'routerName': 'RouterB', 'hostIp': '192.168.1.2', 'loginPassword': 'CISCO', 'enablePassword': 'CISCO', 'configCommands': ['configure terminal', 'int s0/0/0', 'ip address 192.168.2.2 255.255.255.0', 'clock rate 64000', 'no shutdown', 'int s0/0/1', 'ip address 192.168.3.1 255.255.255.0', 'clock rate 64000', 'no shutdown', 'exit', 'ip routing', 'router rip', 'network 192.168.2.0', 'network 192.168.3.0', 'version 2', 'no auto-summary', 'end'], 'testCommands': ['show ip route', 'show ip protocols']}, {'routerName': 'RouterC', 'hostIp': '192.168.1.3', 'loginPassword': 'CISCO', 'enablePassword': 'CISCO', 'configCommands': ['configure terminal', 'int s0/0/1', 'ip address 192.168.3.2 255.255.255.0', 'clock rate 64000', 'no shutdown', 'exit', 'ip routing', 'router rip', 'network 192.168.3.0', 'version 2 ', 'no auto-summary', 'end'], 'testCommands': ['show ip route', 'show ip protocols']}]
+获取程序参数成功
+host_ip: 192.168.1.1
+password_login: CISCO
+password_enable: CISCO
+configCommands: ['configure terminal', 'interface s0/0/0', 'ip address 192.168.2.1 255.255.255.0', 'clock rate 64000', 'no shutdown', 'exit', 'ip routing', 'router rip', 'network 192.168.2.0', 'version 2', 'no auto-summary', 'end']
+获取Telnet:RIP0的唯一对象……
+Telnet:RIP0对象未被创建，开始创建……
+开始连接主机: 192.168.1.1
+连接成功！
+进入特权模式……
+进入enable模式成功！
+Telnet:RIP0对象创建成功！
+executeSomeCMD:
+['configure terminal', 'interface s0/0/0', 'ip address 192.168.2.1 255.255.255.0', 'clock rate 64000', 'no shutdown', 'exit', 'ip routing', 'router rip', 'network 192.168.2.0', 'version 2', 'no auto-summary', 'end']
+executeCMD:
+configure terminal
+executeCMD-Result:
+configure terminal
+Enter configuration commands, one per line.  End with CNTL/Z.
+Router(config)#
+executeCMD:
+interface s0/0/0
+executeCMD-Result:
+interface s0/0/0
+Router(config-if)#
+executeCMD:
+ip address 192.168.2.1 255.255.255.0
+executeCMD-Result:
+ip address 192.168.2.1 255.255.255.0
+Router(config-if)#
+executeCMD:
+clock rate 64000
+executeCMD-Result:
+clock rate 64000
+This command applies only to DCE interfaces
+Router(config-if)#
+executeCMD:
+no shutdown
+executeCMD-Result:
+no shutdown
+Router(config-if)#
+executeCMD:
+exit
+executeCMD-Result:
+exit
+Router(config)#
+executeCMD:
+ip routing
+executeCMD-Result:
+ip routing
+Router(config)#
+executeCMD:
+router rip
+executeCMD-Result:
+router rip
+Router(config-router)#
+executeCMD:
+network 192.168.2.0
+executeCMD-Result:
+network 192.168.2.0
+Router(config-router)#
+executeCMD:
+version 2
+executeCMD-Result:
+version 2
+Router(config-router)#
+executeCMD:
+no auto-summary
+executeCMD-Result:
+no auto-summary
+Router(config-router)#
+executeCMD:
+end
+executeCMD-Result:
+end
+Router#
+executeSomeCMD-Result:
+['configure terminal\nEnter configuration commands, one per line.  End with CNTL/Z.\nRouter(config)#', 'interface s0/0/0\nRouter(config-if)#', 'ip address 192.168.2.1 255.255.255.0\nRouter(config-if)#', 'clock rate 64000\nThis command applies only to DCE interfaces\nRouter(config-if)#', 'no shutdown\nRouter(config-if)#', 'exit\nRouter(config)#', 'ip routing\nRouter(config)#', 'router rip\nRouter(config-router)#', 'network 192.168.2.0\nRouter(config-router)#', 'version 2\nRouter(config-router)#', 'no auto-summary\nRouter(config-router)#', 'end\nRouter#']
+**程序输出**
+Router#configure terminal
+Enter configuration commands, one per line.  End with CNTL/Z.
+Router(config)#interface s0/0/0
+Router(config-if)#ip address 192.168.2.1 255.255.255.0
+Router(config-if)#clock rate 64000
+This command applies only to DCE interfaces
+Router(config-if)#no shutdown
+Router(config-if)#exit
+Router(config)#ip routing
+Router(config)#router rip
+Router(config-router)#network 192.168.2.0
+Router(config-router)#version 2
+Router(config-router)#no auto-summary
+Router(config-router)#end
+Router#
+
+**清理后输出**
+Enter configuration commands, one per line.  End with CNTL/Z.
+This command applies only to DCE interfaces
+
+
+[call api]
+调用时间：2021-01-11 15.00.05
+调用接口：executeTestCommand
+configName:RIP
+settingNum:0
+获取configItem成功
+获取到的JSON数据：
+configName: RIP
+configDescription: 动态路由-RIP协议
+routerNum: 3
+configDetail: [{'routerName': 'RouterA', 'hostIp': '192.168.1.1', 'loginPassword': 'CISCO', 'enablePassword': 'CISCO', 'configCommands': ['configure terminal', 'interface s0/0/0', 'ip address 192.168.2.1 255.255.255.0', 'clock rate 64000', 'no shutdown', 'exit', 'ip routing', 'router rip', 'network 192.168.2.0', 'version 2', 'no auto-summary', 'end'], 'testCommands': ['show ip route', 'show ip protocols']}, {'routerName': 'RouterB', 'hostIp': '192.168.1.2', 'loginPassword': 'CISCO', 'enablePassword': 'CISCO', 'configCommands': ['configure terminal', 'int s0/0/0', 'ip address 192.168.2.2 255.255.255.0', 'clock rate 64000', 'no shutdown', 'int s0/0/1', 'ip address 192.168.3.1 255.255.255.0', 'clock rate 64000', 'no shutdown', 'exit', 'ip routing', 'router rip', 'network 192.168.2.0', 'network 192.168.3.0', 'version 2', 'no auto-summary', 'end'], 'testCommands': ['show ip route', 'show ip protocols']}, {'routerName': 'RouterC', 'hostIp': '192.168.1.3', 'loginPassword': 'CISCO', 'enablePassword': 'CISCO', 'configCommands': ['configure terminal', 'int s0/0/1', 'ip address 192.168.3.2 255.255.255.0', 'clock rate 64000', 'no shutdown', 'exit', 'ip routing', 'router rip', 'network 192.168.3.0', 'version 2 ', 'no auto-summary', 'end'], 'testCommands': ['show ip route', 'show ip protocols']}]
+获取程序参数成功
+host_ip: 192.168.1.1
+password_login: CISCO
+password_enable: CISCO
+testCommands: ['show ip route', 'show ip protocols']
+获取Telnet:RIP0的唯一对象……
+Telnet:RIP0对象已经创建，获取成功
+Telnet:RIP0对象创建成功！
+executeSomeCMD:
+['show ip route', 'show ip protocols']
+executeCMD:
+show ip route
+executeCMD-Result:
+show ip route
+Codes: C - connected, S - static, R - RIP, M - mobile, B - BGP
+       D - EIGRP, EX - EIGRP external, O - OSPF, IA - OSPF inter area 
+       N1 - OSPF NSSA external type 1, N2 - OSPF NSSA external type 2
+       E1 - OSPF external type 1, E2 - OSPF external type 2
+       i - IS-IS, su - IS-IS summary, L1 - IS-IS level-1, L2 - IS-IS level-2
+       ia - IS-IS inter area, * - candidate default, U - per-user static route
+       o - ODR, P - periodic downloaded static route
+
+Gateway of last resort is not set
+
+C    192.168.1.0/24 is directly connected, FastEthernet0/0
+Router#
+executeCMD:
+show ip protocols
+executeCMD-Result:
+show ip protocols
+Routing Protocol is "rip"
+  Outgoing update filter list for all interfaces is not set
+  Incoming update filter list for all interfaces is not set
+  Sending updates every 30 seconds, next due in 10 seconds
+  Invalid after 180 seconds, hold down 180, flushed after 240
+  Redistributing: rip
+  Default version control: send version 2, receive version 2
+    Interface             Send  Recv  Triggered RIP  Key-chain
+    Serial0/0/0           2     2                                    
+  Automatic network summarization is not in effect
+  Maximum path: 4
+  Routing for Networks:
+    192.168.2.0
+  Routing Information Sources:
+    Gateway         Distance      Last Update
+  Distance: (default is 120)
+
+Routing Protocol is "ospf 1"
+  Outgoing update filter list for all interfaces is not set
+  Incoming update filter list for all interfaces is not set
+  Router ID 192.168.2.1
+  Number of areas in this router is 2. 2 normal 0 stub 0 nssa
+  Maximum path: 4
+  Routing for Networks:
+    10.0.0.0 0.0.0.255 area 1
+    192.168.2.0 0.0.0.255 area 0
+ Reference bandwidth unit is 100 mbps
+  Routing Information Sources:
+    Gateway         Distance      Last Update
+  Distance: (default is 110)
+
+Router#
+executeSomeCMD-Result:
+['show ip route\nCodes: C - connected, S - static, R - RIP, M - mobile, B - BGP\n       D - EIGRP, EX - EIGRP external, O - OSPF, IA - OSPF inter area \n       N1 - OSPF NSSA external type 1, N2 - OSPF NSSA external type 2\n       E1 - OSPF external type 1, E2 - OSPF external type 2\n       i - IS-IS, su - IS-IS summary, L1 - IS-IS level-1, L2 - IS-IS level-2\n       ia - IS-IS inter area, * - candidate default, U - per-user static route\n       o - ODR, P - periodic downloaded static route\n\nGateway of last resort is not set\n\nC    192.168.1.0/24 is directly connected, FastEthernet0/0\nRouter#', 'show ip protocols\nRouting Protocol is "rip"\n  Outgoing update filter list for all interfaces is not set\n  Incoming update filter list for all interfaces is not set\n  Sending updates every 30 seconds, next due in 10 seconds\n  Invalid after 180 seconds, hold down 180, flushed after 240\n  Redistributing: rip\n  Default version control: send version 2, receive version 2\n    Interface             Send  Recv  Triggered RIP  Key-chain\n    Serial0/0/0           2     2                                    \n  Automatic network summarization is not in effect\n  Maximum path: 4\n  Routing for Networks:\n    192.168.2.0\n  Routing Information Sources:\n    Gateway         Distance      Last Update\n  Distance: (default is 120)\n\nRouting Protocol is "ospf 1"\n  Outgoing update filter list for all interfaces is not set\n  Incoming update filter list for all interfaces is not set\n  Router ID 192.168.2.1\n  Number of areas in this router is 2. 2 normal 0 stub 0 nssa\n  Maximum path: 4\n  Routing for Networks:\n    10.0.0.0 0.0.0.255 area 1\n    192.168.2.0 0.0.0.255 area 0\n Reference bandwidth unit is 100 mbps\n  Routing Information Sources:\n    Gateway         Distance      Last Update\n  Distance: (default is 110)\n\nRouter#']
+**程序输出**
+Router#show ip route
+Codes: C - connected, S - static, R - RIP, M - mobile, B - BGP
+       D - EIGRP, EX - EIGRP external, O - OSPF, IA - OSPF inter area 
+       N1 - OSPF NSSA external type 1, N2 - OSPF NSSA external type 2
+       E1 - OSPF external type 1, E2 - OSPF external type 2
+       i - IS-IS, su - IS-IS summary, L1 - IS-IS level-1, L2 - IS-IS level-2
+       ia - IS-IS inter area, * - candidate default, U - per-user static route
+       o - ODR, P - periodic downloaded static route
+
+Gateway of last resort is not set
+
+C    192.168.1.0/24 is directly connected, FastEthernet0/0
+Router#show ip protocols
+Routing Protocol is "rip"
+  Outgoing update filter list for all interfaces is not set
+  Incoming update filter list for all interfaces is not set
+  Sending updates every 30 seconds, next due in 10 seconds
+  Invalid after 180 seconds, hold down 180, flushed after 240
+  Redistributing: rip
+  Default version control: send version 2, receive version 2
+    Interface             Send  Recv  Triggered RIP  Key-chain
+    Serial0/0/0           2     2                                    
+  Automatic network summarization is not in effect
+  Maximum path: 4
+  Routing for Networks:
+    192.168.2.0
+  Routing Information Sources:
+    Gateway         Distance      Last Update
+  Distance: (default is 120)
+
+Routing Protocol is "ospf 1"
+  Outgoing update filter list for all interfaces is not set
+  Incoming update filter list for all interfaces is not set
+  Router ID 192.168.2.1
+  Number of areas in this router is 2. 2 normal 0 stub 0 nssa
+  Maximum path: 4
+  Routing for Networks:
+    10.0.0.0 0.0.0.255 area 1
+    192.168.2.0 0.0.0.255 area 0
+ Reference bandwidth unit is 100 mbps
+  Routing Information Sources:
+    Gateway         Distance      Last Update
+  Distance: (default is 110)
+
+Router#
+
+**清理后输出**
+Codes: C - connected, S - static, R - RIP, M - mobile, B - BGP
+       D - EIGRP, EX - EIGRP external, O - OSPF, IA - OSPF inter area 
+       N1 - OSPF NSSA external type 1, N2 - OSPF NSSA external type 2
+       E1 - OSPF external type 1, E2 - OSPF external type 2
+       i - IS-IS, su - IS-IS summary, L1 - IS-IS level-1, L2 - IS-IS level-2
+       ia - IS-IS inter area, * - candidate default, U - per-user static route
+       o - ODR, P - periodic downloaded static route
+
+Gateway of last resort is not set
+
+C    192.168.1.0/24 is directly connected, FastEthernet0/0
+Routing Protocol is "rip"
+  Outgoing update filter list for all interfaces is not set
+  Incoming update filter list for all interfaces is not set
+  Sending updates every 30 seconds, next due in 10 seconds
+  Invalid after 180 seconds, hold down 180, flushed after 240
+  Redistributing: rip
+  Default version control: send version 2, receive version 2
+    Interface             Send  Recv  Triggered RIP  Key-chain
+    Serial0/0/0           2     2                                    
+  Automatic network summarization is not in effect
+  Maximum path: 4
+  Routing for Networks:
+    192.168.2.0
+  Routing Information Sources:
+    Gateway         Distance      Last Update
+  Distance: (default is 120)
+
+Routing Protocol is "ospf 1"
+  Outgoing update filter list for all interfaces is not set
+  Incoming update filter list for all interfaces is not set
+  Router ID 192.168.2.1
+  Number of areas in this router is 2. 2 normal 0 stub 0 nssa
+  Maximum path: 4
+  Routing for Networks:
+    10.0.0.0 0.0.0.255 area 1
+    192.168.2.0 0.0.0.255 area 0
+ Reference bandwidth unit is 100 mbps
+  Routing Information Sources:
+    Gateway         Distance      Last Update
+  Distance: (default is 110)
+
+
+
+[call api]
+调用时间：2021-01-11 15.00.08
+调用接口：executeConfigCommand
+configName:OSPF
+settingNum:0
+获取configItem成功
+获取到的JSON数据：
+configName: OSPF
+configDescription: 动态路由-OSPF协议
+routerNum: 3
+configDetail: [{'routerName': 'RouterA', 'hostIp': '192.168.1.1', 'loginPassword': 'CISCO', 'enablePassword': 'CISCO', 'configCommands': ['configure terminal', 'interface s0/0/0', 'ip address 192.168.2.1 255.255.255.0', 'clock rate 64000', 'no shutdown', 'exit', 'router ospf 1', 'network 192.168.2.0 0.0.0.255 area 0', 'network 10.0.0.0 0.0.0.255 area 1', 'end'], 'testCommands': ['show ip route', 'show ip protocols']}, {'routerName': 'RouterB', 'hostIp': '192.168.1.2', 'loginPassword': 'CISCO', 'enablePassword': 'CISCO', 'configCommands': ['configure terminal', 'int s0/0/0', 'ip address 192.168.2.2 255.255.255.0', 'clock rate 64000', 'no shutdown', 'int s0/0/1', 'ip address 192.168.3.1 255.255.255.0', 'clock rate 64000', 'no shutdown', 'exit', 'router ospf 1', 'network 192.168.2.0 0.0.0.255 area 0', 'network 192.168.3.0 0.0.0.255 area 51', 'end'], 'testCommands': ['show ip route', 'show ip protocols']}, {'routerName': 'RouterC', 'hostIp': '192.168.1.3', 'loginPassword': 'CISCO', 'enablePassword': 'CISCO', 'configCommands': ['configure terminal', 'int s0/0/1', 'ip address 192.168.3.2 255.255.255.0', 'clock rate 64000', 'no shutdown', 'exit', 'router ospf 1', 'network 10.0.0.0 0.0.0.255 area 1', 'network 192.168.3.0 0.0.0.255 area 51', 'end'], 'testCommands': ['show ip route', 'show ip protocols']}]
+获取程序参数成功
+host_ip: 192.168.1.1
+password_login: CISCO
+password_enable: CISCO
+configCommands: ['configure terminal', 'interface s0/0/0', 'ip address 192.168.2.1 255.255.255.0', 'clock rate 64000', 'no shutdown', 'exit', 'router ospf 1', 'network 192.168.2.0 0.0.0.255 area 0', 'network 10.0.0.0 0.0.0.255 area 1', 'end']
+获取Telnet:OSPF0的唯一对象……
+Telnet:OSPF0对象未被创建，开始创建……
+开始连接主机: 192.168.1.1
+连接成功！
+进入特权模式……
+进入enable模式成功！
+Telnet:OSPF0对象创建成功！
+executeSomeCMD:
+['configure terminal', 'interface s0/0/0', 'ip address 192.168.2.1 255.255.255.0', 'clock rate 64000', 'no shutdown', 'exit', 'router ospf 1', 'network 192.168.2.0 0.0.0.255 area 0', 'network 10.0.0.0 0.0.0.255 area 1', 'end']
+executeCMD:
+configure terminal
+executeCMD-Result:
+configure terminal
+Enter configuration commands, one per line.  End with CNTL/Z.
+Router(config)#
+executeCMD:
+interface s0/0/0
+executeCMD-Result:
+interface s0/0/0
+Router(config-if)#
+executeCMD:
+ip address 192.168.2.1 255.255.255.0
+executeCMD-Result:
+ip address 192.168.2.1 255.255.255.0
+Router(config-if)#
+executeCMD:
+clock rate 64000
+executeCMD-Result:
+clock rate 64000
+This command applies only to DCE interfaces
+Router(config-if)#
+executeCMD:
+no shutdown
+executeCMD-Result:
+no shutdown
+Router(config-if)#
+executeCMD:
+exit
+executeCMD-Result:
+exit
+Router(config)#
+executeCMD:
+router ospf 1
+executeCMD-Result:
+router ospf 1
+Router(config-router)#
+executeCMD:
+network 192.168.2.0 0.0.0.255 area 0
+executeCMD-Result:
+network 192.168.2.0 0.0.0.255 area 0
+Router(config-router)#
+executeCMD:
+network 10.0.0.0 0.0.0.255 area 1
+executeCMD-Result:
+network 10.0.0.0 0.0.0.255 area 1
+Router(config-router)#
+executeCMD:
+end
+executeCMD-Result:
+end
+Router#
+executeSomeCMD-Result:
+['configure terminal\nEnter configuration commands, one per line.  End with CNTL/Z.\nRouter(config)#', 'interface s0/0/0\nRouter(config-if)#', 'ip address 192.168.2.1 255.255.255.0\nRouter(config-if)#', 'clock rate 64000\nThis command applies only to DCE interfaces\nRouter(config-if)#', 'no shutdown\nRouter(config-if)#', 'exit\nRouter(config)#', 'router ospf 1\nRouter(config-router)#', 'network 192.168.2.0 0.0.0.255 area 0\nRouter(config-router)#', 'network 10.0.0.0 0.0.0.255 area 1\nRouter(config-router)#', 'end\nRouter#']
+**程序输出**
+Router#configure terminal
+Enter configuration commands, one per line.  End with CNTL/Z.
+Router(config)#interface s0/0/0
+Router(config-if)#ip address 192.168.2.1 255.255.255.0
+Router(config-if)#clock rate 64000
+This command applies only to DCE interfaces
+Router(config-if)#no shutdown
+Router(config-if)#exit
+Router(config)#router ospf 1
+Router(config-router)#network 192.168.2.0 0.0.0.255 area 0
+Router(config-router)#network 10.0.0.0 0.0.0.255 area 1
+Router(config-router)#end
+Router#
+
+**清理后输出**
+Enter configuration commands, one per line.  End with CNTL/Z.
+This command applies only to DCE interfaces
+
+
+[call api]
+调用时间：2021-01-11 15.00.12
+调用接口：executeTestCommand
+configName:OSPF
+settingNum:0
+获取configItem成功
+获取到的JSON数据：
+configName: OSPF
+configDescription: 动态路由-OSPF协议
+routerNum: 3
+configDetail: [{'routerName': 'RouterA', 'hostIp': '192.168.1.1', 'loginPassword': 'CISCO', 'enablePassword': 'CISCO', 'configCommands': ['configure terminal', 'interface s0/0/0', 'ip address 192.168.2.1 255.255.255.0', 'clock rate 64000', 'no shutdown', 'exit', 'router ospf 1', 'network 192.168.2.0 0.0.0.255 area 0', 'network 10.0.0.0 0.0.0.255 area 1', 'end'], 'testCommands': ['show ip route', 'show ip protocols']}, {'routerName': 'RouterB', 'hostIp': '192.168.1.2', 'loginPassword': 'CISCO', 'enablePassword': 'CISCO', 'configCommands': ['configure terminal', 'int s0/0/0', 'ip address 192.168.2.2 255.255.255.0', 'clock rate 64000', 'no shutdown', 'int s0/0/1', 'ip address 192.168.3.1 255.255.255.0', 'clock rate 64000', 'no shutdown', 'exit', 'router ospf 1', 'network 192.168.2.0 0.0.0.255 area 0', 'network 192.168.3.0 0.0.0.255 area 51', 'end'], 'testCommands': ['show ip route', 'show ip protocols']}, {'routerName': 'RouterC', 'hostIp': '192.168.1.3', 'loginPassword': 'CISCO', 'enablePassword': 'CISCO', 'configCommands': ['configure terminal', 'int s0/0/1', 'ip address 192.168.3.2 255.255.255.0', 'clock rate 64000', 'no shutdown', 'exit', 'router ospf 1', 'network 10.0.0.0 0.0.0.255 area 1', 'network 192.168.3.0 0.0.0.255 area 51', 'end'], 'testCommands': ['show ip route', 'show ip protocols']}]
+获取程序参数成功
+host_ip: 192.168.1.1
+password_login: CISCO
+password_enable: CISCO
+testCommands: ['show ip route', 'show ip protocols']
+获取Telnet:OSPF0的唯一对象……
+Telnet:OSPF0对象已经创建，获取成功
+Telnet:OSPF0对象创建成功！
+executeSomeCMD:
+['show ip route', 'show ip protocols']
+executeCMD:
+show ip route
+executeCMD-Result:
+show ip route
+Codes: C - connected, S - static, R - RIP, M - mobile, B - BGP
+       D - EIGRP, EX - EIGRP external, O - OSPF, IA - OSPF inter area 
+       N1 - OSPF NSSA external type 1, N2 - OSPF NSSA external type 2
+       E1 - OSPF external type 1, E2 - OSPF external type 2
+       i - IS-IS, su - IS-IS summary, L1 - IS-IS level-1, L2 - IS-IS level-2
+       ia - IS-IS inter area, * - candidate default, U - per-user static route
+       o - ODR, P - periodic downloaded static route
+
+Gateway of last resort is not set
+
+C    192.168.1.0/24 is directly connected, FastEthernet0/0
+Router#
+executeCMD:
+show ip protocols
+executeCMD-Result:
+show ip protocols
+Routing Protocol is "rip"
+  Outgoing update filter list for all interfaces is not set
+  Incoming update filter list for all interfaces is not set
+  Sending updates every 30 seconds, next due in 3 seconds
+  Invalid after 180 seconds, hold down 180, flushed after 240
+  Redistributing: rip
+  Default version control: send version 2, receive version 2
+    Interface             Send  Recv  Triggered RIP  Key-chain
+    Serial0/0/0           2     2                                    
+  Automatic network summarization is not in effect
+  Maximum path: 4
+  Routing for Networks:
+    192.168.2.0
+  Routing Information Sources:
+    Gateway         Distance      Last Update
+  Distance: (default is 120)
+
+Routing Protocol is "ospf 1"
+  Outgoing update filter list for all interfaces is not set
+  Incoming update filter list for all interfaces is not set
+  Router ID 192.168.2.1
+  Number of areas in this router is 2. 2 normal 0 stub 0 nssa
+  Maximum path: 4
+  Routing for Networks:
+    10.0.0.0 0.0.0.255 area 1
+    192.168.2.0 0.0.0.255 area 0
+ Reference bandwidth unit is 100 mbps
+  Routing Information Sources:
+    Gateway         Distance      Last Update
+  Distance: (default is 110)
+
+Router#
+executeSomeCMD-Result:
+['show ip route\nCodes: C - connected, S - static, R - RIP, M - mobile, B - BGP\n       D - EIGRP, EX - EIGRP external, O - OSPF, IA - OSPF inter area \n       N1 - OSPF NSSA external type 1, N2 - OSPF NSSA external type 2\n       E1 - OSPF external type 1, E2 - OSPF external type 2\n       i - IS-IS, su - IS-IS summary, L1 - IS-IS level-1, L2 - IS-IS level-2\n       ia - IS-IS inter area, * - candidate default, U - per-user static route\n       o - ODR, P - periodic downloaded static route\n\nGateway of last resort is not set\n\nC    192.168.1.0/24 is directly connected, FastEthernet0/0\nRouter#', 'show ip protocols\nRouting Protocol is "rip"\n  Outgoing update filter list for all interfaces is not set\n  Incoming update filter list for all interfaces is not set\n  Sending updates every 30 seconds, next due in 3 seconds\n  Invalid after 180 seconds, hold down 180, flushed after 240\n  Redistributing: rip\n  Default version control: send version 2, receive version 2\n    Interface             Send  Recv  Triggered RIP  Key-chain\n    Serial0/0/0           2     2                                    \n  Automatic network summarization is not in effect\n  Maximum path: 4\n  Routing for Networks:\n    192.168.2.0\n  Routing Information Sources:\n    Gateway         Distance      Last Update\n  Distance: (default is 120)\n\nRouting Protocol is "ospf 1"\n  Outgoing update filter list for all interfaces is not set\n  Incoming update filter list for all interfaces is not set\n  Router ID 192.168.2.1\n  Number of areas in this router is 2. 2 normal 0 stub 0 nssa\n  Maximum path: 4\n  Routing for Networks:\n    10.0.0.0 0.0.0.255 area 1\n    192.168.2.0 0.0.0.255 area 0\n Reference bandwidth unit is 100 mbps\n  Routing Information Sources:\n    Gateway         Distance      Last Update\n  Distance: (default is 110)\n\nRouter#']
+**程序输出**
+Router#show ip route
+Codes: C - connected, S - static, R - RIP, M - mobile, B - BGP
+       D - EIGRP, EX - EIGRP external, O - OSPF, IA - OSPF inter area 
+       N1 - OSPF NSSA external type 1, N2 - OSPF NSSA external type 2
+       E1 - OSPF external type 1, E2 - OSPF external type 2
+       i - IS-IS, su - IS-IS summary, L1 - IS-IS level-1, L2 - IS-IS level-2
+       ia - IS-IS inter area, * - candidate default, U - per-user static route
+       o - ODR, P - periodic downloaded static route
+
+Gateway of last resort is not set
+
+C    192.168.1.0/24 is directly connected, FastEthernet0/0
+Router#show ip protocols
+Routing Protocol is "rip"
+  Outgoing update filter list for all interfaces is not set
+  Incoming update filter list for all interfaces is not set
+  Sending updates every 30 seconds, next due in 3 seconds
+  Invalid after 180 seconds, hold down 180, flushed after 240
+  Redistributing: rip
+  Default version control: send version 2, receive version 2
+    Interface             Send  Recv  Triggered RIP  Key-chain
+    Serial0/0/0           2     2                                    
+  Automatic network summarization is not in effect
+  Maximum path: 4
+  Routing for Networks:
+    192.168.2.0
+  Routing Information Sources:
+    Gateway         Distance      Last Update
+  Distance: (default is 120)
+
+Routing Protocol is "ospf 1"
+  Outgoing update filter list for all interfaces is not set
+  Incoming update filter list for all interfaces is not set
+  Router ID 192.168.2.1
+  Number of areas in this router is 2. 2 normal 0 stub 0 nssa
+  Maximum path: 4
+  Routing for Networks:
+    10.0.0.0 0.0.0.255 area 1
+    192.168.2.0 0.0.0.255 area 0
+ Reference bandwidth unit is 100 mbps
+  Routing Information Sources:
+    Gateway         Distance      Last Update
+  Distance: (default is 110)
+
+Router#
+
+**清理后输出**
+Codes: C - connected, S - static, R - RIP, M - mobile, B - BGP
+       D - EIGRP, EX - EIGRP external, O - OSPF, IA - OSPF inter area 
+       N1 - OSPF NSSA external type 1, N2 - OSPF NSSA external type 2
+       E1 - OSPF external type 1, E2 - OSPF external type 2
+       i - IS-IS, su - IS-IS summary, L1 - IS-IS level-1, L2 - IS-IS level-2
+       ia - IS-IS inter area, * - candidate default, U - per-user static route
+       o - ODR, P - periodic downloaded static route
+
+Gateway of last resort is not set
+
+C    192.168.1.0/24 is directly connected, FastEthernet0/0
+Routing Protocol is "rip"
+  Outgoing update filter list for all interfaces is not set
+  Incoming update filter list for all interfaces is not set
+  Sending updates every 30 seconds, next due in 3 seconds
+  Invalid after 180 seconds, hold down 180, flushed after 240
+  Redistributing: rip
+  Default version control: send version 2, receive version 2
+    Interface             Send  Recv  Triggered RIP  Key-chain
+    Serial0/0/0           2     2                                    
+  Automatic network summarization is not in effect
+  Maximum path: 4
+  Routing for Networks:
+    192.168.2.0
+  Routing Information Sources:
+    Gateway         Distance      Last Update
+  Distance: (default is 120)
+
+Routing Protocol is "ospf 1"
+  Outgoing update filter list for all interfaces is not set
+  Incoming update filter list for all interfaces is not set
+  Router ID 192.168.2.1
+  Number of areas in this router is 2. 2 normal 0 stub 0 nssa
+  Maximum path: 4
+  Routing for Networks:
+    10.0.0.0 0.0.0.255 area 1
+    192.168.2.0 0.0.0.255 area 0
+ Reference bandwidth unit is 100 mbps
+  Routing Information Sources:
+    Gateway         Distance      Last Update
+  Distance: (default is 110)
+
+
+
+[call api]
+调用时间：2021-01-11 15.00.25
+调用接口：executeTestCommand
+configName:OSPF
+settingNum:0
+获取configItem成功
+获取到的JSON数据：
+configName: OSPF
+configDescription: 动态路由-OSPF协议
+routerNum: 3
+configDetail: [{'routerName': 'RouterA', 'hostIp': '192.168.1.1', 'loginPassword': 'CISCO', 'enablePassword': 'CISCO', 'configCommands': ['configure terminal', 'interface s0/0/0', 'ip address 192.168.2.1 255.255.255.0', 'clock rate 64000', 'no shutdown', 'exit', 'router ospf 1', 'network 192.168.2.0 0.0.0.255 area 0', 'network 10.0.0.0 0.0.0.255 area 1', 'end'], 'testCommands': ['show ip route', 'show ip protocols']}, {'routerName': 'RouterB', 'hostIp': '192.168.1.2', 'loginPassword': 'CISCO', 'enablePassword': 'CISCO', 'configCommands': ['configure terminal', 'int s0/0/0', 'ip address 192.168.2.2 255.255.255.0', 'clock rate 64000', 'no shutdown', 'int s0/0/1', 'ip address 192.168.3.1 255.255.255.0', 'clock rate 64000', 'no shutdown', 'exit', 'router ospf 1', 'network 192.168.2.0 0.0.0.255 area 0', 'network 192.168.3.0 0.0.0.255 area 51', 'end'], 'testCommands': ['show ip route', 'show ip protocols']}, {'routerName': 'RouterC', 'hostIp': '192.168.1.3', 'loginPassword': 'CISCO', 'enablePassword': 'CISCO', 'configCommands': ['configure terminal', 'int s0/0/1', 'ip address 192.168.3.2 255.255.255.0', 'clock rate 64000', 'no shutdown', 'exit', 'router ospf 1', 'network 10.0.0.0 0.0.0.255 area 1', 'network 192.168.3.0 0.0.0.255 area 51', 'end'], 'testCommands': ['show ip route', 'show ip protocols']}]
+获取程序参数成功
+host_ip: 192.168.1.1
+password_login: CISCO
+password_enable: CISCO
+testCommands: ['show ip route', 'show ip protocols']
+获取Telnet:OSPF0的唯一对象……
+Telnet:OSPF0对象已经创建，获取成功
+Telnet:OSPF0对象创建成功！
+executeSomeCMD:
+['show ip route', 'show ip protocols']
+executeCMD:
+show ip route
+executeCMD-Result:
+show ip route
+Codes: C - connected, S - static, R - RIP, M - mobile, B - BGP
+       D - EIGRP, EX - EIGRP external, O - OSPF, IA - OSPF inter area 
+       N1 - OSPF NSSA external type 1, N2 - OSPF NSSA external type 2
+       E1 - OSPF external type 1, E2 - OSPF external type 2
+       i - IS-IS, su - IS-IS summary, L1 - IS-IS level-1, L2 - IS-IS level-2
+       ia - IS-IS inter area, * - candidate default, U - per-user static route
+       o - ODR, P - periodic downloaded static route
+
+Gateway of last resort is not set
+
+C    192.168.1.0/24 is directly connected, FastEthernet0/0
+Router#
+executeCMD:
+show ip protocols
+executeCMD-Result:
+show ip protocols
+Routing Protocol is "rip"
+  Outgoing update filter list for all interfaces is not set
+  Incoming update filter list for all interfaces is not set
+  Sending updates every 30 seconds, next due in 16 seconds
+  Invalid after 180 seconds, hold down 180, flushed after 240
+  Redistributing: rip
+  Default version control: send version 2, receive version 2
+    Interface             Send  Recv  Triggered RIP  Key-chain
+    Serial0/0/0           2     2                                    
+  Automatic network summarization is not in effect
+  Maximum path: 4
+  Routing for Networks:
+    192.168.2.0
+  Routing Information Sources:
+    Gateway         Distance      Last Update
+  Distance: (default is 120)
+
+Routing Protocol is "ospf 1"
+  Outgoing update filter list for all interfaces is not set
+  Incoming update filter list for all interfaces is not set
+  Router ID 192.168.2.1
+  Number of areas in this router is 2. 2 normal 0 stub 0 nssa
+  Maximum path: 4
+  Routing for Networks:
+    10.0.0.0 0.0.0.255 area 1
+    192.168.2.0 0.0.0.255 area 0
+ Reference bandwidth unit is 100 mbps
+  Routing Information Sources:
+    Gateway         Distance      Last Update
+  Distance: (default is 110)
+
+Router#
+executeSomeCMD-Result:
+['show ip route\nCodes: C - connected, S - static, R - RIP, M - mobile, B - BGP\n       D - EIGRP, EX - EIGRP external, O - OSPF, IA - OSPF inter area \n       N1 - OSPF NSSA external type 1, N2 - OSPF NSSA external type 2\n       E1 - OSPF external type 1, E2 - OSPF external type 2\n       i - IS-IS, su - IS-IS summary, L1 - IS-IS level-1, L2 - IS-IS level-2\n       ia - IS-IS inter area, * - candidate default, U - per-user static route\n       o - ODR, P - periodic downloaded static route\n\nGateway of last resort is not set\n\nC    192.168.1.0/24 is directly connected, FastEthernet0/0\nRouter#', 'show ip protocols\nRouting Protocol is "rip"\n  Outgoing update filter list for all interfaces is not set\n  Incoming update filter list for all interfaces is not set\n  Sending updates every 30 seconds, next due in 16 seconds\n  Invalid after 180 seconds, hold down 180, flushed after 240\n  Redistributing: rip\n  Default version control: send version 2, receive version 2\n    Interface             Send  Recv  Triggered RIP  Key-chain\n    Serial0/0/0           2     2                                    \n  Automatic network summarization is not in effect\n  Maximum path: 4\n  Routing for Networks:\n    192.168.2.0\n  Routing Information Sources:\n    Gateway         Distance      Last Update\n  Distance: (default is 120)\n\nRouting Protocol is "ospf 1"\n  Outgoing update filter list for all interfaces is not set\n  Incoming update filter list for all interfaces is not set\n  Router ID 192.168.2.1\n  Number of areas in this router is 2. 2 normal 0 stub 0 nssa\n  Maximum path: 4\n  Routing for Networks:\n    10.0.0.0 0.0.0.255 area 1\n    192.168.2.0 0.0.0.255 area 0\n Reference bandwidth unit is 100 mbps\n  Routing Information Sources:\n    Gateway         Distance      Last Update\n  Distance: (default is 110)\n\nRouter#']
+**程序输出**
+Router#show ip route
+Codes: C - connected, S - static, R - RIP, M - mobile, B - BGP
+       D - EIGRP, EX - EIGRP external, O - OSPF, IA - OSPF inter area 
+       N1 - OSPF NSSA external type 1, N2 - OSPF NSSA external type 2
+       E1 - OSPF external type 1, E2 - OSPF external type 2
+       i - IS-IS, su - IS-IS summary, L1 - IS-IS level-1, L2 - IS-IS level-2
+       ia - IS-IS inter area, * - candidate default, U - per-user static route
+       o - ODR, P - periodic downloaded static route
+
+Gateway of last resort is not set
+
+C    192.168.1.0/24 is directly connected, FastEthernet0/0
+Router#show ip protocols
+Routing Protocol is "rip"
+  Outgoing update filter list for all interfaces is not set
+  Incoming update filter list for all interfaces is not set
+  Sending updates every 30 seconds, next due in 16 seconds
+  Invalid after 180 seconds, hold down 180, flushed after 240
+  Redistributing: rip
+  Default version control: send version 2, receive version 2
+    Interface             Send  Recv  Triggered RIP  Key-chain
+    Serial0/0/0           2     2                                    
+  Automatic network summarization is not in effect
+  Maximum path: 4
+  Routing for Networks:
+    192.168.2.0
+  Routing Information Sources:
+    Gateway         Distance      Last Update
+  Distance: (default is 120)
+
+Routing Protocol is "ospf 1"
+  Outgoing update filter list for all interfaces is not set
+  Incoming update filter list for all interfaces is not set
+  Router ID 192.168.2.1
+  Number of areas in this router is 2. 2 normal 0 stub 0 nssa
+  Maximum path: 4
+  Routing for Networks:
+    10.0.0.0 0.0.0.255 area 1
+    192.168.2.0 0.0.0.255 area 0
+ Reference bandwidth unit is 100 mbps
+  Routing Information Sources:
+    Gateway         Distance      Last Update
+  Distance: (default is 110)
+
+Router#
+
+**清理后输出**
+Codes: C - connected, S - static, R - RIP, M - mobile, B - BGP
+       D - EIGRP, EX - EIGRP external, O - OSPF, IA - OSPF inter area 
+       N1 - OSPF NSSA external type 1, N2 - OSPF NSSA external type 2
+       E1 - OSPF external type 1, E2 - OSPF external type 2
+       i - IS-IS, su - IS-IS summary, L1 - IS-IS level-1, L2 - IS-IS level-2
+       ia - IS-IS inter area, * - candidate default, U - per-user static route
+       o - ODR, P - periodic downloaded static route
+
+Gateway of last resort is not set
+
+C    192.168.1.0/24 is directly connected, FastEthernet0/0
+Routing Protocol is "rip"
+  Outgoing update filter list for all interfaces is not set
+  Incoming update filter list for all interfaces is not set
+  Sending updates every 30 seconds, next due in 16 seconds
+  Invalid after 180 seconds, hold down 180, flushed after 240
+  Redistributing: rip
+  Default version control: send version 2, receive version 2
+    Interface             Send  Recv  Triggered RIP  Key-chain
+    Serial0/0/0           2     2                                    
+  Automatic network summarization is not in effect
+  Maximum path: 4
+  Routing for Networks:
+    192.168.2.0
+  Routing Information Sources:
+    Gateway         Distance      Last Update
+  Distance: (default is 120)
+
+Routing Protocol is "ospf 1"
+  Outgoing update filter list for all interfaces is not set
+  Incoming update filter list for all interfaces is not set
+  Router ID 192.168.2.1
+  Number of areas in this router is 2. 2 normal 0 stub 0 nssa
+  Maximum path: 4
+  Routing for Networks:
+    10.0.0.0 0.0.0.255 area 1
+    192.168.2.0 0.0.0.255 area 0
+ Reference bandwidth unit is 100 mbps
+  Routing Information Sources:
+    Gateway         Distance      Last Update
+  Distance: (default is 110)
+
+
+
+[call api]
+调用时间：2021-01-11 15.00.37
+调用接口：executeConfigCommand
+configName:RIP
+settingNum:0
+获取configItem成功
+获取到的JSON数据：
+configName: RIP
+configDescription: 动态路由-RIP协议
+routerNum: 3
+configDetail: [{'routerName': 'RouterA', 'hostIp': '192.168.1.1', 'loginPassword': 'CISCO', 'enablePassword': 'CISCO', 'configCommands': ['configure terminal', 'interface s0/0/0', 'ip address 192.168.2.1 255.255.255.0', 'clock rate 64000', 'no shutdown', 'exit', 'ip routing', 'router rip', 'network 192.168.2.0', 'version 2', 'no auto-summary', 'end'], 'testCommands': ['show ip route', 'show ip protocols']}, {'routerName': 'RouterB', 'hostIp': '192.168.1.2', 'loginPassword': 'CISCO', 'enablePassword': 'CISCO', 'configCommands': ['configure terminal', 'int s0/0/0', 'ip address 192.168.2.2 255.255.255.0', 'clock rate 64000', 'no shutdown', 'int s0/0/1', 'ip address 192.168.3.1 255.255.255.0', 'clock rate 64000', 'no shutdown', 'exit', 'ip routing', 'router rip', 'network 192.168.2.0', 'network 192.168.3.0', 'version 2', 'no auto-summary', 'end'], 'testCommands': ['show ip route', 'show ip protocols']}, {'routerName': 'RouterC', 'hostIp': '192.168.1.3', 'loginPassword': 'CISCO', 'enablePassword': 'CISCO', 'configCommands': ['configure terminal', 'int s0/0/1', 'ip address 192.168.3.2 255.255.255.0', 'clock rate 64000', 'no shutdown', 'exit', 'ip routing', 'router rip', 'network 192.168.3.0', 'version 2 ', 'no auto-summary', 'end'], 'testCommands': ['show ip route', 'show ip protocols']}]
+获取程序参数成功
+host_ip: 192.168.1.1
+password_login: CISCO
+password_enable: CISCO
+configCommands: ['configure terminal', 'interface s0/0/0', 'ip address 192.168.2.1 255.255.255.0', 'clock rate 64000', 'no shutdown', 'exit', 'ip routing', 'router rip', 'network 192.168.2.0', 'version 2', 'no auto-summary', 'end']
+获取Telnet:RIP0的唯一对象……
+Telnet:RIP0对象已经创建，获取成功
+Telnet:RIP0对象创建成功！
+executeSomeCMD:
+['configure terminal', 'interface s0/0/0', 'ip address 192.168.2.1 255.255.255.0', 'clock rate 64000', 'no shutdown', 'exit', 'ip routing', 'router rip', 'network 192.168.2.0', 'version 2', 'no auto-summary', 'end']
+executeCMD:
+configure terminal
+executeCMD-Result:
+configure terminal
+Enter configuration commands, one per line.  End with CNTL/Z.
+Router(config)#
+executeCMD:
+interface s0/0/0
+executeCMD-Result:
+interface s0/0/0
+Router(config-if)#
+executeCMD:
+ip address 192.168.2.1 255.255.255.0
+executeCMD-Result:
+ip address 192.168.2.1 255.255.255.0
+Router(config-if)#
+executeCMD:
+clock rate 64000
+executeCMD-Result:
+clock rate 64000
+This command applies only to DCE interfaces
+Router(config-if)#
+executeCMD:
+no shutdown
+executeCMD-Result:
+no shutdown
+Router(config-if)#
+executeCMD:
+exit
+executeCMD-Result:
+exit
+Router(config)#
+executeCMD:
+ip routing
+executeCMD-Result:
+ip routing
+Router(config)#
+executeCMD:
+router rip
+executeCMD-Result:
+router rip
+Router(config-router)#
+executeCMD:
+network 192.168.2.0
+executeCMD-Result:
+network 192.168.2.0
+Router(config-router)#
+executeCMD:
+version 2
+executeCMD-Result:
+version 2
+Router(config-router)#
+executeCMD:
+no auto-summary
+executeCMD-Result:
+no auto-summary
+Router(config-router)#
+executeCMD:
+end
+executeCMD-Result:
+end
+Router#
+executeSomeCMD-Result:
+['configure terminal\nEnter configuration commands, one per line.  End with CNTL/Z.\nRouter(config)#', 'interface s0/0/0\nRouter(config-if)#', 'ip address 192.168.2.1 255.255.255.0\nRouter(config-if)#', 'clock rate 64000\nThis command applies only to DCE interfaces\nRouter(config-if)#', 'no shutdown\nRouter(config-if)#', 'exit\nRouter(config)#', 'ip routing\nRouter(config)#', 'router rip\nRouter(config-router)#', 'network 192.168.2.0\nRouter(config-router)#', 'version 2\nRouter(config-router)#', 'no auto-summary\nRouter(config-router)#', 'end\nRouter#']
+**程序输出**
+Router#configure terminal
+Enter configuration commands, one per line.  End with CNTL/Z.
+Router(config)#interface s0/0/0
+Router(config-if)#ip address 192.168.2.1 255.255.255.0
+Router(config-if)#clock rate 64000
+This command applies only to DCE interfaces
+Router(config-if)#no shutdown
+Router(config-if)#exit
+Router(config)#ip routing
+Router(config)#router rip
+Router(config-router)#network 192.168.2.0
+Router(config-router)#version 2
+Router(config-router)#no auto-summary
+Router(config-router)#end
+Router#
+
+**清理后输出**
+Enter configuration commands, one per line.  End with CNTL/Z.
+This command applies only to DCE interfaces
+
+
+[call api]
+调用时间：2021-01-11 15.00.39
+调用接口：executeTestCommand
+configName:RIP
+settingNum:0
+获取configItem成功
+获取到的JSON数据：
+configName: RIP
+configDescription: 动态路由-RIP协议
+routerNum: 3
+configDetail: [{'routerName': 'RouterA', 'hostIp': '192.168.1.1', 'loginPassword': 'CISCO', 'enablePassword': 'CISCO', 'configCommands': ['configure terminal', 'interface s0/0/0', 'ip address 192.168.2.1 255.255.255.0', 'clock rate 64000', 'no shutdown', 'exit', 'ip routing', 'router rip', 'network 192.168.2.0', 'version 2', 'no auto-summary', 'end'], 'testCommands': ['show ip route', 'show ip protocols']}, {'routerName': 'RouterB', 'hostIp': '192.168.1.2', 'loginPassword': 'CISCO', 'enablePassword': 'CISCO', 'configCommands': ['configure terminal', 'int s0/0/0', 'ip address 192.168.2.2 255.255.255.0', 'clock rate 64000', 'no shutdown', 'int s0/0/1', 'ip address 192.168.3.1 255.255.255.0', 'clock rate 64000', 'no shutdown', 'exit', 'ip routing', 'router rip', 'network 192.168.2.0', 'network 192.168.3.0', 'version 2', 'no auto-summary', 'end'], 'testCommands': ['show ip route', 'show ip protocols']}, {'routerName': 'RouterC', 'hostIp': '192.168.1.3', 'loginPassword': 'CISCO', 'enablePassword': 'CISCO', 'configCommands': ['configure terminal', 'int s0/0/1', 'ip address 192.168.3.2 255.255.255.0', 'clock rate 64000', 'no shutdown', 'exit', 'ip routing', 'router rip', 'network 192.168.3.0', 'version 2 ', 'no auto-summary', 'end'], 'testCommands': ['show ip route', 'show ip protocols']}]
+获取程序参数成功
+host_ip: 192.168.1.1
+password_login: CISCO
+password_enable: CISCO
+testCommands: ['show ip route', 'show ip protocols']
+获取Telnet:RIP0的唯一对象……
+Telnet:RIP0对象已经创建，获取成功
+Telnet:RIP0对象创建成功！
+executeSomeCMD:
+['show ip route', 'show ip protocols']
+executeCMD:
+show ip route
+executeCMD-Result:
+show ip route
+Codes: C - connected, S - static, R - RIP, M - mobile, B - BGP
+       D - EIGRP, EX - EIGRP external, O - OSPF, IA - OSPF inter area 
+       N1 - OSPF NSSA external type 1, N2 - OSPF NSSA external type 2
+       E1 - OSPF external type 1, E2 - OSPF external type 2
+       i - IS-IS, su - IS-IS summary, L1 - IS-IS level-1, L2 - IS-IS level-2
+       ia - IS-IS inter area, * - candidate default, U - per-user static route
+       o - ODR, P - periodic downloaded static route
+
+Gateway of last resort is not set
+
+C    192.168.1.0/24 is directly connected, FastEthernet0/0
+Router#
+executeCMD:
+show ip protocols
+executeCMD-Result:
+show ip protocols
+Routing Protocol is "rip"
+  Outgoing update filter list for all interfaces is not set
+  Incoming update filter list for all interfaces is not set
+  Sending updates every 30 seconds, next due in 2 seconds
+  Invalid after 180 seconds, hold down 180, flushed after 240
+  Redistributing: rip
+  Default version control: send version 2, receive version 2
+    Interface             Send  Recv  Triggered RIP  Key-chain
+    Serial0/0/0           2     2                                    
+  Automatic network summarization is not in effect
+  Maximum path: 4
+  Routing for Networks:
+    192.168.2.0
+  Routing Information Sources:
+    Gateway         Distance      Last Update
+  Distance: (default is 120)
+
+Routing Protocol is "ospf 1"
+  Outgoing update filter list for all interfaces is not set
+  Incoming update filter list for all interfaces is not set
+  Router ID 192.168.2.1
+  Number of areas in this router is 2. 2 normal 0 stub 0 nssa
+  Maximum path: 4
+  Routing for Networks:
+    10.0.0.0 0.0.0.255 area 1
+    192.168.2.0 0.0.0.255 area 0
+ Reference bandwidth unit is 100 mbps
+  Routing Information Sources:
+    Gateway         Distance      Last Update
+  Distance: (default is 110)
+
+Router#
+executeSomeCMD-Result:
+['show ip route\nCodes: C - connected, S - static, R - RIP, M - mobile, B - BGP\n       D - EIGRP, EX - EIGRP external, O - OSPF, IA - OSPF inter area \n       N1 - OSPF NSSA external type 1, N2 - OSPF NSSA external type 2\n       E1 - OSPF external type 1, E2 - OSPF external type 2\n       i - IS-IS, su - IS-IS summary, L1 - IS-IS level-1, L2 - IS-IS level-2\n       ia - IS-IS inter area, * - candidate default, U - per-user static route\n       o - ODR, P - periodic downloaded static route\n\nGateway of last resort is not set\n\nC    192.168.1.0/24 is directly connected, FastEthernet0/0\nRouter#', 'show ip protocols\nRouting Protocol is "rip"\n  Outgoing update filter list for all interfaces is not set\n  Incoming update filter list for all interfaces is not set\n  Sending updates every 30 seconds, next due in 2 seconds\n  Invalid after 180 seconds, hold down 180, flushed after 240\n  Redistributing: rip\n  Default version control: send version 2, receive version 2\n    Interface             Send  Recv  Triggered RIP  Key-chain\n    Serial0/0/0           2     2                                    \n  Automatic network summarization is not in effect\n  Maximum path: 4\n  Routing for Networks:\n    192.168.2.0\n  Routing Information Sources:\n    Gateway         Distance      Last Update\n  Distance: (default is 120)\n\nRouting Protocol is "ospf 1"\n  Outgoing update filter list for all interfaces is not set\n  Incoming update filter list for all interfaces is not set\n  Router ID 192.168.2.1\n  Number of areas in this router is 2. 2 normal 0 stub 0 nssa\n  Maximum path: 4\n  Routing for Networks:\n    10.0.0.0 0.0.0.255 area 1\n    192.168.2.0 0.0.0.255 area 0\n Reference bandwidth unit is 100 mbps\n  Routing Information Sources:\n    Gateway         Distance      Last Update\n  Distance: (default is 110)\n\nRouter#']
+**程序输出**
+Router#show ip route
+Codes: C - connected, S - static, R - RIP, M - mobile, B - BGP
+       D - EIGRP, EX - EIGRP external, O - OSPF, IA - OSPF inter area 
+       N1 - OSPF NSSA external type 1, N2 - OSPF NSSA external type 2
+       E1 - OSPF external type 1, E2 - OSPF external type 2
+       i - IS-IS, su - IS-IS summary, L1 - IS-IS level-1, L2 - IS-IS level-2
+       ia - IS-IS inter area, * - candidate default, U - per-user static route
+       o - ODR, P - periodic downloaded static route
+
+Gateway of last resort is not set
+
+C    192.168.1.0/24 is directly connected, FastEthernet0/0
+Router#show ip protocols
+Routing Protocol is "rip"
+  Outgoing update filter list for all interfaces is not set
+  Incoming update filter list for all interfaces is not set
+  Sending updates every 30 seconds, next due in 2 seconds
+  Invalid after 180 seconds, hold down 180, flushed after 240
+  Redistributing: rip
+  Default version control: send version 2, receive version 2
+    Interface             Send  Recv  Triggered RIP  Key-chain
+    Serial0/0/0           2     2                                    
+  Automatic network summarization is not in effect
+  Maximum path: 4
+  Routing for Networks:
+    192.168.2.0
+  Routing Information Sources:
+    Gateway         Distance      Last Update
+  Distance: (default is 120)
+
+Routing Protocol is "ospf 1"
+  Outgoing update filter list for all interfaces is not set
+  Incoming update filter list for all interfaces is not set
+  Router ID 192.168.2.1
+  Number of areas in this router is 2. 2 normal 0 stub 0 nssa
+  Maximum path: 4
+  Routing for Networks:
+    10.0.0.0 0.0.0.255 area 1
+    192.168.2.0 0.0.0.255 area 0
+ Reference bandwidth unit is 100 mbps
+  Routing Information Sources:
+    Gateway         Distance      Last Update
+  Distance: (default is 110)
+
+Router#
+
+**清理后输出**
+Codes: C - connected, S - static, R - RIP, M - mobile, B - BGP
+       D - EIGRP, EX - EIGRP external, O - OSPF, IA - OSPF inter area 
+       N1 - OSPF NSSA external type 1, N2 - OSPF NSSA external type 2
+       E1 - OSPF external type 1, E2 - OSPF external type 2
+       i - IS-IS, su - IS-IS summary, L1 - IS-IS level-1, L2 - IS-IS level-2
+       ia - IS-IS inter area, * - candidate default, U - per-user static route
+       o - ODR, P - periodic downloaded static route
+
+Gateway of last resort is not set
+
+C    192.168.1.0/24 is directly connected, FastEthernet0/0
+Routing Protocol is "rip"
+  Outgoing update filter list for all interfaces is not set
+  Incoming update filter list for all interfaces is not set
+  Sending updates every 30 seconds, next due in 2 seconds
+  Invalid after 180 seconds, hold down 180, flushed after 240
+  Redistributing: rip
+  Default version control: send version 2, receive version 2
+    Interface             Send  Recv  Triggered RIP  Key-chain
+    Serial0/0/0           2     2                                    
+  Automatic network summarization is not in effect
+  Maximum path: 4
+  Routing for Networks:
+    192.168.2.0
+  Routing Information Sources:
+    Gateway         Distance      Last Update
+  Distance: (default is 120)
+
+Routing Protocol is "ospf 1"
+  Outgoing update filter list for all interfaces is not set
+  Incoming update filter list for all interfaces is not set
+  Router ID 192.168.2.1
+  Number of areas in this router is 2. 2 normal 0 stub 0 nssa
+  Maximum path: 4
+  Routing for Networks:
+    10.0.0.0 0.0.0.255 area 1
+    192.168.2.0 0.0.0.255 area 0
+ Reference bandwidth unit is 100 mbps
+  Routing Information Sources:
+    Gateway         Distance      Last Update
+  Distance: (default is 110)
+
+
+
+[call api]
+调用时间：2021-01-11 15.00.45
+调用接口：executeConfigCommand
+configName:OSPF
+settingNum:0
+获取configItem成功
+获取到的JSON数据：
+configName: OSPF
+configDescription: 动态路由-OSPF协议
+routerNum: 3
+configDetail: [{'routerName': 'RouterA', 'hostIp': '192.168.1.1', 'loginPassword': 'CISCO', 'enablePassword': 'CISCO', 'configCommands': ['configure terminal', 'interface s0/0/0', 'ip address 192.168.2.1 255.255.255.0', 'clock rate 64000', 'no shutdown', 'exit', 'router ospf 1', 'network 192.168.2.0 0.0.0.255 area 0', 'network 10.0.0.0 0.0.0.255 area 1', 'end'], 'testCommands': ['show ip route', 'show ip protocols']}, {'routerName': 'RouterB', 'hostIp': '192.168.1.2', 'loginPassword': 'CISCO', 'enablePassword': 'CISCO', 'configCommands': ['configure terminal', 'int s0/0/0', 'ip address 192.168.2.2 255.255.255.0', 'clock rate 64000', 'no shutdown', 'int s0/0/1', 'ip address 192.168.3.1 255.255.255.0', 'clock rate 64000', 'no shutdown', 'exit', 'router ospf 1', 'network 192.168.2.0 0.0.0.255 area 0', 'network 192.168.3.0 0.0.0.255 area 51', 'end'], 'testCommands': ['show ip route', 'show ip protocols']}, {'routerName': 'RouterC', 'hostIp': '192.168.1.3', 'loginPassword': 'CISCO', 'enablePassword': 'CISCO', 'configCommands': ['configure terminal', 'int s0/0/1', 'ip address 192.168.3.2 255.255.255.0', 'clock rate 64000', 'no shutdown', 'exit', 'router ospf 1', 'network 10.0.0.0 0.0.0.255 area 1', 'network 192.168.3.0 0.0.0.255 area 51', 'end'], 'testCommands': ['show ip route', 'show ip protocols']}]
+获取程序参数成功
+host_ip: 192.168.1.1
+password_login: CISCO
+password_enable: CISCO
+configCommands: ['configure terminal', 'interface s0/0/0', 'ip address 192.168.2.1 255.255.255.0', 'clock rate 64000', 'no shutdown', 'exit', 'router ospf 1', 'network 192.168.2.0 0.0.0.255 area 0', 'network 10.0.0.0 0.0.0.255 area 1', 'end']
+获取Telnet:OSPF0的唯一对象……
+Telnet:OSPF0对象已经创建，获取成功
+Telnet:OSPF0对象创建成功！
+executeSomeCMD:
+['configure terminal', 'interface s0/0/0', 'ip address 192.168.2.1 255.255.255.0', 'clock rate 64000', 'no shutdown', 'exit', 'router ospf 1', 'network 192.168.2.0 0.0.0.255 area 0', 'network 10.0.0.0 0.0.0.255 area 1', 'end']
+executeCMD:
+configure terminal
+executeCMD-Result:
+configure terminal
+Enter configuration commands, one per line.  End with CNTL/Z.
+Router(config)#
+executeCMD:
+interface s0/0/0
+executeCMD-Result:
+interface s0/0/0
+Router(config-if)#
+executeCMD:
+ip address 192.168.2.1 255.255.255.0
+executeCMD-Result:
+ip address 192.168.2.1 255.255.255.0
+Router(config-if)#
+executeCMD:
+clock rate 64000
+executeCMD-Result:
+clock rate 64000
+This command applies only to DCE interfaces
+Router(config-if)#
+executeCMD:
+no shutdown
+executeCMD-Result:
+no shutdown
+Router(config-if)#
+executeCMD:
+exit
+executeCMD-Result:
+exit
+Router(config)#
+executeCMD:
+router ospf 1
+executeCMD-Result:
+router ospf 1
+Router(config-router)#
+executeCMD:
+network 192.168.2.0 0.0.0.255 area 0
+executeCMD-Result:
+network 192.168.2.0 0.0.0.255 area 0
+Router(config-router)#
+executeCMD:
+network 10.0.0.0 0.0.0.255 area 1
+executeCMD-Result:
+network 10.0.0.0 0.0.0.255 area 1
+Router(config-router)#
+executeCMD:
+end
+executeCMD-Result:
+end
+Router#
+executeSomeCMD-Result:
+['configure terminal\nEnter configuration commands, one per line.  End with CNTL/Z.\nRouter(config)#', 'interface s0/0/0\nRouter(config-if)#', 'ip address 192.168.2.1 255.255.255.0\nRouter(config-if)#', 'clock rate 64000\nThis command applies only to DCE interfaces\nRouter(config-if)#', 'no shutdown\nRouter(config-if)#', 'exit\nRouter(config)#', 'router ospf 1\nRouter(config-router)#', 'network 192.168.2.0 0.0.0.255 area 0\nRouter(config-router)#', 'network 10.0.0.0 0.0.0.255 area 1\nRouter(config-router)#', 'end\nRouter#']
+**程序输出**
+Router#configure terminal
+Enter configuration commands, one per line.  End with CNTL/Z.
+Router(config)#interface s0/0/0
+Router(config-if)#ip address 192.168.2.1 255.255.255.0
+Router(config-if)#clock rate 64000
+This command applies only to DCE interfaces
+Router(config-if)#no shutdown
+Router(config-if)#exit
+Router(config)#router ospf 1
+Router(config-router)#network 192.168.2.0 0.0.0.255 area 0
+Router(config-router)#network 10.0.0.0 0.0.0.255 area 1
+Router(config-router)#end
+Router#
+
+**清理后输出**
+Enter configuration commands, one per line.  End with CNTL/Z.
+This command applies only to DCE interfaces
+
+
+[call api]
+调用时间：2021-01-11 15.00.50
+调用接口：executeTestCommand
+configName:OSPF
+settingNum:0
+获取configItem成功
+获取到的JSON数据：
+configName: OSPF
+configDescription: 动态路由-OSPF协议
+routerNum: 3
+configDetail: [{'routerName': 'RouterA', 'hostIp': '192.168.1.1', 'loginPassword': 'CISCO', 'enablePassword': 'CISCO', 'configCommands': ['configure terminal', 'interface s0/0/0', 'ip address 192.168.2.1 255.255.255.0', 'clock rate 64000', 'no shutdown', 'exit', 'router ospf 1', 'network 192.168.2.0 0.0.0.255 area 0', 'network 10.0.0.0 0.0.0.255 area 1', 'end'], 'testCommands': ['show ip route', 'show ip protocols']}, {'routerName': 'RouterB', 'hostIp': '192.168.1.2', 'loginPassword': 'CISCO', 'enablePassword': 'CISCO', 'configCommands': ['configure terminal', 'int s0/0/0', 'ip address 192.168.2.2 255.255.255.0', 'clock rate 64000', 'no shutdown', 'int s0/0/1', 'ip address 192.168.3.1 255.255.255.0', 'clock rate 64000', 'no shutdown', 'exit', 'router ospf 1', 'network 192.168.2.0 0.0.0.255 area 0', 'network 192.168.3.0 0.0.0.255 area 51', 'end'], 'testCommands': ['show ip route', 'show ip protocols']}, {'routerName': 'RouterC', 'hostIp': '192.168.1.3', 'loginPassword': 'CISCO', 'enablePassword': 'CISCO', 'configCommands': ['configure terminal', 'int s0/0/1', 'ip address 192.168.3.2 255.255.255.0', 'clock rate 64000', 'no shutdown', 'exit', 'router ospf 1', 'network 10.0.0.0 0.0.0.255 area 1', 'network 192.168.3.0 0.0.0.255 area 51', 'end'], 'testCommands': ['show ip route', 'show ip protocols']}]
+获取程序参数成功
+host_ip: 192.168.1.1
+password_login: CISCO
+password_enable: CISCO
+testCommands: ['show ip route', 'show ip protocols']
+获取Telnet:OSPF0的唯一对象……
+Telnet:OSPF0对象已经创建，获取成功
+Telnet:OSPF0对象创建成功！
+executeSomeCMD:
+['show ip route', 'show ip protocols']
+executeCMD:
+show ip route
+executeCMD-Result:
+show ip route
+Codes: C - connected, S - static, R - RIP, M - mobile, B - BGP
+       D - EIGRP, EX - EIGRP external, O - OSPF, IA - OSPF inter area 
+       N1 - OSPF NSSA external type 1, N2 - OSPF NSSA external type 2
+       E1 - OSPF external type 1, E2 - OSPF external type 2
+       i - IS-IS, su - IS-IS summary, L1 - IS-IS level-1, L2 - IS-IS level-2
+       ia - IS-IS inter area, * - candidate default, U - per-user static route
+       o - ODR, P - periodic downloaded static route
+
+Gateway of last resort is not set
+
+C    192.168.1.0/24 is directly connected, FastEthernet0/0
+Router#
+executeCMD:
+show ip protocols
+executeCMD-Result:
+show ip protocols
+Routing Protocol is "rip"
+  Outgoing update filter list for all interfaces is not set
+  Incoming update filter list for all interfaces is not set
+  Sending updates every 30 seconds, next due in 20 seconds
+  Invalid after 180 seconds, hold down 180, flushed after 240
+  Redistributing: rip
+  Default version control: send version 2, receive version 2
+    Interface             Send  Recv  Triggered RIP  Key-chain
+    Serial0/0/0           2     2                                    
+  Automatic network summarization is not in effect
+  Maximum path: 4
+  Routing for Networks:
+    192.168.2.0
+  Routing Information Sources:
+    Gateway         Distance      Last Update
+  Distance: (default is 120)
+
+Routing Protocol is "ospf 1"
+  Outgoing update filter list for all interfaces is not set
+  Incoming update filter list for all interfaces is not set
+  Router ID 192.168.2.1
+  Number of areas in this router is 2. 2 normal 0 stub 0 nssa
+  Maximum path: 4
+  Routing for Networks:
+    10.0.0.0 0.0.0.255 area 1
+    192.168.2.0 0.0.0.255 area 0
+ Reference bandwidth unit is 100 mbps
+  Routing Information Sources:
+    Gateway         Distance      Last Update
+  Distance: (default is 110)
+
+Router#
+executeSomeCMD-Result:
+['show ip route\nCodes: C - connected, S - static, R - RIP, M - mobile, B - BGP\n       D - EIGRP, EX - EIGRP external, O - OSPF, IA - OSPF inter area \n       N1 - OSPF NSSA external type 1, N2 - OSPF NSSA external type 2\n       E1 - OSPF external type 1, E2 - OSPF external type 2\n       i - IS-IS, su - IS-IS summary, L1 - IS-IS level-1, L2 - IS-IS level-2\n       ia - IS-IS inter area, * - candidate default, U - per-user static route\n       o - ODR, P - periodic downloaded static route\n\nGateway of last resort is not set\n\nC    192.168.1.0/24 is directly connected, FastEthernet0/0\nRouter#', 'show ip protocols\nRouting Protocol is "rip"\n  Outgoing update filter list for all interfaces is not set\n  Incoming update filter list for all interfaces is not set\n  Sending updates every 30 seconds, next due in 20 seconds\n  Invalid after 180 seconds, hold down 180, flushed after 240\n  Redistributing: rip\n  Default version control: send version 2, receive version 2\n    Interface             Send  Recv  Triggered RIP  Key-chain\n    Serial0/0/0           2     2                                    \n  Automatic network summarization is not in effect\n  Maximum path: 4\n  Routing for Networks:\n    192.168.2.0\n  Routing Information Sources:\n    Gateway         Distance      Last Update\n  Distance: (default is 120)\n\nRouting Protocol is "ospf 1"\n  Outgoing update filter list for all interfaces is not set\n  Incoming update filter list for all interfaces is not set\n  Router ID 192.168.2.1\n  Number of areas in this router is 2. 2 normal 0 stub 0 nssa\n  Maximum path: 4\n  Routing for Networks:\n    10.0.0.0 0.0.0.255 area 1\n    192.168.2.0 0.0.0.255 area 0\n Reference bandwidth unit is 100 mbps\n  Routing Information Sources:\n    Gateway         Distance      Last Update\n  Distance: (default is 110)\n\nRouter#']
+**程序输出**
+Router#show ip route
+Codes: C - connected, S - static, R - RIP, M - mobile, B - BGP
+       D - EIGRP, EX - EIGRP external, O - OSPF, IA - OSPF inter area 
+       N1 - OSPF NSSA external type 1, N2 - OSPF NSSA external type 2
+       E1 - OSPF external type 1, E2 - OSPF external type 2
+       i - IS-IS, su - IS-IS summary, L1 - IS-IS level-1, L2 - IS-IS level-2
+       ia - IS-IS inter area, * - candidate default, U - per-user static route
+       o - ODR, P - periodic downloaded static route
+
+Gateway of last resort is not set
+
+C    192.168.1.0/24 is directly connected, FastEthernet0/0
+Router#show ip protocols
+Routing Protocol is "rip"
+  Outgoing update filter list for all interfaces is not set
+  Incoming update filter list for all interfaces is not set
+  Sending updates every 30 seconds, next due in 20 seconds
+  Invalid after 180 seconds, hold down 180, flushed after 240
+  Redistributing: rip
+  Default version control: send version 2, receive version 2
+    Interface             Send  Recv  Triggered RIP  Key-chain
+    Serial0/0/0           2     2                                    
+  Automatic network summarization is not in effect
+  Maximum path: 4
+  Routing for Networks:
+    192.168.2.0
+  Routing Information Sources:
+    Gateway         Distance      Last Update
+  Distance: (default is 120)
+
+Routing Protocol is "ospf 1"
+  Outgoing update filter list for all interfaces is not set
+  Incoming update filter list for all interfaces is not set
+  Router ID 192.168.2.1
+  Number of areas in this router is 2. 2 normal 0 stub 0 nssa
+  Maximum path: 4
+  Routing for Networks:
+    10.0.0.0 0.0.0.255 area 1
+    192.168.2.0 0.0.0.255 area 0
+ Reference bandwidth unit is 100 mbps
+  Routing Information Sources:
+    Gateway         Distance      Last Update
+  Distance: (default is 110)
+
+Router#
+
+**清理后输出**
+Codes: C - connected, S - static, R - RIP, M - mobile, B - BGP
+       D - EIGRP, EX - EIGRP external, O - OSPF, IA - OSPF inter area 
+       N1 - OSPF NSSA external type 1, N2 - OSPF NSSA external type 2
+       E1 - OSPF external type 1, E2 - OSPF external type 2
+       i - IS-IS, su - IS-IS summary, L1 - IS-IS level-1, L2 - IS-IS level-2
+       ia - IS-IS inter area, * - candidate default, U - per-user static route
+       o - ODR, P - periodic downloaded static route
+
+Gateway of last resort is not set
+
+C    192.168.1.0/24 is directly connected, FastEthernet0/0
+Routing Protocol is "rip"
+  Outgoing update filter list for all interfaces is not set
+  Incoming update filter list for all interfaces is not set
+  Sending updates every 30 seconds, next due in 20 seconds
+  Invalid after 180 seconds, hold down 180, flushed after 240
+  Redistributing: rip
+  Default version control: send version 2, receive version 2
+    Interface             Send  Recv  Triggered RIP  Key-chain
+    Serial0/0/0           2     2                                    
+  Automatic network summarization is not in effect
+  Maximum path: 4
+  Routing for Networks:
+    192.168.2.0
+  Routing Information Sources:
+    Gateway         Distance      Last Update
+  Distance: (default is 120)
+
+Routing Protocol is "ospf 1"
+  Outgoing update filter list for all interfaces is not set
+  Incoming update filter list for all interfaces is not set
+  Router ID 192.168.2.1
+  Number of areas in this router is 2. 2 normal 0 stub 0 nssa
+  Maximum path: 4
+  Routing for Networks:
+    10.0.0.0 0.0.0.255 area 1
+    192.168.2.0 0.0.0.255 area 0
+ Reference bandwidth unit is 100 mbps
+  Routing Information Sources:
+    Gateway         Distance      Last Update
+  Distance: (default is 110)
+
+
+

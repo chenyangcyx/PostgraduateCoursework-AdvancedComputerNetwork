@@ -1,0 +1,7 @@
+[call api]
+调用时间：2021-01-11 14.32.04
+调用接口：executeConfigCommand
+configName:RIP_normal
+settingNum:0
+获取configItem成功
+获取到的JSON数据：

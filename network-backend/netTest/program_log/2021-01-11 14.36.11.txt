@@ -1,0 +1,6 @@
+[call api]
+调用时间：2021-01-11 14.36.16
+调用接口：executeConfigCommand
+configName:RIP_normal
+settingNum:0
+获取configItem成功

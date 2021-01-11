@@ -1,0 +1,11 @@
+具体配置：
+host_ip: 192.168.1.2
+password_login: CISCO
+password_enable: CISCO
+configCommands: ['configure terminal', 'int s0/0/0', 'ip address 192.168.2.2 255.255.255.0', 'clock rate 64000', 'no shutdown', 'int s0/0/1', 'ip address 192.168.3.1 255.255.255.0', 'clock rate 64000', 'no shutdown', 'exit', 'ip routing', 'router rip', 'network 192.168.2.0', 'network 192.168.3.0', 'version 2', 'no auto-summary', 'end']
+testCommands: ['show ip route']
+
+开始连接主机: 192.168.1.2
+无法连接到主机192.168.1.2: timed out
+Telnet连接失败，重试……
+开始连接主机: 192.168.1.2

@@ -1,0 +1,7 @@
+具体配置：
+host_ip: 192.168.1.1
+password_login: CISCO
+password_enable: CISCO
+configCommands: ['configure terminal', 'interface s0/0/0', 'ip address 192.168.2.1 255.255.255.0', 'clock rate 64000', 'no shutdown', 'exit', 'ip routing', 'router rip', 'network 192.168.2.0', 'version 2', 'no auto-summary', 'end']
+testCommands: ['show ip route']
+

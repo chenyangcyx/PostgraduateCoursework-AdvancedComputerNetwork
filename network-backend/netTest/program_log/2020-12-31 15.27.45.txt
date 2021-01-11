@@ -1,0 +1,215 @@
+具体配置：
+host_ip: 192.168.1.2
+password_login: CISCO
+password_enable: CISCO
+configCommands: ['configure terminal', 'int s0/0/0', 'ip address 192.168.2.2 255.255.255.0', 'clock rate 64000', 'no shutdown', 'int s0/0/1', 'ip address 192.168.3.1 255.255.255.0', 'clock rate 64000', 'no shutdown', 'exit', 'ip routing', 'router rip', 'network 192.168.2.0', 'network 192.168.3.0', 'version 2', 'no auto-summary', 'end']
+testCommands: ['show ip route']
+
+开始连接主机: 192.168.1.2
+连接成功！
+进入特权模式……
+进入enable模式成功！
+
+测试发送命令……
+executeSomeCMD:
+['configure terminal', 'int s0/0/0', 'ip address 192.168.2.2 255.255.255.0', 'clock rate 64000', 'no shutdown', 'int s0/0/1', 'ip address 192.168.3.1 255.255.255.0', 'clock rate 64000', 'no shutdown', 'exit', 'ip routing', 'router rip', 'network 192.168.2.0', 'network 192.168.3.0', 'version 2', 'no auto-summary', 'end']
+executeCMD:
+configure terminal
+executeCMD-Result:
+configure terminal
+Enter configuration commands, one per line.  End with CNTL/Z.
+Router(config)#
+
+executeCMD:
+int s0/0/0
+executeCMD-Result:
+int s0/0/0
+Router(config-if)#
+
+executeCMD:
+ip address 192.168.2.2 255.255.255.0
+executeCMD-Result:
+ip address 192.168.2.2 255.255.255.0
+Router(config-if)#
+
+executeCMD:
+clock rate 64000
+executeCMD-Result:
+clock rate 64000
+Router(config-if)#
+
+executeCMD:
+no shutdown
+executeCMD-Result:
+no shutdown
+Router(config-if)#
+
+executeCMD:
+int s0/0/1
+executeCMD-Result:
+int s0/0/1
+Router(config-if)#
+
+executeCMD:
+ip address 192.168.3.1 255.255.255.0
+executeCMD-Result:
+ip address 192.168.3.1 255.255.255.0
+Router(config-if)#
+
+executeCMD:
+clock rate 64000
+executeCMD-Result:
+clock rate 64000
+Router(config-if)#
+
+executeCMD:
+no shutdown
+executeCMD-Result:
+no shutdown
+Router(config-if)#
+
+executeCMD:
+exit
+executeCMD-Result:
+exit
+Router(config)#
+
+executeCMD:
+ip routing
+executeCMD-Result:
+ip routing
+Router(config)#
+
+executeCMD:
+router rip
+executeCMD-Result:
+router rip
+Router(config-router)#
+
+executeCMD:
+network 192.168.2.0
+executeCMD-Result:
+network 192.168.2.0
+Router(config-router)#
+
+executeCMD:
+network 192.168.3.0
+executeCMD-Result:
+network 192.168.3.0
+Router(config-router)#
+
+executeCMD:
+version 2
+executeCMD-Result:
+version 2
+Router(config-router)#
+
+executeCMD:
+no auto-summary
+executeCMD-Result:
+no auto-summary
+Router(config-router)#
+
+executeCMD:
+end
+executeCMD-Result:
+end
+Router#
+
+executeSomeCMD-Result:
+['configure terminal\nEnter configuration commands, one per line.  End with CNTL/Z.\nRouter(config)#\n', 'int s0/0/0\nRouter(config-if)#\n', 'ip address 192.168.2.2 255.255.255.0\nRouter(config-if)#\n', 'clock rate 64000\nRouter(config-if)#\n', 'no shutdown\nRouter(config-if)#\n', 'int s0/0/1\nRouter(config-if)#\n', 'ip address 192.168.3.1 255.255.255.0\nRouter(config-if)#\n', 'clock rate 64000\nRouter(config-if)#\n', 'no shutdown\nRouter(config-if)#\n', 'exit\nRouter(config)#\n', 'ip routing\nRouter(config)#\n', 'router rip\nRouter(config-router)#\n', 'network 192.168.2.0\nRouter(config-router)#\n', 'network 192.168.3.0\nRouter(config-router)#\n', 'version 2\nRouter(config-router)#\n', 'no auto-summary\nRouter(config-router)#\n', 'end\nRouter#\n']
+**程序输出**
+configure terminal
+Enter configuration commands, one per line.  End with CNTL/Z.
+Router(config)#
+
+int s0/0/0
+Router(config-if)#
+
+ip address 192.168.2.2 255.255.255.0
+Router(config-if)#
+
+clock rate 64000
+Router(config-if)#
+
+no shutdown
+Router(config-if)#
+
+int s0/0/1
+Router(config-if)#
+
+ip address 192.168.3.1 255.255.255.0
+Router(config-if)#
+
+clock rate 64000
+Router(config-if)#
+
+no shutdown
+Router(config-if)#
+
+exit
+Router(config)#
+
+ip routing
+Router(config)#
+
+router rip
+Router(config-router)#
+
+network 192.168.2.0
+Router(config-router)#
+
+network 192.168.3.0
+Router(config-router)#
+
+version 2
+Router(config-router)#
+
+no auto-summary
+Router(config-router)#
+
+end
+Router#
+
+
+测试获取Neighbors……
+**程序输出**
+getNeighbors……
+getNeighbors-Result: []
+
+测试获取Version-1……
+**程序输出**
+getVersion, function:get_model()……
+getVersion-Result: Error, This model of switch is not supported by this version of CiscoLib
+Please contact the CiscoLib developer for help.
+
+Reason: Unable to do `show version`
+
+
+测试获取Version-2……
+**程序输出**
+getVersion, function:get_ios_version()……
+getVersion-Result: Error, This model of switch is not supported by this version of CiscoLib
+Please contact the CiscoLib developer for help.
+
+Reason: Unable to do `show version`
+
+
+测试获取Interfaces……
+**程序输出**
+getAllInterfaces……
+getAllInterfaces: Error, This model of switch is not supported by this version of CiscoLib
+Please contact the CiscoLib developer for help.
+
+Reason: Unable to parse `show interfaces`
+
+
+测试获取ARPTable……
+**程序输出**
+getARPTable……
+getARPTable-Result: [{'ip': '192.168.1.2', 'age': '-', 'mac': '04fe.7f37.49b8', 'interface': 'FastEthernet0/0'}, {'ip': '192.168.1.100', 'age': '0', 'mac': '80fa.5b32.4a0b', 'interface': 'FastEthernet0/0'}]
+
+测试获取MACTable……
+**程序输出**
+getMACTable……
+getMACTable-Result: []
