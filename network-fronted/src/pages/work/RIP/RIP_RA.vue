@@ -20,7 +20,6 @@
 import VueCommand, {createStdout} from 'vue-command';
 import 'vue-command/dist/vue-command.css';
 import api from '@/api2/bigwork'
-import command from './RA.json'
 
 export default {
   name: 'Command',

@@ -10,7 +10,7 @@
           <el-input   v-model="ip" autocomplete="off"></el-input>
         </el-form-item>
         <el-form-item label="端口" >
-          <el-input   v-model="port" autocomplete="off"></el-input>
+          <el-input   v-model="interface1" autocomplete="off"></el-input>
         </el-form-item>
         <el-form-item label="子网掩码" >
           <el-input   v-model="mask" autocomplete="off"></el-input>
@@ -18,6 +18,7 @@
 
         <el-form-item>
           <el-button type="primary" @click="submitForm()">提交</el-button>
+          <el-button type="primary" @click="defaultConfig()">默认配置</el-button>
           <el-button @click="resetForm()">重置</el-button>
         </el-form-item>
       </el-form>
@@ -28,12 +29,13 @@
 </template>
 
 <script>
+import api from "@/api2/bigwork"
 export default {
   name: "RouterConfig",
   data(){
     return {
       host : null,
-      port: null,
+      interface1: null,
       ip: null,
       mask: null,
 
@@ -41,13 +43,16 @@ export default {
   },
   methods: {
     submitForm(){
-
+      api.setRouterIP(this.host,this.interface1,this.ip,this.mask)
     },
     resetForm(){
       this.host = null;
       this.port = null;
       this.ip = null;
       this.mask = null
+    },
+    defaultConfig(){
+      api.setRouterIPDefault()
     }
   }
 }

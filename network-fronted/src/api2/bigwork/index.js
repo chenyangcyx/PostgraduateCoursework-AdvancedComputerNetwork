@@ -43,9 +43,9 @@ export default {
     // interface:base64(string)
     // ipAddress:base64(string)
     // netMask:base64(string)
-    setRouterIP(telnetHost,interface,ipAddress,netMask){
+    setRouterIP(telnetHost,interface1,ipAddress,netMask){
         return request.request({
-            url: `/setRouterIP/?telnetHost=${Base64.encode(telnetHost)}&interface=${Base64.encode(interface)}&ipAddress=${Base64.encode(ipAddress)}&netMask=${Base64.encode(netMask)}}`,
+            url: `/setRouterIP/?telnetHost=${Base64.encode(telnetHost)}&interface=${Base64.encode(interface1)}&ipAddress=${Base64.encode(ipAddress)}&netMask=${Base64.encode(netMask)}}`,
             method: "get"
         })
     },
@@ -100,9 +100,9 @@ export default {
     // configName:string
     // routerNum:int
     // interface:base64(string)
-    checkInterface(configName,routerNum,interface){
+    checkInterface(configName,routerNum){
         return request.request({
-            url: `/checkInterface/?configName=${configName}&routerNum=${routerNum}&interface=${Base64.encode(interface)}`,
+            url: `/checkInterface/?configName=${configName}&routerNum=${routerNum}`,
             method: "get"
         })
     },
@@ -134,6 +134,13 @@ export default {
     ping(configName,routerNum,pingAddress){
         return request.request({
             url: `/ping/?configName=${configName}&routerNum=${routerNum}&pingAddress=${Base64.encode(pingAddress)}`,
+            method: "get"
+        })
+    },
+
+    checkRouterProtocol(configName,routerNum){
+        return request.request({
+            url: `/checkIPProtocols/?configName=${configName}&routerNum=${routerNum}`,
             method: "get"
         })
     }

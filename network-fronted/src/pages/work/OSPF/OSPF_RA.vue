@@ -1,7 +1,6 @@
 <template>
   <router ref="router"
           @executeConfigCommand="executeConfigCommand"
-          @executeTestCommand="executeTestCommand"
           @generateTemplate="generateTemplate"
           @executeCustomizedOrder="executeCustomizedOrder"
           @ping="ping"
@@ -10,11 +9,11 @@
           @checkRouterProtocol="checkRouterProtocol"
           @checkInterface="checkInterface"
           @validateConfig="validateConfig"
-        ></router>
+  ></router>
 </template>
 
 <script>
-import  {createStdout} from 'vue-command';
+import {createStdout} from 'vue-command';
 import api from '@/api2/bigwork'
 import Router from "@/pages/work/common/Router";
 import utils from "@/utils/Commonutils";
@@ -22,83 +21,84 @@ import utils from "@/utils/Commonutils";
 export default {
   name: 'Command',
   components: {
-  Router
+    Router
   },
   created() {
   },
   mounted() {
   },
   data: () => ({
+    configName: "OSPF",
+    routerNum: 0
   }),
   methods: {
     //配置路由器
     executeConfigCommand(config) {
       utils.sleep(100).then(r => {
-        let configName = "OSPF";
-        let settingNum = 0;
+        let commands = config.split("\n");
         let router = this.$refs.router;
-        console.log(router);
-        api.executeConfigCommand(configName, settingNum).then(res => {
-          router.history.push(createStdout("配置命令如下: <br>" + res.original_result.join("<br>")))
-          let str = "<br>结果如下：<br>" + res.handle_result.join("<br>");
-          router.history.push(createStdout(str));
-        });
+        api.executeSomeCommand(this.configName, this.routerNum, commands).then(res => {
+          router.history.push(createStdout("配置路由器结果如下: <br>" + res.result.join("<br>")))
+        })
       })
     },
     //生成模板
-    generateTemplate(){
-      let router = this.$refs.router.config = 'no\n' +
-          'enable\n' +
-          'configure terminal\n' +
-          'interface f0/0\n' +
-          'ip address 192.168.1.1 255.255.255.0\n' +
-          'no shutdown\n' +
-          'exit\n' +
-          'line vty 0 4\n' +
-          'password CISCO\n' +
-          'login\n' +
-          'exit\n' +
-          'enable password CISCO\n' +
-          'exit'
+    generateTemplate() {
+      let router = this.$refs.router;
+      api.generateTemplate(this.configName, this.routerNum).then(res => {
+        router.config = res.result.join('\n');
+      })
     },
     //执行用户自定义命令
-    executeCustomizedOrder(text){
-      console.log(text.split("\n"));
+    executeCustomizedOrder(config) {
+      let commands = config.split("\n");
+      let router = this.$refs.router;
+      api.executeSomeCommand(this.configName, this.routerNum, commands).then(res => {
+        router.history.push(createStdout("执行用户自定义命令结果如下: <br>" + res.result.join("<br>")))
+      })
     },
-    //执行ping命令
-    ping(){
-
+    //执行ping命令,如果有多个ip，使用，分割
+    ping(ips) {
+      let router = this.$refs.router;
+      api.ping(this.configName, this.routerNum, ips).then(res => {
+        router.history.push(createStdout("执行ping命令结果如下: <br>" + res.result.join("<br>")))
+      })
     },
     //清除所有配置
-    clearAllConfig(){
-
+    clearAllConfig() {
+      api.clearAllConfig(this.configName, this.routerNum)
     },
     //查看路由表
-    checkRouterTable(){},
+    checkRouterTable() {
+      let router = this.$refs.router;
+      api.checkIPRoute(this.configName,this.routerNum).then(res=>{
+        router.history.push(createStdout("查看路由表结果如下: <br>" + res.result.join("<br>")))
+      })
+
+    },
     //查看路由协议
-    checkRouterProtocol(){
+    checkRouterProtocol() {
+      let configName = "OSPF";
+      let routerNum = 0;
+      let router = this.$refs.router;
+      api.checkRouterProtocol(configName,routerNum).then(res=>{
+        router.history.push(createStdout("查看路由表结果如下: <br>" + res.result.join("<br>")))
+      })
 
     },
     //查看接口信息
-    checkInterface(){
+    checkInterface() {
+      let router = this.$refs.router;
+      api.checkInterface(this.configName,this.routerNum).then(res=>{
+        router.history.push(createStdout("查看接口信息结果如下: <br>" + res.result.join("<br>")))
+      })
 
     },
     //验证配置结果
-    validateConfig(){
-
-    },
-
-    //查看结果
-    executeTestCommand() {
-      this.sleep(100).then(res=>{
-        let configName = "OSPF";
-        let settingNum = 0;
-        let router = this.$refs.router;
-        api.executeTestCommand(configName,settingNum).then(res=>{
-          router.history.push(createStdout("查询命令如下: <br>" + res.original_result.join("<br>")))
-          let str = "<br>结果如下：<br>" + res.handle_result.join("<br>");
-          router.history.push(createStdout(str));
-        });
+    validateConfig() {
+      let router = this.$refs.router;
+      api.validateConfig(this.configName,this.routerNum).then(res=>{
+        router.history.push(createStdout("验证配置结果: <br>" + res.result.join("<br>")))
       })
     },
   }

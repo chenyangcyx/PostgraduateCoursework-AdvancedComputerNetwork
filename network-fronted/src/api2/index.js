@@ -21,6 +21,14 @@ request.interceptors.response.use(
         //     })
         //     return Promise.reject('error')
         // }
+        if(response.data.message){
+            Message({
+                message: response.data.message,
+                type: "info",
+                duration: 5000
+            })
+        }
+
         return response.data;
     },
     error => {
