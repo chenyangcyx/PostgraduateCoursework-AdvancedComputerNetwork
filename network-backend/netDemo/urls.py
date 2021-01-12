@@ -18,8 +18,14 @@ from django.conf.urls import url
 from netTest import api
 
 urlpatterns = [
-    url(r'^executeConfigCommand/$', api.executeConfigCommand),
-    url(r'^executeTestCommand/$', api.executeTestCommand),
-    url(r'^executeOneCommand/$', api.executeOneCommand),
-    url(r'^executeCommand/$', api.executeCommand)
+    url(r'^setRouterIP/$', api.setRouterIP),
+    url(r'^setRouterIPDefault/$', api.setRouterIPDefault),
+    url(r'^executeSomeCommand/$', api.executeSomeCommand),
+    url(r'^generateTemplate/$', api.generateTemplate),
+    url(r'^checkIPRoute/$', api.checkIPRoute),
+    url(r'^checkIPProtocols/$', api.checkIPProtocols),
+    url(r'^checkInterface/$', api.checkInterface),
+    url(r'^validateConfig/$', api.validateConfig),
+    url(r'^clearAllConfig/$', api.clearAllConfig),
+    url(r'^ping/$', api.ping)
 ]

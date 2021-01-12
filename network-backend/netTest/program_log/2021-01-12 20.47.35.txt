@@ -1,0 +1,117 @@
+configName:RIP
+routerNum:0
+commands:['configure terminal', 'interface s0/0/0', 'ip address 192.168.2.1 255.255.255.0', 'clock rate 64000', 'no shutdown', 'end']
+获取Telnet:Router0的唯一对象……
+Telnet:Router0对象未被创建，开始创建……
+开始连接主机: 192.168.1.1
+连接成功！
+进入特权模式……
+进入enable模式成功！
+executeSomeCMD:
+['configure terminal', 'interface s0/0/0', 'ip address 192.168.2.1 255.255.255.0', 'clock rate 64000', 'no shutdown', 'end']
+executeSomeCMD-Result:
+['configure terminal\nEnter configuration commands, one per line.  End with CNTL/Z.\nRouter(config)#', 'interface s0/0/0\nRouter(config-if)#', 'ip address 192.168.2.1 255.255.255.0\nRouter(config-if)#', 'clock rate 64000\nThis command applies only to DCE interfaces\nRouter(config-if)#', 'no shutdown\nRouter(config-if)#', 'end\nRouter#']
+**程序输出**
+Router#configure terminal
+Enter configuration commands, one per line.  End with CNTL/Z.
+Router(config)#interface s0/0/0
+Router(config-if)#ip address 192.168.2.1 255.255.255.0
+Router(config-if)#clock rate 64000
+This command applies only to DCE interfaces
+Router(config-if)#no shutdown
+Router(config-if)#end
+Router#
+
+
+configName:RIP
+routerNum:1
+commands:['configure terminal', 'interface s0/0/0', 'ip address 192.168.2.2 255.255.255.0', 'clock rate 64000', 'no shutdown', 'end', 'configure terminal', 'interface s0/0/1', 'ip address 192.168.3.1 255.255.255.0', 'clock rate 64000', 'no shutdown', 'end']
+获取Telnet:Router1的唯一对象……
+Telnet:Router1对象未被创建，开始创建……
+开始连接主机: 192.168.1.2
+连接成功！
+进入特权模式……
+进入enable模式成功！
+executeSomeCMD:
+['configure terminal', 'interface s0/0/0', 'ip address 192.168.2.2 255.255.255.0', 'clock rate 64000', 'no shutdown', 'end', 'configure terminal', 'interface s0/0/1', 'ip address 192.168.3.1 255.255.255.0', 'clock rate 64000', 'no shutdown', 'end']
+executeSomeCMD-Result:
+['configure terminal\nEnter configuration commands, one per line.  End with CNTL/Z.\nRouter(config)#', 'interface s0/0/0\nRouter(config-if)#', 'ip address 192.168.2.2 255.255.255.0\nRouter(config-if)#', 'clock rate 64000\nRouter(config-if)#', 'no shutdown\nRouter(config-if)#', 'end\nRouter#', 'configure terminal\nEnter configuration commands, one per line.  End with CNTL/Z.\nRouter(config)#', 'interface s0/0/1\nRouter(config-if)#', 'ip address 192.168.3.1 255.255.255.0\nRouter(config-if)#', 'clock rate 64000\nRouter(config-if)#', 'no shutdown\nRouter(config-if)#', 'end\nRouter#']
+**程序输出**
+Router#configure terminal
+Enter configuration commands, one per line.  End with CNTL/Z.
+Router(config)#interface s0/0/0
+Router(config-if)#ip address 192.168.2.2 255.255.255.0
+Router(config-if)#clock rate 64000
+Router(config-if)#no shutdown
+Router(config-if)#end
+Router#configure terminal
+Enter configuration commands, one per line.  End with CNTL/Z.
+Router(config)#interface s0/0/1
+Router(config-if)#ip address 192.168.3.1 255.255.255.0
+Router(config-if)#clock rate 64000
+Router(config-if)#no shutdown
+Router(config-if)#end
+Router#
+
+
+configName:RIP
+routerNum:2
+commands:['configure terminal', 'interface s0/0/1', 'ip address 192.168.3.2 255.255.255.0', 'clock rate 64000', 'no shutdown', 'end']
+获取Telnet:Router2的唯一对象……
+Telnet:Router2对象未被创建，开始创建……
+开始连接主机: 192.168.1.3
+连接成功！
+进入特权模式……
+进入enable模式成功！
+executeSomeCMD:
+['configure terminal', 'interface s0/0/1', 'ip address 192.168.3.2 255.255.255.0', 'clock rate 64000', 'no shutdown', 'end']
+executeSomeCMD-Result:
+['configure terminal\nEnter configuration commands, one per line.  End with CNTL/Z.\nRouter(config)#', 'interface s0/0/1\nRouter(config-if)#', 'ip address 192.168.3.2 255.255.255.0\nRouter(config-if)#', 'clock rate 64000\nThis command applies only to DCE interfaces\nRouter(config-if)#', 'no shutdown\nRouter(config-if)#', 'end\nRouter#']
+**程序输出**
+Router#configure terminal
+Enter configuration commands, one per line.  End with CNTL/Z.
+Router(config)#interface s0/0/1
+Router(config-if)#ip address 192.168.3.2 255.255.255.0
+Router(config-if)#clock rate 64000
+This command applies only to DCE interfaces
+Router(config-if)#no shutdown
+Router(config-if)#end
+Router#
+
+
+[call api]
+调用时间：2021-01-12 20.47.50
+调用接口：generateTemplate
+configName:RIP
+settingNum:0
+commands: ['configure terminal', 'ip routing', 'router rip', 'network 192.168.2.0', 'version 2', 'no auto-summary', 'end']
+[call api]
+调用时间：2021-01-12 20.47.52
+调用接口：generateTemplate
+configName:RIP
+settingNum:1
+commands: ['configure terminal', 'ip routing', 'router rip', 'network 192.168.2.0', 'network 192.168.3.0', 'version 2', 'no auto-summary', 'end']
+[call api]
+调用时间：2021-01-12 20.47.54
+调用接口：generateTemplate
+configName:RIP
+settingNum:2
+commands: ['configure terminal', 'ip routing', 'router rip', 'network 192.168.3.0', 'version 2 ', 'no auto-summary', 'end']
+[call api]
+调用时间：2021-01-12 20.47.58
+调用接口：generateTemplate
+configName:OSPF
+settingNum:0
+commands: ['configure terminal', 'router ospf 1', 'network 192.168.2.0 0.0.0.255 area 0', 'network 10.0.0.0 0.255.255.255 area 51', 'end']
+[call api]
+调用时间：2021-01-12 20.48.00
+调用接口：generateTemplate
+configName:OSPF
+settingNum:1
+commands: ['configure terminal', 'router ospf 1', 'network 192.168.2.0 0.0.0.255 area 0', 'network 192.168.3.0 0.0.0.255 area 1', 'end']
+[call api]
+调用时间：2021-01-12 20.48.02
+调用接口：generateTemplate
+configName:OSPF
+settingNum:2
+commands: ['configure terminal', 'router ospf 1', 'network 192.168.3.0 0.0.0.255 area 1', 'network 10.0.0.0 0.255.255.255 area 51', 'end']

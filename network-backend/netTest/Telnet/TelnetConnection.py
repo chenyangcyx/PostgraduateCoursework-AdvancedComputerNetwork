@@ -45,9 +45,7 @@ class TelnetClient:
 
     # 执行命令
     def executeCMD(self, cmd):
-        self.logger.handleMsg('executeCMD:\n%s' % cmd)
         result = self.tn.cmd(cmd).replace("\r\n", "\n")
-        self.logger.handleMsg('executeCMD-Result:\n%s' % result)
         return result
 
     # 执行多条命令

@@ -1,0 +1,231 @@
+[call api]
+调用时间：2021-01-12 20.52.31
+调用接口：validateConfig
+configName:OSPF
+routerNum:0
+commands:['show ip route']
+获取Telnet:Router0的唯一对象……
+Telnet:Router0对象未被创建，开始创建……
+开始连接主机: 192.168.1.1
+连接成功！
+进入特权模式……
+进入enable模式成功！
+executeSomeCMD:
+['show ip route']
+executeSomeCMD-Result:
+['show ip route\nCodes: C - connected, S - static, R - RIP, M - mobile, B - BGP\n       D - EIGRP, EX - EIGRP external, O - OSPF, IA - OSPF inter area \n       N1 - OSPF NSSA external type 1, N2 - OSPF NSSA external type 2\n       E1 - OSPF external type 1, E2 - OSPF external type 2\n       i - IS-IS, su - IS-IS summary, L1 - IS-IS level-1, L2 - IS-IS level-2\n       ia - IS-IS inter area, * - candidate default, U - per-user static route\n       o - ODR, P - periodic downloaded static route\n\nGateway of last resort is not set\n\nC    192.168.1.0/24 is directly connected, FastEthernet0/0\nC    192.168.2.0/24 is directly connected, Serial0/0/0\nO IA 192.168.3.0/24 [110/1562] via 192.168.2.2, 00:02:34, Serial0/0/0\nRouter#']
+**程序输出**
+Router#show ip route
+Codes: C - connected, S - static, R - RIP, M - mobile, B - BGP
+       D - EIGRP, EX - EIGRP external, O - OSPF, IA - OSPF inter area 
+       N1 - OSPF NSSA external type 1, N2 - OSPF NSSA external type 2
+       E1 - OSPF external type 1, E2 - OSPF external type 2
+       i - IS-IS, su - IS-IS summary, L1 - IS-IS level-1, L2 - IS-IS level-2
+       ia - IS-IS inter area, * - candidate default, U - per-user static route
+       o - ODR, P - periodic downloaded static route
+
+Gateway of last resort is not set
+
+C    192.168.1.0/24 is directly connected, FastEthernet0/0
+C    192.168.2.0/24 is directly connected, Serial0/0/0
+O IA 192.168.3.0/24 [110/1562] via 192.168.2.2, 00:02:34, Serial0/0/0
+Router#
+
+
+ip_route_result: ['Router#show ip route', 'Codes: C - connected, S - static, R - RIP, M - mobile, B - BGP', '       D - EIGRP, EX - EIGRP external, O - OSPF, IA - OSPF inter area ', '       N1 - OSPF NSSA external type 1, N2 - OSPF NSSA external type 2', '       E1 - OSPF external type 1, E2 - OSPF external type 2', '       i - IS-IS, su - IS-IS summary, L1 - IS-IS level-1, L2 - IS-IS level-2', '       ia - IS-IS inter area, * - candidate default, U - per-user static route', '       o - ODR, P - periodic downloaded static route', '', 'Gateway of last resort is not set', '', 'C    192.168.1.0/24 is directly connected, FastEthernet0/0', 'C    192.168.2.0/24 is directly connected, Serial0/0/0', 'O IA 192.168.3.0/24 [110/1562] via 192.168.2.2, 00:02:34, Serial0/0/0', 'Router#']
+configName:OSPF
+routerNum:0
+commands:['show ip protocols']
+获取Telnet:Router0的唯一对象……
+Telnet:Router0对象已经创建，获取成功
+executeSomeCMD:
+['show ip protocols']
+executeSomeCMD-Result:
+['show ip protocols\nRouting Protocol is "ospf 1"\n  Outgoing update filter list for all interfaces is not set\n  Incoming update filter list for all interfaces is not set\n  Router ID 192.168.2.1\n  Number of areas in this router is 2. 2 normal 0 stub 0 nssa\n  Maximum path: 4\n  Routing for Networks:\n    10.0.0.0 0.255.255.255 area 51\n    192.168.2.0 0.0.0.255 area 0\n Reference bandwidth unit is 100 mbps\n  Routing Information Sources:\n    Gateway         Distance      Last Update\n    192.168.3.1          110      00:02:34\n  Distance: (default is 110)\n\nRouter#']
+**程序输出**
+Router#show ip protocols
+Routing Protocol is "ospf 1"
+  Outgoing update filter list for all interfaces is not set
+  Incoming update filter list for all interfaces is not set
+  Router ID 192.168.2.1
+  Number of areas in this router is 2. 2 normal 0 stub 0 nssa
+  Maximum path: 4
+  Routing for Networks:
+    10.0.0.0 0.255.255.255 area 51
+    192.168.2.0 0.0.0.255 area 0
+ Reference bandwidth unit is 100 mbps
+  Routing Information Sources:
+    Gateway         Distance      Last Update
+    192.168.3.1          110      00:02:34
+  Distance: (default is 110)
+
+Router#
+
+
+ip_protocols_result: ['Router#show ip protocols', 'Routing Protocol is "ospf 1"', '  Outgoing update filter list for all interfaces is not set', '  Incoming update filter list for all interfaces is not set', '  Router ID 192.168.2.1', '  Number of areas in this router is 2. 2 normal 0 stub 0 nssa', '  Maximum path: 4', '  Routing for Networks:', '    10.0.0.0 0.255.255.255 area 51', '    192.168.2.0 0.0.0.255 area 0', ' Reference bandwidth unit is 100 mbps', '  Routing Information Sources:', '    Gateway         Distance      Last Update', '    192.168.3.1          110      00:02:34', '  Distance: (default is 110)', '', 'Router#']
+**接口返回值**
+ip route验证成功，得到了准确的路由
+相关输出如下：
+C    192.168.1.0/24 is directly connected, FastEthernet0/0
+C    192.168.2.0/24 is directly connected, Serial0/0/0
+O IA 192.168.3.0/24 [110/1562] via 192.168.2.2, 00:02:34, Serial0/0/0
+ip protocols验证正确，协议配置成功
+路由详情：
+10.0.0.0 0.255.255.255 area 51
+192.168.2.0 0.0.0.255 area 0
+
+
+[call api]
+调用时间：2021-01-12 20.52.45
+调用接口：validateConfig
+configName:OSPF
+routerNum:1
+commands:['show ip route']
+获取Telnet:Router1的唯一对象……
+Telnet:Router1对象未被创建，开始创建……
+开始连接主机: 192.168.1.2
+连接成功！
+进入特权模式……
+进入enable模式成功！
+executeSomeCMD:
+['show ip route']
+executeSomeCMD-Result:
+['show ip route\nCodes: C - connected, S - static, R - RIP, M - mobile, B - BGP\n       D - EIGRP, EX - EIGRP external, O - OSPF, IA - OSPF inter area \n       N1 - OSPF NSSA external type 1, N2 - OSPF NSSA external type 2\n       E1 - OSPF external type 1, E2 - OSPF external type 2\n       i - IS-IS, su - IS-IS summary, L1 - IS-IS level-1, L2 - IS-IS level-2\n       ia - IS-IS inter area, * - candidate default, U - per-user static route\n       o - ODR, P - periodic downloaded static route\n\nGateway of last resort is not set\n\nC    192.168.1.0/24 is directly connected, FastEthernet0/0\nC    192.168.2.0/24 is directly connected, Serial0/0/0\nC    192.168.3.0/24 is directly connected, Serial0/0/1\nRouter#']
+**程序输出**
+Router#show ip route
+Codes: C - connected, S - static, R - RIP, M - mobile, B - BGP
+       D - EIGRP, EX - EIGRP external, O - OSPF, IA - OSPF inter area 
+       N1 - OSPF NSSA external type 1, N2 - OSPF NSSA external type 2
+       E1 - OSPF external type 1, E2 - OSPF external type 2
+       i - IS-IS, su - IS-IS summary, L1 - IS-IS level-1, L2 - IS-IS level-2
+       ia - IS-IS inter area, * - candidate default, U - per-user static route
+       o - ODR, P - periodic downloaded static route
+
+Gateway of last resort is not set
+
+C    192.168.1.0/24 is directly connected, FastEthernet0/0
+C    192.168.2.0/24 is directly connected, Serial0/0/0
+C    192.168.3.0/24 is directly connected, Serial0/0/1
+Router#
+
+
+ip_route_result: ['Router#show ip route', 'Codes: C - connected, S - static, R - RIP, M - mobile, B - BGP', '       D - EIGRP, EX - EIGRP external, O - OSPF, IA - OSPF inter area ', '       N1 - OSPF NSSA external type 1, N2 - OSPF NSSA external type 2', '       E1 - OSPF external type 1, E2 - OSPF external type 2', '       i - IS-IS, su - IS-IS summary, L1 - IS-IS level-1, L2 - IS-IS level-2', '       ia - IS-IS inter area, * - candidate default, U - per-user static route', '       o - ODR, P - periodic downloaded static route', '', 'Gateway of last resort is not set', '', 'C    192.168.1.0/24 is directly connected, FastEthernet0/0', 'C    192.168.2.0/24 is directly connected, Serial0/0/0', 'C    192.168.3.0/24 is directly connected, Serial0/0/1', 'Router#']
+configName:OSPF
+routerNum:1
+commands:['show ip protocols']
+获取Telnet:Router1的唯一对象……
+Telnet:Router1对象已经创建，获取成功
+executeSomeCMD:
+['show ip protocols']
+executeSomeCMD-Result:
+['show ip protocols\nRouting Protocol is "ospf 1"\n  Outgoing update filter list for all interfaces is not set\n  Incoming update filter list for all interfaces is not set\n  Router ID 192.168.3.1\n  It is an area border router\n  Number of areas in this router is 2. 2 normal 0 stub 0 nssa\n  Maximum path: 4\n  Routing for Networks:\n    192.168.2.0 0.0.0.255 area 0\n    192.168.3.0 0.0.0.255 area 1\n Reference bandwidth unit is 100 mbps\n  Routing Information Sources:\n    Gateway         Distance      Last Update\n  Distance: (default is 110)\n\nRouter#']
+**程序输出**
+Router#show ip protocols
+Routing Protocol is "ospf 1"
+  Outgoing update filter list for all interfaces is not set
+  Incoming update filter list for all interfaces is not set
+  Router ID 192.168.3.1
+  It is an area border router
+  Number of areas in this router is 2. 2 normal 0 stub 0 nssa
+  Maximum path: 4
+  Routing for Networks:
+    192.168.2.0 0.0.0.255 area 0
+    192.168.3.0 0.0.0.255 area 1
+ Reference bandwidth unit is 100 mbps
+  Routing Information Sources:
+    Gateway         Distance      Last Update
+  Distance: (default is 110)
+
+Router#
+
+
+ip_protocols_result: ['Router#show ip protocols', 'Routing Protocol is "ospf 1"', '  Outgoing update filter list for all interfaces is not set', '  Incoming update filter list for all interfaces is not set', '  Router ID 192.168.3.1', '  It is an area border router', '  Number of areas in this router is 2. 2 normal 0 stub 0 nssa', '  Maximum path: 4', '  Routing for Networks:', '    192.168.2.0 0.0.0.255 area 0', '    192.168.3.0 0.0.0.255 area 1', ' Reference bandwidth unit is 100 mbps', '  Routing Information Sources:', '    Gateway         Distance      Last Update', '  Distance: (default is 110)', '', 'Router#']
+**接口返回值**
+ip route验证成功，得到了准确的路由
+相关输出如下：
+C    192.168.1.0/24 is directly connected, FastEthernet0/0
+C    192.168.2.0/24 is directly connected, Serial0/0/0
+C    192.168.3.0/24 is directly connected, Serial0/0/1
+ip protocols验证正确，协议配置成功
+路由详情：
+192.168.2.0 0.0.0.255 area 0
+192.168.3.0 0.0.0.255 area 1
+
+
+[call api]
+调用时间：2021-01-12 20.52.48
+调用接口：validateConfig
+configName:OSPF
+routerNum:2
+commands:['show ip route']
+获取Telnet:Router2的唯一对象……
+Telnet:Router2对象未被创建，开始创建……
+开始连接主机: 192.168.1.3
+连接成功！
+进入特权模式……
+进入enable模式成功！
+executeSomeCMD:
+['show ip route']
+executeSomeCMD-Result:
+['show ip route\nCodes: C - connected, S - static, R - RIP, M - mobile, B - BGP\n       D - EIGRP, EX - EIGRP external, O - OSPF, IA - OSPF inter area \n       N1 - OSPF NSSA external type 1, N2 - OSPF NSSA external type 2\n       E1 - OSPF external type 1, E2 - OSPF external type 2\n       i - IS-IS, su - IS-IS summary, L1 - IS-IS level-1, L2 - IS-IS level-2\n       ia - IS-IS inter area, * - candidate default, U - per-user static route\n       o - ODR, P - periodic downloaded static route\n\nGateway of last resort is not set\n\nC    192.168.1.0/24 is directly connected, FastEthernet0/0\nO IA 192.168.2.0/24 [110/1562] via 192.168.3.1, 00:02:50, Serial0/0/1\nC    192.168.3.0/24 is directly connected, Serial0/0/1\nRouter#']
+**程序输出**
+Router#show ip route
+Codes: C - connected, S - static, R - RIP, M - mobile, B - BGP
+       D - EIGRP, EX - EIGRP external, O - OSPF, IA - OSPF inter area 
+       N1 - OSPF NSSA external type 1, N2 - OSPF NSSA external type 2
+       E1 - OSPF external type 1, E2 - OSPF external type 2
+       i - IS-IS, su - IS-IS summary, L1 - IS-IS level-1, L2 - IS-IS level-2
+       ia - IS-IS inter area, * - candidate default, U - per-user static route
+       o - ODR, P - periodic downloaded static route
+
+Gateway of last resort is not set
+
+C    192.168.1.0/24 is directly connected, FastEthernet0/0
+O IA 192.168.2.0/24 [110/1562] via 192.168.3.1, 00:02:50, Serial0/0/1
+C    192.168.3.0/24 is directly connected, Serial0/0/1
+Router#
+
+
+ip_route_result: ['Router#show ip route', 'Codes: C - connected, S - static, R - RIP, M - mobile, B - BGP', '       D - EIGRP, EX - EIGRP external, O - OSPF, IA - OSPF inter area ', '       N1 - OSPF NSSA external type 1, N2 - OSPF NSSA external type 2', '       E1 - OSPF external type 1, E2 - OSPF external type 2', '       i - IS-IS, su - IS-IS summary, L1 - IS-IS level-1, L2 - IS-IS level-2', '       ia - IS-IS inter area, * - candidate default, U - per-user static route', '       o - ODR, P - periodic downloaded static route', '', 'Gateway of last resort is not set', '', 'C    192.168.1.0/24 is directly connected, FastEthernet0/0', 'O IA 192.168.2.0/24 [110/1562] via 192.168.3.1, 00:02:50, Serial0/0/1', 'C    192.168.3.0/24 is directly connected, Serial0/0/1', 'Router#']
+configName:OSPF
+routerNum:2
+commands:['show ip protocols']
+获取Telnet:Router2的唯一对象……
+Telnet:Router2对象已经创建，获取成功
+executeSomeCMD:
+['show ip protocols']
+executeSomeCMD-Result:
+['show ip protocols\nRouting Protocol is "ospf 1"\n  Outgoing update filter list for all interfaces is not set\n  Incoming update filter list for all interfaces is not set\n  Router ID 192.168.3.2\n  Number of areas in this router is 2. 2 normal 0 stub 0 nssa\n  Maximum path: 4\n  Routing for Networks:\n    10.0.0.0 0.255.255.255 area 51\n    192.168.3.0 0.0.0.255 area 1\n Reference bandwidth unit is 100 mbps\n  Routing Information Sources:\n    Gateway         Distance      Last Update\n    192.168.3.1          110      00:02:50\n  Distance: (default is 110)\n\nRouter#']
+**程序输出**
+Router#show ip protocols
+Routing Protocol is "ospf 1"
+  Outgoing update filter list for all interfaces is not set
+  Incoming update filter list for all interfaces is not set
+  Router ID 192.168.3.2
+  Number of areas in this router is 2. 2 normal 0 stub 0 nssa
+  Maximum path: 4
+  Routing for Networks:
+    10.0.0.0 0.255.255.255 area 51
+    192.168.3.0 0.0.0.255 area 1
+ Reference bandwidth unit is 100 mbps
+  Routing Information Sources:
+    Gateway         Distance      Last Update
+    192.168.3.1          110      00:02:50
+  Distance: (default is 110)
+
+Router#
+
+
+ip_protocols_result: ['Router#show ip protocols', 'Routing Protocol is "ospf 1"', '  Outgoing update filter list for all interfaces is not set', '  Incoming update filter list for all interfaces is not set', '  Router ID 192.168.3.2', '  Number of areas in this router is 2. 2 normal 0 stub 0 nssa', '  Maximum path: 4', '  Routing for Networks:', '    10.0.0.0 0.255.255.255 area 51', '    192.168.3.0 0.0.0.255 area 1', ' Reference bandwidth unit is 100 mbps', '  Routing Information Sources:', '    Gateway         Distance      Last Update', '    192.168.3.1          110      00:02:50', '  Distance: (default is 110)', '', 'Router#']
+**接口返回值**
+ip route验证成功，得到了准确的路由
+相关输出如下：
+C    192.168.1.0/24 is directly connected, FastEthernet0/0
+O IA 192.168.2.0/24 [110/1562] via 192.168.3.1, 00:02:50, Serial0/0/1
+C    192.168.3.0/24 is directly connected, Serial0/0/1
+ip protocols验证正确，协议配置成功
+路由详情：
+10.0.0.0 0.255.255.255 area 51
+192.168.3.0 0.0.0.255 area 1
+
+

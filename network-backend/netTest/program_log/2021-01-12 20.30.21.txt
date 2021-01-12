@@ -1,0 +1,118 @@
+[call api]
+调用时间：2021-01-12 20.30.26
+调用接口：checkIPProtocols
+configName:RIP
+routerNum:0
+commands:['show ip protocols']
+获取Telnet:Router0的唯一对象……
+Telnet:Router0对象未被创建，开始创建……
+开始连接主机: 192.168.1.1
+连接成功！
+进入特权模式……
+进入enable模式成功！
+executeSomeCMD:
+['show ip protocols']
+executeSomeCMD-Result:
+['show ip protocols\nRouting Protocol is "rip"\n  Outgoing update filter list for all interfaces is not set\n  Incoming update filter list for all interfaces is not set\n  Sending updates every 30 seconds, next due in 15 seconds\n  Invalid after 180 seconds, hold down 180, flushed after 240\n  Redistributing: rip\n  Default version control: send version 2, receive version 2\n    Interface             Send  Recv  Triggered RIP  Key-chain\n    Serial0/0/0           2     2                                    \n  Automatic network summarization is not in effect\n  Maximum path: 4\n  Routing for Networks:\n    192.168.2.0\n  Routing Information Sources:\n    Gateway         Distance      Last Update\n    192.168.2.2          120      00:00:02\n  Distance: (default is 120)\n\nRouter#']
+**程序输出**
+Router#show ip protocols
+Routing Protocol is "rip"
+  Outgoing update filter list for all interfaces is not set
+  Incoming update filter list for all interfaces is not set
+  Sending updates every 30 seconds, next due in 15 seconds
+  Invalid after 180 seconds, hold down 180, flushed after 240
+  Redistributing: rip
+  Default version control: send version 2, receive version 2
+    Interface             Send  Recv  Triggered RIP  Key-chain
+    Serial0/0/0           2     2                                    
+  Automatic network summarization is not in effect
+  Maximum path: 4
+  Routing for Networks:
+    192.168.2.0
+  Routing Information Sources:
+    Gateway         Distance      Last Update
+    192.168.2.2          120      00:00:02
+  Distance: (default is 120)
+
+Router#
+
+
+[call api]
+调用时间：2021-01-12 20.30.31
+调用接口：checkIPProtocols
+configName:RIP
+routerNum:1
+commands:['show ip protocols']
+获取Telnet:Router1的唯一对象……
+Telnet:Router1对象未被创建，开始创建……
+开始连接主机: 192.168.1.2
+连接成功！
+进入特权模式……
+进入enable模式成功！
+executeSomeCMD:
+['show ip protocols']
+executeSomeCMD-Result:
+['show ip protocols\nRouting Protocol is "rip"\n  Outgoing update filter list for all interfaces is not set\n  Incoming update filter list for all interfaces is not set\n  Sending updates every 30 seconds, next due in 18 seconds\n  Invalid after 180 seconds, hold down 180, flushed after 240\n  Redistributing: rip\n  Default version control: send version 2, receive version 2\n    Interface             Send  Recv  Triggered RIP  Key-chain\n    Serial0/0/0           2     2                                    \n    Serial0/0/1           2     2                                    \n  Automatic network summarization is not in effect\n  Maximum path: 4\n  Routing for Networks:\n    192.168.2.0\n    192.168.3.0\n  Routing Information Sources:\n    Gateway         Distance      Last Update\n  Distance: (default is 120)\n\nRouter#']
+**程序输出**
+Router#show ip protocols
+Routing Protocol is "rip"
+  Outgoing update filter list for all interfaces is not set
+  Incoming update filter list for all interfaces is not set
+  Sending updates every 30 seconds, next due in 18 seconds
+  Invalid after 180 seconds, hold down 180, flushed after 240
+  Redistributing: rip
+  Default version control: send version 2, receive version 2
+    Interface             Send  Recv  Triggered RIP  Key-chain
+    Serial0/0/0           2     2                                    
+    Serial0/0/1           2     2                                    
+  Automatic network summarization is not in effect
+  Maximum path: 4
+  Routing for Networks:
+    192.168.2.0
+    192.168.3.0
+  Routing Information Sources:
+    Gateway         Distance      Last Update
+  Distance: (default is 120)
+
+Router#
+
+
+[call api]
+调用时间：2021-01-12 20.30.35
+调用接口：checkIPProtocols
+configName:RIP
+routerNum:2
+commands:['show ip protocols']
+获取Telnet:Router2的唯一对象……
+Telnet:Router2对象未被创建，开始创建……
+开始连接主机: 192.168.1.3
+连接成功！
+进入特权模式……
+进入enable模式成功！
+executeSomeCMD:
+['show ip protocols']
+executeSomeCMD-Result:
+['show ip protocols\nRouting Protocol is "rip"\n  Outgoing update filter list for all interfaces is not set\n  Incoming update filter list for all interfaces is not set\n  Sending updates every 30 seconds, next due in 0 seconds\n  Invalid after 180 seconds, hold down 180, flushed after 240\n  Redistributing: rip\n  Default version control: send version 2, receive version 2\n    Interface             Send  Recv  Triggered RIP  Key-chain\n    Serial0/0/1           2     2                                    \n  Automatic network summarization is not in effect\n  Maximum path: 4\n  Routing for Networks:\n    192.168.3.0\n  Routing Information Sources:\n    Gateway         Distance      Last Update\n    192.168.3.1          120      00:00:13\n  Distance: (default is 120)\n\nRouter#']
+**程序输出**
+Router#show ip protocols
+Routing Protocol is "rip"
+  Outgoing update filter list for all interfaces is not set
+  Incoming update filter list for all interfaces is not set
+  Sending updates every 30 seconds, next due in 0 seconds
+  Invalid after 180 seconds, hold down 180, flushed after 240
+  Redistributing: rip
+  Default version control: send version 2, receive version 2
+    Interface             Send  Recv  Triggered RIP  Key-chain
+    Serial0/0/1           2     2                                    
+  Automatic network summarization is not in effect
+  Maximum path: 4
+  Routing for Networks:
+    192.168.3.0
+  Routing Information Sources:
+    Gateway         Distance      Last Update
+    192.168.3.1          120      00:00:13
+  Distance: (default is 120)
+
+Router#
+
+

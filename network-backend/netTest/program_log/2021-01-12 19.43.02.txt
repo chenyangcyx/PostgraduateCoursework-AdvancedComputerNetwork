@@ -1,0 +1,29 @@
+[call api]
+调用时间：2021-01-12 19.43.05
+调用接口：executeSomeCommand
+configName:RIP
+routerNum:0
+commands:['configure terminal', 'ip routing', 'router rip', 'network 192.168.2.0', 'version 2', 'no auto-summary', 'end']
+获取Telnet:Router0的唯一对象……
+Telnet:Router0对象未被创建，开始创建……
+开始连接主机: 192.168.1.1
+连接成功！
+进入特权模式……
+进入enable模式成功！
+Telnet:Router0对象创建成功！
+executeSomeCMD:
+['configure terminal', 'ip routing', 'router rip', 'network 192.168.2.0', 'version 2', 'no auto-summary', 'end']
+executeSomeCMD-Result:
+['configure terminal\nEnter configuration commands, one per line.  End with CNTL/Z.\nRouter(config)#', 'ip routing\nRouter(config)#', 'router rip\nRouter(config-router)#', 'network 192.168.2.0\nRouter(config-router)#', 'version 2\nRouter(config-router)#', 'no auto-summary\nRouter(config-router)#', 'end\nRouter#']
+**程序输出**
+Router#configure terminal
+Enter configuration commands, one per line.  End with CNTL/Z.
+Router(config)#ip routing
+Router(config)#router rip
+Router(config-router)#network 192.168.2.0
+Router(config-router)#version 2
+Router(config-router)#no auto-summary
+Router(config-router)#end
+Router#
+
+

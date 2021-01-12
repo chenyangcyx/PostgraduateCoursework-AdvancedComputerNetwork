@@ -1,0 +1,66 @@
+[call api]
+调用时间：2021-01-12 20.14.53
+调用接口：checkIPProtocols
+configName:RIP
+routerNum:0
+commands:['show ip protocols']
+获取Telnet:Router0的唯一对象……
+Telnet:Router0对象未被创建，开始创建……
+开始连接主机: 192.168.1.1
+连接成功！
+进入特权模式……
+进入enable模式成功！
+executeSomeCMD:
+['show ip protocols']
+executeSomeCMD-Result:
+['show ip protocols\n\nRouter#']
+**程序输出**
+Router#show ip protocols
+
+Router#
+
+
+[call api]
+调用时间：2021-01-12 20.14.57
+调用接口：checkIPProtocols
+configName:RIP
+routerNum:1
+commands:['show ip protocols']
+获取Telnet:Router1的唯一对象……
+Telnet:Router1对象未被创建，开始创建……
+开始连接主机: 192.168.1.2
+连接成功！
+进入特权模式……
+进入enable模式成功！
+executeSomeCMD:
+['show ip protocols']
+executeSomeCMD-Result:
+['show ip protocols\n\nRouter#']
+**程序输出**
+Router#show ip protocols
+
+Router#
+
+
+[call api]
+调用时间：2021-01-12 20.15.00
+调用接口：checkIPProtocols
+configName:RIP
+routerNum:2
+commands:['show ip protocols']
+获取Telnet:Router2的唯一对象……
+Telnet:Router2对象未被创建，开始创建……
+开始连接主机: 192.168.1.3
+连接成功！
+进入特权模式……
+进入enable模式成功！
+executeSomeCMD:
+['show ip protocols']
+executeSomeCMD-Result:
+['show ip protocols\n\nRouter#']
+**程序输出**
+Router#show ip protocols
+
+Router#
+
+

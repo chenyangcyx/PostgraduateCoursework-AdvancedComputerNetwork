@@ -1,0 +1,6 @@
+[call api]
+调用时间：2021-01-12 17.49.11
+调用接口：executeSomeCommand
+configName: RIP
+routerNum: 0
+commands: ['a','b','c']

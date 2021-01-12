@@ -41,21 +41,12 @@
           "enablePassword": "CISCO",
           "configCommands": [
             "configure terminal",
-            "interface s0/0/0",
-            "ip address 192.168.2.1 255.255.255.0",
-            "clock rate 64000",
-            "no shutdown",
-            "exit",
             "ip routing",
             "router rip",
-            "network 192.168.2.0",
+            "network $$netarea1$$",
             "version 2",
             "no auto-summary",
             "end"
-          ],
-          "testCommands": [
-            "show ip route",
-            "show ip protocols"
           ]
         },
         {
@@ -65,26 +56,13 @@
           "enablePassword": "CISCO",
           "configCommands": [
             "configure terminal",
-            "int s0/0/0",
-            "ip address 192.168.2.2 255.255.255.0",
-            "clock rate 64000",
-            "no shutdown",
-            "int s0/0/1",
-            "ip address 192.168.3.1 255.255.255.0",
-            "clock rate 64000",
-            "no shutdown",
-            "exit",
             "ip routing",
             "router rip",
-            "network 192.168.2.0",
-            "network 192.168.3.0",
+            "network $$netarea1$$",
+            "network $$netarea2$$",
             "version 2",
             "no auto-summary",
             "end"
-          ],
-          "testCommands": [
-            "show ip route",
-            "show ip protocols"
           ]
         },
         {
@@ -94,21 +72,12 @@
           "enablePassword": "CISCO",
           "configCommands": [
             "configure terminal",
-            "int s0/0/1",
-            "ip address 192.168.3.2 255.255.255.0",
-            "clock rate 64000",
-            "no shutdown",
-            "exit",
             "ip routing",
             "router rip",
-            "network 192.168.3.0",
+            "network $$netarea2$$",
             "version 2 ",
             "no auto-summary",
             "end"
-          ],
-          "testCommands": [
-            "show ip route",
-            "show ip protocols"
           ]
         }
       ]
@@ -125,19 +94,10 @@
           "enablePassword": "CISCO",
           "configCommands": [
             "configure terminal",
-            "interface s0/0/0",
-            "ip address 192.168.2.1 255.255.255.0",
-            "clock rate 64000",
-            "no shutdown",
-            "exit",
             "router ospf 1",
-            "network 192.168.2.0 0.0.0.255 area 0",
-            "network 10.0.0.0 0.0.0.255 area 1",
+            "network $$netarea1$$ $$netarea1contrastnetmask$$ area 0",
+            "network $$netarea3$$ $$netarea3contrastnetmask$$ area 51",
             "end"
-          ],
-          "testCommands": [
-            "show ip route",
-            "show ip protocols"
           ]
         },
         {
@@ -147,23 +107,10 @@
           "enablePassword": "CISCO",
           "configCommands": [
             "configure terminal",
-            "int s0/0/0",
-            "ip address 192.168.2.2 255.255.255.0",
-            "clock rate 64000",
-            "no shutdown",
-            "int s0/0/1",
-            "ip address 192.168.3.1 255.255.255.0",
-            "clock rate 64000",
-            "no shutdown",
-            "exit",
             "router ospf 1",
-            "network 192.168.2.0 0.0.0.255 area 0",
-            "network 192.168.3.0 0.0.0.255 area 51",
+            "network $$netarea1$$ $$netarea1contrastnetmask$$ area 0",
+            "network $$netarea2$$ $$netarea2contrastnetmask$$ area 1",
             "end"
-          ],
-          "testCommands": [
-            "show ip route",
-            "show ip protocols"
           ]
         },
         {
@@ -173,19 +120,10 @@
           "enablePassword": "CISCO",
           "configCommands": [
             "configure terminal",
-            "int s0/0/1",
-            "ip address 192.168.3.2 255.255.255.0",
-            "clock rate 64000",
-            "no shutdown",
-            "exit",
             "router ospf 1",
-            "network 10.0.0.0 0.0.0.255 area 1",
-            "network 192.168.3.0 0.0.0.255 area 51",
+            "network $$netarea2$$ $$netarea2contrastnetmask$$ area 1",
+            "network $$netarea3$$ $$netarea3contrastnetmask$$ area 51",
             "end"
-          ],
-          "testCommands": [
-            "show ip route",
-            "show ip protocols"
           ]
         }
       ]

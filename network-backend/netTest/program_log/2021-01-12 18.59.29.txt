@@ -1,0 +1,333 @@
+[call api]
+调用时间：2021-01-12 18.59.33
+调用接口：checkIPRoute
+configName:RIP
+settingNum:0
+commands:['show ip route']
+获取Telnet:Router0的唯一对象……
+Telnet:Router0对象未被创建，开始创建……
+开始连接主机: 192.168.1.1
+连接成功！
+进入特权模式……
+进入enable模式成功！
+Telnet:Router0对象创建成功！
+executeSomeCMD:
+['show ip route']
+executeSomeCMD-Result:
+['show ip route\nCodes: C - connected, S - static, R - RIP, M - mobile, B - BGP\n       D - EIGRP, EX - EIGRP external, O - OSPF, IA - OSPF inter area \n       N1 - OSPF NSSA external type 1, N2 - OSPF NSSA external type 2\n       E1 - OSPF external type 1, E2 - OSPF external type 2\n       i - IS-IS, su - IS-IS summary, L1 - IS-IS level-1, L2 - IS-IS level-2\n       ia - IS-IS inter area, * - candidate default, U - per-user static route\n       o - ODR, P - periodic downloaded static route\n\nGateway of last resort is not set\n\nC    192.168.1.0/24 is directly connected, FastEthernet0/0\nRouter#']
+**程序输出**
+Router#show ip route
+Codes: C - connected, S - static, R - RIP, M - mobile, B - BGP
+       D - EIGRP, EX - EIGRP external, O - OSPF, IA - OSPF inter area 
+       N1 - OSPF NSSA external type 1, N2 - OSPF NSSA external type 2
+       E1 - OSPF external type 1, E2 - OSPF external type 2
+       i - IS-IS, su - IS-IS summary, L1 - IS-IS level-1, L2 - IS-IS level-2
+       ia - IS-IS inter area, * - candidate default, U - per-user static route
+       o - ODR, P - periodic downloaded static route
+
+Gateway of last resort is not set
+
+C    192.168.1.0/24 is directly connected, FastEthernet0/0
+Router#
+
+
+[call api]
+调用时间：2021-01-12 18.59.44
+调用接口：checkIPProtocols
+configName:RIP
+settingNum:0
+commands:['show ip protocols']
+获取Telnet:Router0的唯一对象……
+Telnet:Router0对象已经创建，获取成功
+Telnet:Router0对象创建成功！
+executeSomeCMD:
+['show ip protocols']
+executeSomeCMD-Result:
+['show ip protocols\n\nRouter#']
+**程序输出**
+Router#show ip protocols
+
+Router#
+
+
+[call api]
+调用时间：2021-01-12 18.59.50
+调用接口：checkInterface
+configName:RIP
+settingNum:0
+commands:['show interfaces']
+获取Telnet:Router0的唯一对象……
+Telnet:Router0对象已经创建，获取成功
+Telnet:Router0对象创建成功！
+executeSomeCMD:
+['show interfaces']
+executeSomeCMD-Result:
+['show interfaces\nFastEthernet0/0 is up, line protocol is up \n  Hardware is MV96340 Ethernet, address is 04fe.7feb.07a0 (bia 04fe.7feb.07a0)\n  Internet address is 192.168.1.1/24\n  MTU 1500 bytes, BW 100000 Kbit/sec, DLY 100 usec, \n     reliability 255/255, txload 1/255, rxload 1/255\n  Encapsulation ARPA, loopback not set\n  Keepalive set (10 sec)\n  Full-duplex, 100Mb/s, 100BaseTX/FX\n  ARP type: ARPA, ARP Timeout 04:00:00\n  Last input 00:00:00, output 00:00:00, output hang never\n  Last clearing of "show interface" counters never\n  Input queue: 1/75/0/0 (size/max/drops/flushes); Total output drops: 0\n  Queueing strategy: fifo\n  Output queue: 0/40 (size/max)\n  5 minute input rate 0 bits/sec, 0 packets/sec\n  5 minute output rate 0 bits/sec, 0 packets/sec\n     430 packets input, 29828 bytes\n     Received 295 broadcasts, 0 runts, 0 giants, 0 throttles\n     0 input errors, 0 CRC, 0 frame, 0 overrun, 0 ignored\n     0 watchdog\n     0 input packets with dribble condition detected\n     277 packets output, 23301 bytes, 0 underruns\n     0 output errors, 0 collisions, 1 interface resets\n     19 unknown protocol drops\n     0 babbles, 0 late collision, 0 deferred\n     0 lost carrier, 0 no carrier\n     0 output buffer failures, 0 output buffers swapped out\nFastEthernet0/1 is administratively down, line protocol is down \n  Hardware is MV96340 Ethernet, address is 04fe.7feb.07a1 (bia 04fe.7feb.07a1)\n  MTU 1500 bytes, BW 100000 Kbit/sec, DLY 100 usec, \n     reliability 255/255, txload 1/255, rxload 1/255\n  Encapsulation ARPA, loopback not set\n  Keepalive set (10 sec)\n  Auto-duplex, Auto Speed, 100BaseTX/FX\n  ARP type: ARPA, ARP Timeout 04:00:00\n  Last input never, output never, output hang never\n  Last clearing of "show interface" counters never\n  Input queue: 0/75/0/0 (size/max/drops/flushes); Total output drops: 0\n  Queueing strategy: fifo\n  Output queue: 0/40 (size/max)\n  5 minute input rate 0 bits/sec, 0 packets/sec\n  5 minute output rate 0 bits/sec, 0 packets/sec\n     0 packets input, 0 bytes\n     Received 0 broadcasts, 0 runts, 0 giants, 0 throttles\n     0 input errors, 0 CRC, 0 frame, 0 overrun, 0 ignored\n     0 watchdog\n     0 input packets with dribble condition detected\n     0 packets output, 0 bytes, 0 underruns\n     0 output errors, 0 collisions, 0 interface resets\n     0 unknown protocol drops\n     0 babbles, 0 late collision, 0 deferred\n     0 lost carrier, 0 no carrier\n     0 output buffer failures, 0 output buffers swapped out\nSerial0/0/0 is administratively down, line protocol is down \n  Hardware is GT96K Serial\n  MTU 1500 bytes, BW 128 Kbit/sec, DLY 20000 usec, \n     reliability 255/255, txload 1/255, rxload 1/255\n  Encapsulation HDLC, loopback not set\n  Keepalive set (10 sec)\n  Last input 00:10:19, output 00:10:18, output hang never\n  Last clearing of "show interface" counters never\n  Input queue: 0/75/0/0 (size/max/drops/flushes); Total output drops: 0\n  Queueing strategy: weighted fair\n  Output queue: 0/1000/64/0 (size/max total/threshold/drops) \n     Conversations  0/1/32 (active/max active/max total)\n     Reserved Conversations 0/0 (allocated/max allocated)\n     Available Bandwidth 96 kilobits/sec\n  5 minute input rate 0 bits/sec, 0 packets/sec\n  5 minute output rate 0 bits/sec, 0 packets/sec\n     12 packets input, 288 bytes, 0 no buffer\n     Received 12 broadcasts, 0 runts, 0 giants, 0 throttles\n     0 input errors, 0 CRC, 0 frame, 0 overrun, 0 ignored, 0 abort\n     11 packets output, 264 bytes, 0 underruns\n     0 output errors, 0 collisions, 5 interface resets\n     0 unknown protocol drops\n     0 output buffer failures, 0 output buffers swapped out\n     0 carrier transitions\n     DCD=down  DSR=down  DTR=down  RTS=down  CTS=down\n\nSerial0/0/1 is administratively down, line protocol is down \n  Hardware is GT96K Serial\n  MTU 1500 bytes, BW 128 Kbit/sec, DLY 20000 usec, \n     reliability 255/255, txload 1/255, rxload 1/255\n  Encapsulation HDLC, loopback not set\n  Keepalive set (10 sec)\n  Last input never, output never, output hang never\n  Last clearing of "show interface" counters never\n  Input queue: 0/75/0/0 (size/max/drops/flushes); Total output drops: 0\n  Queueing strategy: weighted fair\n  Output queue: 0/1000/64/0 (size/max total/threshold/drops) \n     Conversations  0/0/32 (active/max active/max total)\n     Reserved Conversations 0/0 (allocated/max allocated)\n     Available Bandwidth 96 kilobits/sec\n  5 minute input rate 0 bits/sec, 0 packets/sec\n  5 minute output rate 0 bits/sec, 0 packets/sec\n     0 packets input, 0 bytes, 0 no buffer\n     Received 0 broadcasts, 0 runts, 0 giants, 0 throttles\n     0 input errors, 0 CRC, 0 frame, 0 overrun, 0 ignored, 0 abort\n     0 packets output, 0 bytes, 0 underruns\n     0 output errors, 0 collisions, 5 interface resets\n     0 unknown protocol drops\n     0 output buffer failures, 0 output buffers swapped out\n     0 carrier transitions\n     DCD=down  DSR=down  DTR=down  RTS=down  CTS=down\n\nSSLVPN-VIF0 is up, line protocol is up \n  Hardware is SSLVPN_VIF\n  Interface is unnumbered. Using address of SSLVPN-VIF0 (0.0.0.0)\n  MTU 1514 bytes, BW 56 Kbit/sec, DLY 5000 usec, \n     reliability 255/255, txload 1/255, rxload 1/255\n  Encapsulation UNKNOWN, loopback not set\n  Last input never, output never, output hang never\n  Last clearing of "show interface" counters never\n  Input queue: 0/75/0/0 (size/max/drops/flushes); Total output drops: 0\n  5 minute input rate 0 bits/sec, 0 packets/sec\n  5 minute output rate 0 bits/sec, 0 packets/sec\n     0 packets input, 0 bytes, 0 no buffer\n     Received 0 broadcasts, 0 runts, 0 giants, 0 throttles\n     0 input errors, 0 CRC, 0 frame, 0 overrun, 0 ignored, 0 abort\n     0 packets output, 0 bytes, 0 underruns\n     0 output errors, 0 collisions, 0 interface resets\n     0 unknown protocol drops\n     0 output buffer failures, 0 output buffers swapped out\nRouter#']
+**程序输出**
+Router#show interfaces
+FastEthernet0/0 is up, line protocol is up 
+  Hardware is MV96340 Ethernet, address is 04fe.7feb.07a0 (bia 04fe.7feb.07a0)
+  Internet address is 192.168.1.1/24
+  MTU 1500 bytes, BW 100000 Kbit/sec, DLY 100 usec, 
+     reliability 255/255, txload 1/255, rxload 1/255
+  Encapsulation ARPA, loopback not set
+  Keepalive set (10 sec)
+  Full-duplex, 100Mb/s, 100BaseTX/FX
+  ARP type: ARPA, ARP Timeout 04:00:00
+  Last input 00:00:00, output 00:00:00, output hang never
+  Last clearing of "show interface" counters never
+  Input queue: 1/75/0/0 (size/max/drops/flushes); Total output drops: 0
+  Queueing strategy: fifo
+  Output queue: 0/40 (size/max)
+  5 minute input rate 0 bits/sec, 0 packets/sec
+  5 minute output rate 0 bits/sec, 0 packets/sec
+     430 packets input, 29828 bytes
+     Received 295 broadcasts, 0 runts, 0 giants, 0 throttles
+     0 input errors, 0 CRC, 0 frame, 0 overrun, 0 ignored
+     0 watchdog
+     0 input packets with dribble condition detected
+     277 packets output, 23301 bytes, 0 underruns
+     0 output errors, 0 collisions, 1 interface resets
+     19 unknown protocol drops
+     0 babbles, 0 late collision, 0 deferred
+     0 lost carrier, 0 no carrier
+     0 output buffer failures, 0 output buffers swapped out
+FastEthernet0/1 is administratively down, line protocol is down 
+  Hardware is MV96340 Ethernet, address is 04fe.7feb.07a1 (bia 04fe.7feb.07a1)
+  MTU 1500 bytes, BW 100000 Kbit/sec, DLY 100 usec, 
+     reliability 255/255, txload 1/255, rxload 1/255
+  Encapsulation ARPA, loopback not set
+  Keepalive set (10 sec)
+  Auto-duplex, Auto Speed, 100BaseTX/FX
+  ARP type: ARPA, ARP Timeout 04:00:00
+  Last input never, output never, output hang never
+  Last clearing of "show interface" counters never
+  Input queue: 0/75/0/0 (size/max/drops/flushes); Total output drops: 0
+  Queueing strategy: fifo
+  Output queue: 0/40 (size/max)
+  5 minute input rate 0 bits/sec, 0 packets/sec
+  5 minute output rate 0 bits/sec, 0 packets/sec
+     0 packets input, 0 bytes
+     Received 0 broadcasts, 0 runts, 0 giants, 0 throttles
+     0 input errors, 0 CRC, 0 frame, 0 overrun, 0 ignored
+     0 watchdog
+     0 input packets with dribble condition detected
+     0 packets output, 0 bytes, 0 underruns
+     0 output errors, 0 collisions, 0 interface resets
+     0 unknown protocol drops
+     0 babbles, 0 late collision, 0 deferred
+     0 lost carrier, 0 no carrier
+     0 output buffer failures, 0 output buffers swapped out
+Serial0/0/0 is administratively down, line protocol is down 
+  Hardware is GT96K Serial
+  MTU 1500 bytes, BW 128 Kbit/sec, DLY 20000 usec, 
+     reliability 255/255, txload 1/255, rxload 1/255
+  Encapsulation HDLC, loopback not set
+  Keepalive set (10 sec)
+  Last input 00:10:19, output 00:10:18, output hang never
+  Last clearing of "show interface" counters never
+  Input queue: 0/75/0/0 (size/max/drops/flushes); Total output drops: 0
+  Queueing strategy: weighted fair
+  Output queue: 0/1000/64/0 (size/max total/threshold/drops) 
+     Conversations  0/1/32 (active/max active/max total)
+     Reserved Conversations 0/0 (allocated/max allocated)
+     Available Bandwidth 96 kilobits/sec
+  5 minute input rate 0 bits/sec, 0 packets/sec
+  5 minute output rate 0 bits/sec, 0 packets/sec
+     12 packets input, 288 bytes, 0 no buffer
+     Received 12 broadcasts, 0 runts, 0 giants, 0 throttles
+     0 input errors, 0 CRC, 0 frame, 0 overrun, 0 ignored, 0 abort
+     11 packets output, 264 bytes, 0 underruns
+     0 output errors, 0 collisions, 5 interface resets
+     0 unknown protocol drops
+     0 output buffer failures, 0 output buffers swapped out
+     0 carrier transitions
+     DCD=down  DSR=down  DTR=down  RTS=down  CTS=down
+
+Serial0/0/1 is administratively down, line protocol is down 
+  Hardware is GT96K Serial
+  MTU 1500 bytes, BW 128 Kbit/sec, DLY 20000 usec, 
+     reliability 255/255, txload 1/255, rxload 1/255
+  Encapsulation HDLC, loopback not set
+  Keepalive set (10 sec)
+  Last input never, output never, output hang never
+  Last clearing of "show interface" counters never
+  Input queue: 0/75/0/0 (size/max/drops/flushes); Total output drops: 0
+  Queueing strategy: weighted fair
+  Output queue: 0/1000/64/0 (size/max total/threshold/drops) 
+     Conversations  0/0/32 (active/max active/max total)
+     Reserved Conversations 0/0 (allocated/max allocated)
+     Available Bandwidth 96 kilobits/sec
+  5 minute input rate 0 bits/sec, 0 packets/sec
+  5 minute output rate 0 bits/sec, 0 packets/sec
+     0 packets input, 0 bytes, 0 no buffer
+     Received 0 broadcasts, 0 runts, 0 giants, 0 throttles
+     0 input errors, 0 CRC, 0 frame, 0 overrun, 0 ignored, 0 abort
+     0 packets output, 0 bytes, 0 underruns
+     0 output errors, 0 collisions, 5 interface resets
+     0 unknown protocol drops
+     0 output buffer failures, 0 output buffers swapped out
+     0 carrier transitions
+     DCD=down  DSR=down  DTR=down  RTS=down  CTS=down
+
+SSLVPN-VIF0 is up, line protocol is up 
+  Hardware is SSLVPN_VIF
+  Interface is unnumbered. Using address of SSLVPN-VIF0 (0.0.0.0)
+  MTU 1514 bytes, BW 56 Kbit/sec, DLY 5000 usec, 
+     reliability 255/255, txload 1/255, rxload 1/255
+  Encapsulation UNKNOWN, loopback not set
+  Last input never, output never, output hang never
+  Last clearing of "show interface" counters never
+  Input queue: 0/75/0/0 (size/max/drops/flushes); Total output drops: 0
+  5 minute input rate 0 bits/sec, 0 packets/sec
+  5 minute output rate 0 bits/sec, 0 packets/sec
+     0 packets input, 0 bytes, 0 no buffer
+     Received 0 broadcasts, 0 runts, 0 giants, 0 throttles
+     0 input errors, 0 CRC, 0 frame, 0 overrun, 0 ignored, 0 abort
+     0 packets output, 0 bytes, 0 underruns
+     0 output errors, 0 collisions, 0 interface resets
+     0 unknown protocol drops
+     0 output buffer failures, 0 output buffers swapped out
+Router#
+
+
+[call api]
+调用时间：2021-01-12 19.02.09
+调用接口：ping
+configName:RIP
+settingNum:0
+commands:['ping 192.168.1.1']
+获取Telnet:Router0的唯一对象……
+Telnet:Router0对象已经创建，获取成功
+Telnet:Router0对象创建成功！
+executeSomeCMD:
+['ping 192.168.1.1']
+executeSomeCMD-Result:
+['ping 192.168.1.1\n\nType escape sequence to abort.\nSending 5, 100-byte ICMP Echos to 192.168.1.1, timeout is 2 seconds:\n!!!!!\nSuccess rate is 100 percent (5/5), round-trip min/avg/max = 1/1/4 ms\nRouter#']
+**程序输出**
+Router#ping 192.168.1.1
+
+Type escape sequence to abort.
+Sending 5, 100-byte ICMP Echos to 192.168.1.1, timeout is 2 seconds:
+!!!!!
+Success rate is 100 percent (5/5), round-trip min/avg/max = 1/1/4 ms
+Router#
+
+
+[call api]
+调用时间：2021-01-12 19.02.28
+调用接口：ping
+configName:RIP
+settingNum:0
+commands:['ping 192.168.1.2']
+获取Telnet:Router0的唯一对象……
+Telnet:Router0对象已经创建，获取成功
+Telnet:Router0对象创建成功！
+executeSomeCMD:
+['ping 192.168.1.2']
+executeSomeCMD-Result:
+['ping 192.168.1.2\n\nType escape sequence to abort.\nSending 5, 100-byte ICMP Echos to 192.168.1.2, timeout is 2 seconds:\n....']
+**程序输出**
+Router#ping 192.168.1.2
+
+Type escape sequence to abort.
+Sending 5, 100-byte ICMP Echos to 192.168.1.2, timeout is 2 seconds:
+....
+
+
+[call api]
+调用时间：2021-01-12 19.03.36
+调用接口：ping
+configName:RIP
+settingNum:0
+commands:['ping 10.10.0.1']
+获取Telnet:Router0的唯一对象……
+Telnet:Router0对象已经创建，获取成功
+Telnet:Router0对象创建成功！
+executeSomeCMD:
+['ping 10.10.0.1']
+executeSomeCMD-Result:
+['.\nSuccess rate is 0 percent (0/5)\nRouter#']
+**程序输出**
+Router#.
+Success rate is 0 percent (0/5)
+Router#
+
+
+[call api]
+调用时间：2021-01-12 19.03.46
+调用接口：ping
+configName:RIP
+settingNum:0
+commands:['ping 10.10.0.1']
+获取Telnet:Router0的唯一对象……
+Telnet:Router0对象已经创建，获取成功
+Telnet:Router0对象创建成功！
+executeSomeCMD:
+['ping 10.10.0.1']
+executeSomeCMD-Result:
+['ping 10.10.0.1\n\nType escape sequence to abort.\nSending 5, 100-byte ICMP Echos to 10.10.0.1, timeout is 2 seconds:\n.....\nSuccess rate is 0 percent (0/5)\nRouter#']
+**程序输出**
+Router#ping 10.10.0.1
+
+Type escape sequence to abort.
+Sending 5, 100-byte ICMP Echos to 10.10.0.1, timeout is 2 seconds:
+.....
+Success rate is 0 percent (0/5)
+Router#
+
+
+[call api]
+调用时间：2021-01-12 19.04.33
+调用接口：validateConfig
+configName:RIP
+settingNum:0
+commands:['show ip route']
+获取Telnet:Router0的唯一对象……
+Telnet:Router0对象已经创建，获取成功
+Telnet:Router0对象创建成功！
+executeSomeCMD:
+['show ip route']
+executeSomeCMD-Result:
+['show ip route\nCodes: C - connected, S - static, R - RIP, M - mobile, B - BGP\n       D - EIGRP, EX - EIGRP external, O - OSPF, IA - OSPF inter area \n       N1 - OSPF NSSA external type 1, N2 - OSPF NSSA external type 2\n       E1 - OSPF external type 1, E2 - OSPF external type 2\n       i - IS-IS, su - IS-IS summary, L1 - IS-IS level-1, L2 - IS-IS level-2\n       ia - IS-IS inter area, * - candidate default, U - per-user static route\n       o - ODR, P - periodic downloaded static route\n\nGateway of last resort is not set\n\nC    192.168.1.0/24 is directly connected, FastEthernet0/0\nRouter#']
+**程序输出**
+Router#show ip route
+Codes: C - connected, S - static, R - RIP, M - mobile, B - BGP
+       D - EIGRP, EX - EIGRP external, O - OSPF, IA - OSPF inter area 
+       N1 - OSPF NSSA external type 1, N2 - OSPF NSSA external type 2
+       E1 - OSPF external type 1, E2 - OSPF external type 2
+       i - IS-IS, su - IS-IS summary, L1 - IS-IS level-1, L2 - IS-IS level-2
+       ia - IS-IS inter area, * - candidate default, U - per-user static route
+       o - ODR, P - periodic downloaded static route
+
+Gateway of last resort is not set
+
+C    192.168.1.0/24 is directly connected, FastEthernet0/0
+Router#
+
+
+ip_route_result: ['Router#show ip route', 'Codes: C - connected, S - static, R - RIP, M - mobile, B - BGP', '       D - EIGRP, EX - EIGRP external, O - OSPF, IA - OSPF inter area ', '       N1 - OSPF NSSA external type 1, N2 - OSPF NSSA external type 2', '       E1 - OSPF external type 1, E2 - OSPF external type 2', '       i - IS-IS, su - IS-IS summary, L1 - IS-IS level-1, L2 - IS-IS level-2', '       ia - IS-IS inter area, * - candidate default, U - per-user static route', '       o - ODR, P - periodic downloaded static route', '', 'Gateway of last resort is not set', '', 'C    192.168.1.0/24 is directly connected, FastEthernet0/0', 'Router#']
+configName:RIP
+settingNum:0
+commands:['show ip protocols']
+获取Telnet:Router0的唯一对象……
+Telnet:Router0对象已经创建，获取成功
+Telnet:Router0对象创建成功！
+executeSomeCMD:
+['show ip protocols']
+executeSomeCMD-Result:
+['show ip protocols\n\nRouter#']
+**程序输出**
+Router#show ip protocols
+
+Router#
+
+
+ip_protocols_result: ['Router#show ip protocols', '', 'Router#']
+**接口返回值**
+ip route验证错误，没有准确的路由
+相关输出如下：
+C    192.168.1.0/24 is directly connected, FastEthernet0/0
+ip protocols验证错误，没有正确的协议
+
+

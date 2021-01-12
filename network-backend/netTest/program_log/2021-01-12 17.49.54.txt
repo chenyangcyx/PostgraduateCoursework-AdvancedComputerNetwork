@@ -1,0 +1,26 @@
+[call api]
+调用时间：2021-01-12 17.51.50
+调用接口：setRouterIP
+telnetHost: 192.168.1.1
+interface: s0/0/0
+ipAddress: 192.168.2.1
+netMask: 255.255.255.0
+commands: ['configure terminal', 'interface s0/0/0', 'ip address 192.168.2.1 255.255.255.0', 'clock rate 64000', 'no shutdown', 'end']
+configName:RIP
+settingNum:0
+commands:['configure terminal', 'interface s0/0/0', 'ip address 192.168.2.1 255.255.255.0', 'clock rate 64000', 'no shutdown', 'end']
+获取Telnet:Router0的唯一对象……
+Telnet:Router0对象未被创建，开始创建……
+开始连接主机: 192.168.1.1
+无法连接到主机192.168.1.1: timed out
+Telnet连接失败，重试……
+开始连接主机: 192.168.1.1
+无法连接到主机192.168.1.1: timed out
+Telnet连接失败，重试……
+开始连接主机: 192.168.1.1
+无法连接到主机192.168.1.1: timed out
+Telnet连接失败，重试……
+开始连接主机: 192.168.1.1
+无法连接到主机192.168.1.1: timed out
+Telnet连接失败，重试……
+开始连接主机: 192.168.1.1
