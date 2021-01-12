@@ -1,6 +1,6 @@
 <template>
   <div class="fillcontain">
-    <div  style="display: flex;width: 100%; justify-content: space-between;flex-wrap: nowrap">
+    <div  style="display: flex;width: 100%; justify-content: space-between;flex-wrap: wrap">
       <div style="width: 30%">
         <span style="margin-bottom: 10px" >配置</span><br>
         <el-button @click="configDialog = true" style="margin-bottom: 10px" type="success">配置路由器</el-button>
@@ -12,9 +12,19 @@
         <el-button @click="checkRouterTable" style="margin-bottom: 10px" type="success">查看路由表</el-button>
         <el-button @click="checkRouterProtocol" style="margin-bottom: 10px" type="success">查看路由协议</el-button>
         <el-button @click="checkInterface" style="margin-bottom: 10px" type="success">查看接口信息</el-button>
-        <el-button @click="pingDialog = true" style="margin-bottom: 10px" type="success">ping!</el-button>
+
         <el-button @click="validateConfig" style="margin-bottom: 10px" type="success">验证配置结果</el-button>
       </div>
+      <div style="width: 100%;margin-bottom: 10px">
+        ping!!!
+      </div>
+      <div style="width: 30%">
+        <el-input v-model="pingIp" autocomplete="off"></el-input>
+      </div>
+      <div style="width:67%">
+        <el-button @click="ping" style="margin-bottom: 10px" type="success">ping!</el-button>
+      </div>
+
 
     </div>
 
@@ -155,7 +165,7 @@ export default {
     },
     //这里调用ping
     ping() {
-      this.$emit("ping",this.pingItem.pingIp)
+      this.$emit("ping",this.pingIp)
     },
     clearAllConfig(){
         this.$emit("clearAllConfig")
