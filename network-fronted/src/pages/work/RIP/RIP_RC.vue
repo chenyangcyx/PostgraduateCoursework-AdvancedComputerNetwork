@@ -1,107 +1,110 @@
 <template>
-  <div class="fillcontain">
-    <el-button @click="executeConfigCommand" style="margin-bottom: 10px" type="success">配置路由器</el-button>
-    <el-button @click="executeTestCommand" style="margin-bottom: 10px" type="success">查看结果</el-button>
-
-    <div class="contain">
-      <vue-command
-          class="vuecommand"
-          ref="aa" title="高级计算机网络大作业"
-          prompt=""
-          :history.sync="history"
-          :commands.sync="commands"
-          :is-in-progress="true">
-      </vue-command>
-    </div>
-  </div>
+  <router ref="router"
+          @executeConfigCommand="executeConfigCommand"
+          @generateTemplate="generateTemplate"
+          @executeCustomizedOrder="executeCustomizedOrder"
+          @ping="ping"
+          @clearAllConfig="clearAllConfig"
+          @checkRouterTable="checkRouterTable"
+          @checkRouterProtocol="checkRouterProtocol"
+          @checkInterface="checkInterface"
+          @validateConfig="validateConfig"
+  ></router>
 </template>
 
 <script>
-import VueCommand, {createStdout} from 'vue-command';
-import 'vue-command/dist/vue-command.css';
+import {createStdout} from 'vue-command';
 import api from '@/api2/bigwork'
+import Router from "@/pages/work/common/Router";
+import utils from "@/utils/Commonutils";
 
 export default {
   name: 'Command',
   components: {
-    VueCommand
+    Router
   },
   created() {
   },
   mounted() {
-    let stdins = this.$refs.aa.$refs.stdin;
-    this.stdins = stdins
-    this.lastStdin = this.stdins[this.stdins.length - 1];
-    this.stdinsLen = this.stdins.length
   },
   data: () => ({
-    commands: {
-      'echo': _ => createStdout('JSON.stringify(_, null, 2)')
-    },
-    remoteStr: '',
-    history: [],
-    lastStdin: null,
-    stdinsLen: 0,
-    stdins: null
-
+    configName: "OSPF",
+    routerNum: 0
   }),
   methods: {
-    executeConfigCommand() {
+    //配置路由器
+    executeConfigCommand(config) {
+      utils.sleep(100).then(r => {
+        let commands = config.split("\n");
+        let router = this.$refs.router;
+        api.executeSomeCommand(this.configName, this.routerNum, commands).then(res => {
+          router.history.push(createStdout("配置路由器结果如下: <br>" + res.result.join("<br>")))
+        })
+      })
+    },
+    //生成模板
+    generateTemplate() {
+      let router = this.$refs.router;
+      api.generateTemplate(this.configName, this.routerNum).then(res => {
+        router.config = res.result.join('\n');
+      })
+    },
+    //执行用户自定义命令
+    executeCustomizedOrder(config) {
+      let commands = config.split("\n");
+      let router = this.$refs.router;
+      api.executeSomeCommand(this.configName, this.routerNum, commands).then(res => {
+        router.history.push(createStdout("执行用户自定义命令结果如下: <br>" + res.result.join("<br>")))
+      })
+    },
+    //执行ping命令,如果有多个ip，使用，分割
+    ping(ips) {
+      let router = this.$refs.router;
+      api.ping(this.configName, this.routerNum, ips).then(res => {
+        router.history.push(createStdout("执行ping命令结果如下: <br>" + res.result.join("<br>")))
+      })
+    },
+    //清除所有配置
+    clearAllConfig() {
+      api.clearAllConfig(this.configName, this.routerNum)
+    },
+    //查看路由表
+    checkRouterTable() {
+      let router = this.$refs.router;
+      api.checkIPRoute(this.configName,this.routerNum).then(res=>{
+        router.history.push(createStdout("查看路由表结果如下: <br>" + res.result.join("<br>")))
+      })
 
-      this.sleep(100).then(res=>{
-        //在这里输入配置信息
-        let configName = "RIP";
-        let settingNum = 2;
-        api.executeConfigCommand(configName,settingNum).then(res=>{
-          this.history.push(createStdout("配置命令如下: <br>" + res.original_result.join("<br>")))
-          let str = "<br>结果如下：<br>" + res.handle_result.join("<br>");
-          this.history.push(createStdout(str));
-        });
-      })
     },
-    executeTestCommand() {
-      this.sleep(100).then(res=>{
-        let configName = "RIP";
-        let settingNum = 2;
-        api.executeTestCommand(configName,settingNum).then(res=>{
-          this.history.push(createStdout("查询命令如下: <br>" + res.original_result.join("<br>")))
-          let str = "<br>结果如下：<br>" + res.handle_result.join("<br>");
-          this.history.push(createStdout(str));
-        });
-      })
-    },
-    aaa() {
-      this.sleep(100).then(res=>{
-        this.lastStdin.local.stdin = new String("命令1");
-        this.history.push(createStdout('你坏<br>哈哈'));
-        return this.sleep(100)
+    //查看路由协议
+    checkRouterProtocol() {
+      let configName = "OSPF";
+      let routerNum = 0;
+      let router = this.$refs.router;
+      api.checkRouterProtocol(configName,routerNum).then(res=>{
+        router.history.push(createStdout("查看路由表结果如下: <br>" + res.result.join("<br>")))
       })
 
     },
-    refresh1() {
-      this.lastStdin = this.stdins[this.stdins.length - 1];
+    //查看接口信息
+    checkInterface() {
+      let router = this.$refs.router;
+      api.checkInterface(this.configName,this.routerNum).then(res=>{
+        router.history.push(createStdout("查看接口信息结果如下: <br>" + res.result.join("<br>")))
+      })
+
     },
-    sleep(time) {
-      return new Promise((resolve) => setTimeout(resolve, time));
-    }
+    //验证配置结果
+    validateConfig() {
+      let router = this.$refs.router;
+      api.validateConfig(this.configName,this.routerNum).then(res=>{
+        router.history.push(createStdout("验证配置结果: <br>" + res.result.join("<br>")))
+      })
+    },
   }
 };
 </script>
 
 <style scoped>
-.fillcontain {
-  background: #fff;
-  padding: 20px 20px;
 
-}
-
-.contain {
-  height: 420px;
-}
-
-.vuecommand {
-  min-height: 400px;
-  max-height: 400px;
-  overflow-y: scroll;
-}
 </style>
