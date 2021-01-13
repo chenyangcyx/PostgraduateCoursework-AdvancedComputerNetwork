@@ -1,5 +1,6 @@
 import json
 import time
+
 from netTest.Telnet import OutputLogger, TelnetClient, MessageHandle
 
 if __name__ == '__main__':
@@ -43,23 +44,19 @@ if __name__ == '__main__':
     telnet_client.goEnable()
 
     # 测试发送命令
-    test_command=['show ip interface']
+    test_command = ['show ip interface']
     logger_demo.handleMsg('\n测试发送命令……')
     result_out = telnet_client.executeSomeCMD(test_command)
     logger_demo.handleMsg("**程序输出**")
     # 处理原始输出
-    result_out1=MessageHandle.reformatOriginalResult(result_out)
+    result_out1 = MessageHandle.reformatOriginalResult(result_out)
     for msg in result_out1:
         logger_demo.handleMsg(msg)
     # 获取命令执行结果
     logger_demo.handleMsg("**清理后输出**")
-    result_out2=MessageHandle.deleteLineWithCmdPrefix(telnet_client.tn.hostname,result_out1)
+    result_out2 = MessageHandle.deleteLineWithCmdPrefix(telnet_client.tn.hostname, result_out1)
     for msg in result_out2:
         logger_demo.handleMsg(msg)
-
-
-
-
 
     # # 测试获取neighbors
     # logger_demo.handleMsg('\n测试获取Neighbors……')

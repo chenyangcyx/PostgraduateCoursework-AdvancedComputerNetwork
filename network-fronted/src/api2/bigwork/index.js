@@ -66,11 +66,11 @@ export default {
     executeSomeCommand(configName,routerNum,commands){
         return request.request({
             url: '/executeSomeCommand/',
-            method: "post",
-            data: {
-                configName,
-                routerNum,
-                commands
+            method: "get",
+            params: {
+                'configName':configName,
+                'routerNum':routerNum,
+                'commands':Base64.encode(JSON.stringify(commands))
             }
         })
     },

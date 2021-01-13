@@ -1,5 +1,6 @@
 import _thread
 import time
+
 from netTest.Telnet import ciscolib
 
 

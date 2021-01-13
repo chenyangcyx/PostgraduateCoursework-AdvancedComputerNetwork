@@ -1,7 +1,8 @@
-import telnetlib
 import re
-from .errors import *
+import telnetlib
+
 from .compat import *
+from .errors import *
 
 
 class Device(object):
@@ -123,7 +124,7 @@ class Device(object):
         text = self.read_until_prompt()
         ret_text = text.split('\n')[0]
         for a in text.split('\n')[1:]:
-            ret_text += '\n'+a
+            ret_text += '\n' + a
         if 'hostname' in cmd_text:
             self._get_hostname()
         if "Invalid input" in ret_text or "Incomplete command" in ret_text:

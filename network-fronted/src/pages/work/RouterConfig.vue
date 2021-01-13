@@ -9,7 +9,7 @@
         <el-form-item  label="ip地址">
           <el-input   v-model="ip" autocomplete="off"></el-input>
         </el-form-item>
-        <el-form-item label="端口" >
+        <el-form-item label="接口" >
           <el-input   v-model="interface1" autocomplete="off"></el-input>
         </el-form-item>
         <el-form-item label="子网掩码" >

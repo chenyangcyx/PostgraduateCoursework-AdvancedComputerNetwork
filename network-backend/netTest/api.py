@@ -1,6 +1,7 @@
 import base64
-import re
+
 from django.http import HttpResponse
+
 from netTest.api_function import *
 
 
@@ -30,13 +31,13 @@ def setRouterIP(request):
         if not telnetHost_result:
             return HttpResponse(json.dumps({'message': 'telnetHost输入格式错误！', 'result': telnetHost}),
                                 content_type='application/json;charset=utf-8')
-        interface_result = re.search(interface_re, interface)
-        if not interface_result:
-            return HttpResponse(json.dumps({'message': 'interface输入格式错误！', 'result': interface}),
-                                content_type='application/json;charset=utf-8')
         ipAddress_result = re.search(ip_address_re, ipAddress)
         if not ipAddress_result:
             return HttpResponse(json.dumps({'message': 'ipAddress输入格式错误！', 'result': ipAddress}),
+                                content_type='application/json;charset=utf-8')
+        interface_result = re.search(interface_re, interface)
+        if not interface_result:
+            return HttpResponse(json.dumps({'message': 'interface输入格式错误！', 'result': interface}),
                                 content_type='application/json;charset=utf-8')
         netMask_result = re.search(netMask_re, netMask)
         if not netMask_result:
@@ -117,15 +118,15 @@ def setRouterIPDefault(request):
                             content_type='application/json;charset=utf-8')
 
 
-# 执行一段命令，POST
+# 执行一段命令，GET
 # configName:string
 # routerNum:int
 # commands:list
 def executeSomeCommand(request):
-    if request.method == 'POST':
-        configName = request.POST.get('configName')
-        routerNum = int(request.POST.get('routerNum'))
-        commands = request.POST.get('commands')
+    if request.method == 'GET':
+        configName = request.GET.get('configName')
+        routerNum = int(request.GET.get('routerNum'))
+        commands = base64.b64decode(request.GET.get('commands')).decode()
         commands_list = json.loads(commands)
         logger.handleMsg('[call api]\n调用时间：%s' % time.strftime("%Y-%m-%d %H.%M.%S", time.localtime()))
         logger.handleMsg("调用接口：executeSomeCommand")
@@ -202,8 +203,14 @@ def checkIPRoute(request):
         logger.handleMsg('[call api]\n调用时间：%s' % time.strftime("%Y-%m-%d %H.%M.%S", time.localtime()))
         logger.handleMsg("调用接口：checkIPRoute")
         result_out = executeCommands(configName, routerNum, commands)
-
-        return HttpResponse(json.dumps({'result': result_out}), content_type='application/json;charset=utf-8')
+        route_info = getInfoFromShowIPRoute(result_out)
+        result_out.append('')
+        result_out.append(f'共有{len(route_info)}条路由信息')
+        for line in route_info:
+            result_out.append(line)
+        logger.handleMsg('输出结果：%s' % result_out)
+        return HttpResponse(json.dumps({'message': f'获取到{len(route_info)}条路由信息！', 'result': result_out}),
+                            content_type='application/json;charset=utf-8')
 
 
 # 查看协议信息，GET
@@ -217,7 +224,14 @@ def checkIPProtocols(request):
         logger.handleMsg('[call api]\n调用时间：%s' % time.strftime("%Y-%m-%d %H.%M.%S", time.localtime()))
         logger.handleMsg("调用接口：checkIPProtocols")
         result_out = executeCommands(configName, routerNum, commands)
-        return HttpResponse(json.dumps({'result': result_out}), content_type='application/json;charset=utf-8')
+        if_ok, message, result = getInfoFromShowIPProtocols(result_out)
+        if result:
+            result.append('')
+            for line in result:
+                result_out.append(line)
+        logger.handleMsg('输出结果：%s' % result_out)
+        return HttpResponse(json.dumps({'message': message, 'result': result_out}),
+                            content_type='application/json;charset=utf-8')
 
 
 # 查看接口信息，GET
@@ -227,11 +241,17 @@ def checkInterface(request):
     if request.method == 'GET':
         configName = request.GET.get('configName')
         routerNum = int(request.GET.get('routerNum'))
-        commands = [f'show interfaces']
+        commands = ['show interfaces']
         logger.handleMsg('[call api]\n调用时间：%s' % time.strftime("%Y-%m-%d %H.%M.%S", time.localtime()))
         logger.handleMsg("调用接口：checkInterface")
         result_out = executeCommands(configName, routerNum, commands)
-        return HttpResponse(json.dumps({'result': result_out}), content_type='application/json;charset=utf-8')
+        result_info = getInfoFromShowInterfaces(result_out)
+        result_out.append('')
+        for line in result_info:
+            result_out.append(line)
+        logger.handleMsg('输出结果：%s' % result_out)
+        return HttpResponse(json.dumps({'message': '获取接口信息成功！', 'result': result_out}),
+                            content_type='application/json;charset=utf-8')
 
 
 # 验证配置结果，GET
@@ -244,58 +264,44 @@ def validateConfig(request):
         logger.handleMsg('[call api]\n调用时间：%s' % time.strftime("%Y-%m-%d %H.%M.%S", time.localtime()))
         logger.handleMsg("调用接口：validateConfig")
         result = list()
-        # 获取ip route结果
+        result.append('')
+        message = ""
+        # show ip route信息
         commands = ['show ip route']
-        ip_route_result = executeCommands(configName, routerNum, commands)
-        logger.handleMsg(f'ip_route_result: {ip_route_result}')
-        result_start = 0
-        for i in range(len(ip_route_result)):
-            if 'Gateway of' in ip_route_result[i]:
-                result_start = i + 2
-                break
-        ip_route_validate = list()
-        for i in range(result_start, len(ip_route_result) - 1):
-            ip_route_validate.append(ip_route_result[i])
-        if len(ip_route_validate) < 3:
-            result.append("ip route验证错误，没有准确的路由")
+        showiproute_info1 = executeCommands(configName, routerNum, commands)
+        showiproute_info2 = getInfoFromShowIPRoute(showiproute_info1)
+        if len(showiproute_info2) < 3:
+            result.append(f"ip route验证错误，只获得了{len(showiproute_info2)}条路由信息")
+            message = "ip route验证错误"
             result.append("相关输出如下：")
-            if_success = False
         else:
-            result.append("ip route验证成功，得到了准确的路由")
+            result.append("ip route验证成功，配置了正确的路由！")
+            message = "ip route验证成功"
             result.append("相关输出如下：")
-            if_success = True
-        for line in ip_route_validate:
+        for line in showiproute_info2:
             result.append(line)
-        # 获取ip protocols
+        # show ip protocols
         commands = ['show ip protocols']
-        ip_protocols_result = executeCommands(configName, routerNum, commands)
-        logger.handleMsg(f'ip_protocols_result: {ip_protocols_result}')
-        if len(ip_protocols_result) < 5:
+        showipprotocols_info1 = executeCommands(configName, routerNum, commands)
+        if_ok, message_protocols, showipprotocols_info2 = getInfoFromShowIPProtocols(showipprotocols_info1)
+        result.append('')
+        if len(showipprotocols_info1) < 5:
             result.append("ip protocols验证错误，没有正确的协议")
-            if_success = False
+            message += "，ip protocols验证错误！"
         else:
             result.append("ip protocols验证正确，协议配置成功")
-            if_success = True
-            # 路由协议
-            for line in ip_protocols_result:
-                if 'Routing Protocol is' in line:
-                    result.append('路由协议：' + line.replace(r'"').replace(r'Routing Protocol is '))
-                break
-            # 路由详情
-            for i in range(len(ip_protocols_result)):
-                if 'Routing for Networks' in ip_protocols_result[i]:
-                    result.append('路由详情：')
-                    result.append(ip_protocols_result[i + 1].strip())
-                    result.append(ip_protocols_result[i + 2].strip())
-                    break
-        if if_success:
-            message = '验证成功！'
-        else:
-            message = '验证失败！'
-        logger.handleMsg('**接口返回值**')
-        for line in result:
-            logger.handleMsg(line)
-        logger.handleMsg('\n')
+            message += "，ip protocols验证成功！"
+            for line in showipprotocols_info2:
+                result.append(line)
+        # show interfaces信息
+        commands = ['show interfaces']
+        showinterfaces_info1 = executeCommands(configName, routerNum, commands)
+        showinterfaces_info2 = getInfoFromShowInterfaces(showinterfaces_info1)
+        result.append('')
+        result.append('所有接口信息：')
+        for line in showinterfaces_info2:
+            result.append(line)
+        logger.handleMsg('输出结果：%s' % result)
         return HttpResponse(json.dumps({'message': message, 'result': result}),
                             content_type='application/json;charset=utf-8')
 
@@ -344,4 +350,10 @@ def ping(request):
         logger.handleMsg('[call api]\n调用时间：%s' % time.strftime("%Y-%m-%d %H.%M.%S", time.localtime()))
         logger.handleMsg("调用接口：ping")
         result_out = executeCommands(configName, routerNum, commands)
-        return HttpResponse(json.dumps({'result': result_out}), content_type='application/json;charset=utf-8')
+        message = "ping失败！"
+        for line in result_out:
+            if r'!!!!!' in line:
+                message = "ping成功！"
+                break
+        return HttpResponse(json.dumps({'message': message, 'result': result_out}),
+                            content_type='application/json;charset=utf-8')

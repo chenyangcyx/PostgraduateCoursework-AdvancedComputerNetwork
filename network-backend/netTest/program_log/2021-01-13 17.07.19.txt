@@ -1,0 +1,166 @@
+[call api]
+调用时间：2021-01-13 17.09.27
+调用接口：setRouterIP
+telnetHost: 6546556
+interface: hjkhjk5465
+ipAddress: ghjgjh5465465
+netMask: 8978989kjhjk
+[call api]
+调用时间：2021-01-13 17.09.46
+调用接口：setRouterIP
+telnetHost: 192.168.1.1
+interface: hjkhjk5465
+ipAddress: ghjgjh5465465
+netMask: 8978989kjhjk
+[call api]
+调用时间：2021-01-13 17.09.59
+调用接口：setRouterIP
+telnetHost: 192.168.1.1
+interface: hjkhjk5465
+ipAddress: 192.168.2.1
+netMask: 8978989kjhjk
+[call api]
+调用时间：2021-01-13 17.10.06
+调用接口：setRouterIP
+telnetHost: 192.168.1.1
+interface: f0/1
+ipAddress: 192.168.2.1
+netMask: 8978989kjhjk
+[call api]
+调用时间：2021-01-13 17.10.13
+调用接口：setRouterIP
+telnetHost: 192.168.1.1
+interface: f0/1
+ipAddress: 192.168.2.1
+netMask: 255.255.255.0
+configName:RIP
+routerNum:0
+commands:['configure terminal', 'interface f0/1', 'ip address 192.168.2.1 255.255.255.0', 'no shutdown', 'end']
+获取Telnet:Router0的唯一对象……
+Telnet:Router0对象未被创建，开始创建……
+开始连接主机: 192.168.1.1
+连接成功！
+进入特权模式……
+进入enable模式成功！
+executeSomeCMD:
+['configure terminal', 'interface f0/1', 'ip address 192.168.2.1 255.255.255.0', 'no shutdown', 'end']
+executeSomeCMD-Result:
+['configure terminal\nEnter configuration commands, one per line.  End with CNTL/Z.\nRouter(config)#', 'interface f0/1\nRouter(config-if)#', 'ip address 192.168.2.1 255.255.255.0\nRouter(config-if)#', 'no shutdown\nRouter(config-if)#', 'end\nRouter#']
+**程序输出**
+Router#configure terminal
+Enter configuration commands, one per line.  End with CNTL/Z.
+Router(config)#interface f0/1
+Router(config-if)#ip address 192.168.2.1 255.255.255.0
+Router(config-if)#no shutdown
+Router(config-if)#end
+Router#
+
+
+configName:RIP
+routerNum:0
+commands:['configure terminal', 'interface s0/0/0', 'ip address 192.168.2.1 255.255.255.0', 'clock rate 64000', 'no shutdown', 'end']
+获取Telnet:Router0的唯一对象……
+Telnet:Router0对象已经创建，获取成功
+executeSomeCMD:
+['configure terminal', 'interface s0/0/0', 'ip address 192.168.2.1 255.255.255.0', 'clock rate 64000', 'no shutdown', 'end']
+executeSomeCMD-Result:
+['configure terminal\nEnter configuration commands, one per line.  End with CNTL/Z.\nRouter(config)#', 'interface s0/0/0\nRouter(config-if)#', 'ip address 192.168.2.1 255.255.255.0\n% 192.168.2.0 overlaps with FastEthernet0/1\nRouter(config-if)#', 'clock rate 64000\nThis command applies only to DCE interfaces\nRouter(config-if)#', 'no shutdown\n% 192.168.2.0 overlaps with FastEthernet0/1\nSerial0/0/0: incorrect IP address assignment\nRouter(config-if)#', 'end\nRouter#']
+**程序输出**
+Router#configure terminal
+Enter configuration commands, one per line.  End with CNTL/Z.
+Router(config)#interface s0/0/0
+Router(config-if)#ip address 192.168.2.1 255.255.255.0
+% 192.168.2.0 overlaps with FastEthernet0/1
+Router(config-if)#clock rate 64000
+This command applies only to DCE interfaces
+Router(config-if)#no shutdown
+% 192.168.2.0 overlaps with FastEthernet0/1
+Serial0/0/0: incorrect IP address assignment
+Router(config-if)#end
+Router#
+
+
+configName:RIP
+routerNum:1
+commands:['configure terminal', 'interface s0/0/0', 'ip address 192.168.2.2 255.255.255.0', 'clock rate 64000', 'no shutdown', 'end', 'configure terminal', 'interface s0/0/1', 'ip address 192.168.3.1 255.255.255.0', 'clock rate 64000', 'no shutdown', 'end']
+获取Telnet:Router1的唯一对象……
+Telnet:Router1对象未被创建，开始创建……
+开始连接主机: 192.168.1.2
+连接成功！
+进入特权模式……
+进入enable模式成功！
+executeSomeCMD:
+['configure terminal', 'interface s0/0/0', 'ip address 192.168.2.2 255.255.255.0', 'clock rate 64000', 'no shutdown', 'end', 'configure terminal', 'interface s0/0/1', 'ip address 192.168.3.1 255.255.255.0', 'clock rate 64000', 'no shutdown', 'end']
+executeSomeCMD-Result:
+['configure terminal\nEnter configuration commands, one per line.  End with CNTL/Z.\nRouter(config)#', 'interface s0/0/0\nRouter(config-if)#', 'ip address 192.168.2.2 255.255.255.0\nRouter(config-if)#', 'clock rate 64000\nRouter(config-if)#', 'no shutdown\nRouter(config-if)#', 'end\nRouter#', 'configure terminal\nEnter configuration commands, one per line.  End with CNTL/Z.\nRouter(config)#', 'interface s0/0/1\nRouter(config-if)#', 'ip address 192.168.3.1 255.255.255.0\nRouter(config-if)#', 'clock rate 64000\nRouter(config-if)#', 'no shutdown\nRouter(config-if)#', 'end\nRouter#']
+**程序输出**
+Router#configure terminal
+Enter configuration commands, one per line.  End with CNTL/Z.
+Router(config)#interface s0/0/0
+Router(config-if)#ip address 192.168.2.2 255.255.255.0
+Router(config-if)#clock rate 64000
+Router(config-if)#no shutdown
+Router(config-if)#end
+Router#configure terminal
+Enter configuration commands, one per line.  End with CNTL/Z.
+Router(config)#interface s0/0/1
+Router(config-if)#ip address 192.168.3.1 255.255.255.0
+Router(config-if)#clock rate 64000
+Router(config-if)#no shutdown
+Router(config-if)#end
+Router#
+
+
+configName:RIP
+routerNum:2
+commands:['configure terminal', 'interface s0/0/1', 'ip address 192.168.3.2 255.255.255.0', 'clock rate 64000', 'no shutdown', 'end']
+获取Telnet:Router2的唯一对象……
+Telnet:Router2对象未被创建，开始创建……
+开始连接主机: 192.168.1.3
+连接成功！
+进入特权模式……
+进入enable模式成功！
+executeSomeCMD:
+['configure terminal', 'interface s0/0/1', 'ip address 192.168.3.2 255.255.255.0', 'clock rate 64000', 'no shutdown', 'end']
+executeSomeCMD-Result:
+['configure terminal\nEnter configuration commands, one per line.  End with CNTL/Z.\nRouter(config)#', 'interface s0/0/1\nRouter(config-if)#', 'ip address 192.168.3.2 255.255.255.0\nRouter(config-if)#', 'clock rate 64000\nThis command applies only to DCE interfaces\nRouter(config-if)#', 'no shutdown\nRouter(config-if)#', 'end\nRouter#']
+**程序输出**
+Router#configure terminal
+Enter configuration commands, one per line.  End with CNTL/Z.
+Router(config)#interface s0/0/1
+Router(config-if)#ip address 192.168.3.2 255.255.255.0
+Router(config-if)#clock rate 64000
+This command applies only to DCE interfaces
+Router(config-if)#no shutdown
+Router(config-if)#end
+Router#
+
+
+[call api]
+调用时间：2021-01-13 17.13.53
+调用接口：checkIPRoute
+configName:RIP
+routerNum:0
+commands:['show ip route']
+获取Telnet:Router0的唯一对象……
+Telnet:Router0对象已经创建，获取成功
+executeSomeCMD:
+['show ip route']
+executeSomeCMD-Result:
+['show ip route\nCodes: C - connected, S - static, R - RIP, M - mobile, B - BGP\n       D - EIGRP, EX - EIGRP external, O - OSPF, IA - OSPF inter area \n       N1 - OSPF NSSA external type 1, N2 - OSPF NSSA external type 2\n       E1 - OSPF external type 1, E2 - OSPF external type 2\n       i - IS-IS, su - IS-IS summary, L1 - IS-IS level-1, L2 - IS-IS level-2\n       ia - IS-IS inter area, * - candidate default, U - per-user static route\n       o - ODR, P - periodic downloaded static route\n\nGateway of last resort is not set\n\nC    192.168.1.0/24 is directly connected, FastEthernet0/0\nRouter#']
+**程序输出**
+Router#show ip route
+Codes: C - connected, S - static, R - RIP, M - mobile, B - BGP
+       D - EIGRP, EX - EIGRP external, O - OSPF, IA - OSPF inter area 
+       N1 - OSPF NSSA external type 1, N2 - OSPF NSSA external type 2
+       E1 - OSPF external type 1, E2 - OSPF external type 2
+       i - IS-IS, su - IS-IS summary, L1 - IS-IS level-1, L2 - IS-IS level-2
+       ia - IS-IS inter area, * - candidate default, U - per-user static route
+       o - ODR, P - periodic downloaded static route
+
+Gateway of last resort is not set
+
+C    192.168.1.0/24 is directly connected, FastEthernet0/0
+Router#
+
+

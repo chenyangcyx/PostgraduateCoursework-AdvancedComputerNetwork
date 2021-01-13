@@ -21,8 +21,11 @@
       <div style="width: 30%">
         <el-input v-model="pingIp" autocomplete="off"></el-input>
       </div>
-      <div style="width:67%">
+      <div style="width:50%">
         <el-button @click="ping" style="margin-bottom: 10px" type="success">ping!</el-button>
+      </div>
+      <div style="width:10%;margin-right:15px">
+        <el-button @click="clearCommand" style="margin-bottom: 10px" type="success">Clear Command</el-button>
       </div>
 
 
@@ -62,7 +65,7 @@
       </el-form>
       <div slot="footer" class="dialog-footer">
         <el-button @click="customizedConfigDialog  = false">取 消</el-button>
-        <el-button type="primary" @click="executeConfigCommand">执 行</el-button>
+        <el-button type="primary" @click="executeCustomizedOrder">执 行</el-button>
       </div>
     </el-dialog>
 
@@ -151,6 +154,9 @@ export default {
     }
   },
   methods: {
+    clearCommand(){
+        this.history = []
+    },
     executeConfigCommand() {
       this.$emit("executeConfigCommand",this.config);
     },

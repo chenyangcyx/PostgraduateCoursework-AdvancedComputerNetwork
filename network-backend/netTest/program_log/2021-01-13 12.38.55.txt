@@ -1,0 +1,134 @@
+[call api]
+调用时间：2021-01-13 12.38.59
+调用接口：ping
+configName:RIP
+routerNum:0
+commands:['ping 192.168.1.1', '']
+获取Telnet:Router0的唯一对象……
+Telnet:Router0对象未被创建，开始创建……
+开始连接主机: 192.168.1.1
+连接成功！
+进入特权模式……
+进入enable模式成功！
+executeSomeCMD:
+['ping 192.168.1.1', '']
+executeSomeCMD-Result:
+['ping 192.168.1.1\n\nType escape sequence to abort.\nSending 5, 100-byte ICMP Echos to 192.168.1.1, timeout is 2 seconds:\n!!!!!\nSuccess rate is 100 percent (5/5), round-trip min/avg/max = 1/1/4 ms\nRouter#', '\nRouter#']
+**程序输出**
+Router#ping 192.168.1.1
+
+Type escape sequence to abort.
+Sending 5, 100-byte ICMP Echos to 192.168.1.1, timeout is 2 seconds:
+!!!!!
+Success rate is 100 percent (5/5), round-trip min/avg/max = 1/1/4 ms
+Router#
+Router#
+
+
+[call api]
+调用时间：2021-01-13 12.39.05
+调用接口：ping
+configName:RIP
+routerNum:0
+commands:['ping 192.168.1.200', '']
+获取Telnet:Router0的唯一对象……
+Telnet:Router0对象已经创建，获取成功
+executeSomeCMD:
+['ping 192.168.1.200', '']
+executeSomeCMD-Result:
+['ping 192.168.1.200\n\nType escape sequence to abort.\nSending 5, 100-byte ICMP Echos to 192.168.1.200, timeout is 2 seconds:\n.....\nSuccess rate is 0 percent (0/5)\nRouter#', '\nRouter#']
+**程序输出**
+Router#ping 192.168.1.200
+
+Type escape sequence to abort.
+Sending 5, 100-byte ICMP Echos to 192.168.1.200, timeout is 2 seconds:
+.....
+Success rate is 0 percent (0/5)
+Router#
+Router#
+
+
+[call api]
+调用时间：2021-01-13 12.39.19
+调用接口：ping
+configName:RIP
+routerNum:0
+commands:['ping 192.168.1.200', '']
+获取Telnet:Router0的唯一对象……
+Telnet:Router0对象已经创建，获取成功
+executeSomeCMD:
+['ping 192.168.1.200', '']
+executeSomeCMD-Result:
+['ping 192.168.1.200\n\nType escape sequence to abort.\nSending 5, 100-byte ICMP Echos to 192.168.1.200, timeout is 2 seconds:\n....', '.\nSuccess rate is 0 percent (0/5)\nRouter#']
+**程序输出**
+Router#ping 192.168.1.200
+
+Type escape sequence to abort.
+Sending 5, 100-byte ICMP Echos to 192.168.1.200, timeout is 2 seconds:
+.....
+Success rate is 0 percent (0/5)
+Router#
+
+
+[call api]
+调用时间：2021-01-13 12.39.29
+调用接口：ping
+configName:RIP
+routerNum:0
+commands:['ping 192.168.1.200', '']
+获取Telnet:Router0的唯一对象……
+Telnet:Router0对象已经创建，获取成功
+executeSomeCMD:
+['ping 192.168.1.200', '']
+[call api]
+调用时间：2021-01-13 12.39.34
+调用接口：ping
+configName:RIP
+routerNum:0
+commands:['ping 192.168.1.201', '']
+获取Telnet:Router0的唯一对象……
+Telnet:Router0对象已经创建，获取成功
+executeSomeCMD:
+['ping 192.168.1.201', '']
+executeSomeCMD-Result:
+['ping 192.168.1.200\n\nType escape sequence to abort.\nSending 5, 100-byte ICMP Echos to 192.168.1.200, timeout is 2 seconds:\n....', '\nRouter#']
+**程序输出**
+Router#ping 192.168.1.200
+
+Type escape sequence to abort.
+Sending 5, 100-byte ICMP Echos to 192.168.1.200, timeout is 2 seconds:
+....
+Router#
+
+
+executeSomeCMD-Result:
+['.\nSuccess rate is 0 percent (0/5)\nRouter#', '\nRouter#']
+**程序输出**
+Router#.
+Success rate is 0 percent (0/5)
+Router#
+Router#
+
+
+[call api]
+调用时间：2021-01-13 12.40.02
+调用接口：ping
+configName:RIP
+routerNum:0
+commands:['ping 192.168.1.200', '']
+获取Telnet:Router0的唯一对象……
+Telnet:Router0对象已经创建，获取成功
+executeSomeCMD:
+['ping 192.168.1.200', '']
+executeSomeCMD-Result:
+['ping 192.168.1.200\n\nType escape sequence to abort.\nSending 5, 100-byte ICMP Echos to 192.168.1.200, timeout is 2 seconds:\n....', '.\nSuccess rate is 0 percent (0/5)\nRouter#']
+**程序输出**
+Router#ping 192.168.1.200
+
+Type escape sequence to abort.
+Sending 5, 100-byte ICMP Echos to 192.168.1.200, timeout is 2 seconds:
+.....
+Success rate is 0 percent (0/5)
+Router#
+
+

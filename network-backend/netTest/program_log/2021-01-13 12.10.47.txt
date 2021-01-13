@@ -1,0 +1,78 @@
+[call api]
+调用时间：2021-01-13 12.10.53
+调用接口：checkIPRoute
+configName:OSPF
+routerNum:0
+commands:['show ip route']
+获取Telnet:Router0的唯一对象……
+Telnet:Router0对象未被创建，开始创建……
+开始连接主机: 192.168.1.1
+连接成功！
+进入特权模式……
+进入enable模式成功！
+executeSomeCMD:
+['show ip route']
+executeSomeCMD-Result:
+['show ip route\nCodes: C - connected, S - static, R - RIP, M - mobile, B - BGP\n       D - EIGRP, EX - EIGRP external, O - OSPF, IA - OSPF inter area \n       N1 - OSPF NSSA external type 1, N2 - OSPF NSSA external type 2\n       E1 - OSPF external type 1, E2 - OSPF external type 2\n       i - IS-IS, su - IS-IS summary, L1 - IS-IS level-1, L2 - IS-IS level-2\n       ia - IS-IS inter area, * - candidate default, U - per-user static route\n       o - ODR, P - periodic downloaded static route\n\nGateway of last resort is not set\n\nC    192.168.1.0/24 is directly connected, FastEthernet0/0\nRouter#']
+**程序输出**
+Router#show ip route
+Codes: C - connected, S - static, R - RIP, M - mobile, B - BGP
+       D - EIGRP, EX - EIGRP external, O - OSPF, IA - OSPF inter area 
+       N1 - OSPF NSSA external type 1, N2 - OSPF NSSA external type 2
+       E1 - OSPF external type 1, E2 - OSPF external type 2
+       i - IS-IS, su - IS-IS summary, L1 - IS-IS level-1, L2 - IS-IS level-2
+       ia - IS-IS inter area, * - candidate default, U - per-user static route
+       o - ODR, P - periodic downloaded static route
+
+Gateway of last resort is not set
+
+C    192.168.1.0/24 is directly connected, FastEthernet0/0
+Router#
+
+
+[call api]
+调用时间：2021-01-13 12.11.15
+调用接口：checkIPRoute
+configName:OSPF
+routerNum:0
+commands:['show ip route']
+获取Telnet:Router0的唯一对象……
+Telnet:Router0对象已经创建，获取成功
+executeSomeCMD:
+['show ip route']
+executeSomeCMD-Result:
+['show ip route\nCodes: C - connected, S - static, R - RIP, M - mobile, B - BGP\n       D - EIGRP, EX - EIGRP external, O - OSPF, IA - OSPF inter area \n       N1 - OSPF NSSA external type 1, N2 - OSPF NSSA external type 2\n       E1 - OSPF external type 1, E2 - OSPF external type 2\n       i - IS-IS, su - IS-IS summary, L1 - IS-IS level-1, L2 - IS-IS level-2\n       ia - IS-IS inter area, * - candidate default, U - per-user static route\n       o - ODR, P - periodic downloaded static route\n\nGateway of last resort is not set\n\nC    192.168.1.0/24 is directly connected, FastEthernet0/0\nRouter#']
+**程序输出**
+Router#show ip route
+Codes: C - connected, S - static, R - RIP, M - mobile, B - BGP
+       D - EIGRP, EX - EIGRP external, O - OSPF, IA - OSPF inter area 
+       N1 - OSPF NSSA external type 1, N2 - OSPF NSSA external type 2
+       E1 - OSPF external type 1, E2 - OSPF external type 2
+       i - IS-IS, su - IS-IS summary, L1 - IS-IS level-1, L2 - IS-IS level-2
+       ia - IS-IS inter area, * - candidate default, U - per-user static route
+       o - ODR, P - periodic downloaded static route
+
+Gateway of last resort is not set
+
+C    192.168.1.0/24 is directly connected, FastEthernet0/0
+Router#
+
+
+[call api]
+调用时间：2021-01-13 12.11.40
+调用接口：checkIPProtocols
+configName:OSPF
+routerNum:0
+commands:['show ip protocols']
+获取Telnet:Router0的唯一对象……
+Telnet:Router0对象已经创建，获取成功
+executeSomeCMD:
+['show ip protocols']
+executeSomeCMD-Result:
+['show ip protocols\n\nRouter#']
+**程序输出**
+Router#show ip protocols
+
+Router#
+
+

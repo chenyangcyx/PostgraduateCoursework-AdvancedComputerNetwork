@@ -1,8 +1,8 @@
 import json
+import re
 import time
 
 from netTest.Telnet import TelnetClient, OutputLogger, MessageHandle
-
 
 # 声明logger对象，用来屏幕输出和写文件记录
 logger = OutputLogger(True, True, "netTest/program_log/%s.txt" % time.strftime("%Y-%m-%d %H.%M.%S", time.localtime()))
@@ -100,3 +100,116 @@ def getContrastNetmask(netmask: str):
             netmask_result += '.'
         netmask_result += str(255 - int(netmask_split[i]))
     return netmask_result
+
+
+# 获取show ip route命令的路由信息
+def getInfoFromShowIPRoute(result_out):
+    start = 0
+    for i in range(len(result_out)):
+        if r'Gateway of last' in result_out[i]:
+            start = i
+            break
+    route_info = list()
+    for i in range(start + 2, len(result_out) - 1):
+        route_info.append(result_out[i])
+    return route_info
+
+
+# 获取show ip protocols命令的路由信息
+def getInfoFromShowIPProtocols(result_out):
+    protocols_info = ""
+    routing_for_networks_start = 0
+    routing_for_networks = list()
+    routing_information_sources_start = 0
+    routing_information_sources = list()
+    distance_start = 0
+    if len(result_out) == 3:
+        return False, "未获取到protocols信息！", None
+    elif len(result_out) > 3:
+        for line in result_out:
+            if r'Routing Protocol is' in line:
+                protocols_info = line.replace('Routing Protocol is ', '').replace('"', '')
+                break
+        for i in range(len(result_out)):
+            if r'Routing for Networks:' in result_out[i]:
+                routing_for_networks_start = i
+            if r'Routing Information Sources:' in result_out[i]:
+                routing_information_sources_start = i
+            if r'Distance:' in result_out[i]:
+                distance_start = i
+        ip_address_re = r'((2(5[0-5]|[0-4]\d))|[0-1]?\d{1,2})(\.((2(5[0-5]|[0-4]\d))|[0-1]?\d{1,2})){3}'
+        for i in range(routing_for_networks_start + 1, len(result_out)):
+            if re.search(ip_address_re, result_out[i]):
+                routing_for_networks.append(result_out[i])
+            else:
+                break
+        for i in range(routing_information_sources_start + 1, distance_start):
+            routing_information_sources.append(result_out[i])
+        message = "获取protocols信息成功！"
+        result = list()
+        result.append(f'\n当前配置协议：{protocols_info}')
+        result.append(f'共有{len(routing_for_networks)}条Routing for Networks信息：')
+        for line in routing_for_networks:
+            result.append(line)
+        result.append(f'共有{len(routing_information_sources) - 1}条Routing Information Sources信息：')
+        for line in routing_information_sources:
+            result.append(line)
+        return True, message, result
+    else:
+        return False, "未获取到protocols信息！", None
+
+
+# 获取show interfaces命令的信息
+def getInfoFromShowInterfaces(result_out):
+    f00_start = 0
+    f01_start = 0
+    s000_start = 0
+    s001_start = 0
+    for i in range(len(result_out)):
+        if r'FastEthernet0/0' in result_out[i]:
+            f00_start = i
+        if r'FastEthernet0/1' in result_out[i]:
+            f01_start = i
+        if r'Serial0/0/0' in result_out[i]:
+            s000_start = i
+        if r'Serial0/0/1' in result_out[i]:
+            s001_start = i
+    result = list()
+    # F0/0
+    if 'up' in result_out[f00_start]:
+        if r'Internet address is ' in result_out[f00_start + 2]:
+            result.append(
+                f'接口 FastEthernet0/0 开启，IP地址：{result_out[f00_start + 2].replace(r"Internet address is ", "").strip()}')
+        else:
+            result.append(f'接口 FastEthernet0/0 开启，但未配置IP地址')
+    elif 'down' in result_out[f00_start]:
+        result.append(f'接口 FastEthernet0/0 未开启')
+    # F0/1
+    if 'up' in result_out[f01_start]:
+        if r'Internet address is ' in result_out[f01_start + 2]:
+            result.append(
+                f'接口 FastEthernet0/1 开启，IP地址：{result_out[f01_start + 2].replace(r"Internet address is ", "").strip()}')
+        else:
+            result.append(f'接口 FastEthernet0/1 开启，但未配置IP地址')
+    elif 'down' in result_out[f01_start]:
+        result.append(f'接口 FastEthernet0/1 未开启')
+    # S0/0/0
+    if 'up' in result_out[s000_start]:
+        if r'Internet address is ' in result_out[s000_start + 2]:
+            result.append(
+                f'接口 Serial0/0/0 开启，IP地址：{result_out[s000_start + 2].replace(r"Internet address is ", "").strip()}')
+        else:
+            result.append(f'接口 Serial0/0/0 开启，但未配置IP地址')
+    elif 'down' in result_out[s000_start]:
+        result.append(f'接口 Serial0/0/0 未开启')
+    # S0/0/1
+    if 'up' in result_out[s001_start]:
+        if r'Internet address is ' in result_out[s001_start + 2]:
+            result.append(
+                f'接口 Serial0/0/1 开启，IP地址：{result_out[s001_start + 2].replace(r"Internet address is ", "").strip()}')
+        else:
+            result.append(f'接口 Serial0/0/1 开启，但未配置IP地址')
+    elif 'down' in result_out[s001_start]:
+        result.append(f'接口 Serial0/0/1 未开启')
+
+    return result
