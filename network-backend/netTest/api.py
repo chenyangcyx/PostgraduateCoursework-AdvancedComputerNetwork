@@ -121,7 +121,7 @@ def setRouterIPDefault(request):
 # 执行一段命令，GET
 # configName:string
 # routerNum:int
-# commands:list
+# commands:base64(string_list)
 def executeSomeCommand(request):
     if request.method == 'GET':
         configName = request.GET.get('configName')
